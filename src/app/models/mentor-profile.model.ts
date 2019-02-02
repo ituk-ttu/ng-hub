@@ -4,6 +4,7 @@ export class MentorProfileModel {
   gif: string;
   id: number;
   mentorshipId: number;
+  profilePicUrl: string;
   photo: string;
   quote: string;
   text: string;

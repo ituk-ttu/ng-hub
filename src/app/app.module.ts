@@ -18,6 +18,10 @@ import {BsDropdownModule, CollapseModule, ModalModule} from 'ngx-bootstrap';
 import {ResourcesHttpService} from './services/resources.http-service';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {MentorProfilesHttpService} from './services/mentor-profiles.http-service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material';
+import {httpInterceptorProviders} from './interceptor';
+import {AuthContext} from './services/authContext';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,8 @@ import {MentorProfilesHttpService} from './services/mentor-profiles.http-service
     ProfilePicSelectComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    MatDialogModule,
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     ModalModule.forRoot(),
@@ -41,7 +47,13 @@ import {MentorProfilesHttpService} from './services/mentor-profiles.http-service
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UserHttpService, MyDetailsHttpService, ResourcesHttpService, MentorProfilesHttpService],
+  providers: [
+    UserHttpService,
+    MyDetailsHttpService,
+    ResourcesHttpService,
+    MentorProfilesHttpService,
+    httpInterceptorProviders,
+    AuthContext],
   bootstrap: [AppComponent]
 })
 export class AppModule {

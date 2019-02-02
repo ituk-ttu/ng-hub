@@ -1,24 +1,25 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {ImageCroppedEvent} from 'ngx-image-cropper';
+import {MyDetailsHttpService} from '../../services/my-details.http-service';
+import {AuthContext} from '../../services/authContext';
 
 @Component({
   selector: 'app-profile-pic-select',
   templateUrl: './profile-pic-select.component.html',
   styleUrls: ['./profile-pic-select.component.css']
 })
-export class ProfilePicSelectComponent implements OnInit {
+export class ProfilePicSelectComponent {
   @ViewChild('template')
   picSelectTemplate: TemplateRef<any>;
   public modalRef: BsModalRef;
-  public imagePath;
-  public imgURL: any;
-  public message: string;
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
+  public imageChangedEvent: any = '';
+  public croppedImage: any = '';
   public showCropper;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService,
+              private mentorHttpService: MyDetailsHttpService,
+              private authContext: AuthContext) {
   }
 
 
@@ -37,20 +38,27 @@ export class ProfilePicSelectComponent implements OnInit {
     this.modalRef = undefined;
   }
 
-  ngOnInit() {
-  }
-
-  fileChangeEvent(event: any): void {
+  public fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
     this.showCropper = true;
   }
-  imageCropped(event: ImageCroppedEvent) {
+
+  public imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.base64;
   }
-  imageLoaded() {
+
+  public save(): void {
+    this.mentorHttpService.saveProfilePic(this.croppedImage).subscribe(
+      () => this.closeModal(),
+      () => console.log('Error saving image')
+    );
+  }
+
+  public imageLoaded(): void {
     // show cropper
   }
-  loadImageFailed() {
+
+  public loadImageFailed(): void {
     // show message
   }
 }
