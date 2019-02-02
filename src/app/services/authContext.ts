@@ -5,20 +5,21 @@ import {User} from '../models/user.model';
 import {environment} from '../../environments/environment';
 import {TokenModel} from '../models/token.model';
 import {LoginDetails} from '../models/login-details.model';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthContext {
 
-  private user: User;
+  public user: User;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
     this.getSessionUser().subscribe((response) => this.user = response);
   }
 
   public getSessionUser(): Observable<User> {
     // const url = `${environment.API_URL}/user/me`;
     // return <Observable<User>> this.http.get(url, null);
-
     const model: User = {
       id: 2,
       name: 'Stiiven Stiigal',
@@ -30,9 +31,7 @@ export class AuthContext {
       telegram: 'bangarang',
       isMentor: true
     };
-
     return new Observable<User>((subscriber: Subscriber<User>) => subscriber.next(model));
-
   }
 
   public getUserId() {
@@ -43,13 +42,15 @@ export class AuthContext {
     return this.user.name;
   }
 
-  public logout(): Observable<any> {
+  public logout(): void {
     const url = `${environment.API_URL}/authenticate/invalidate`;
-    return <Observable<any>> this.http.post(url, null);
+    this.http.post(url, null).subscribe(
+      () => this.router.navigate(['hub/auth']),
+      () => this.router.navigate(['hub/auth']));
   }
 
   public login(details: LoginDetails): Observable<TokenModel> {
-    const url = `${environment.API_URL}/authenticate/validate`;
+    const url = `${environment.API_URL}/authenticate/password`;
     return <Observable<TokenModel>> this.http.post(url, details);
   }
 

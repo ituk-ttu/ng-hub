@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthContext} from '../../services/authContext';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,8 @@ import {AuthContext} from '../../services/authContext';
 export class NavbarComponent implements OnInit {
   navbarOpen = false;
 
-  constructor(public authContext: AuthContext) {
+  constructor(public authContext: AuthContext,
+              public router: Router) {
   }
 
   ngOnInit() {

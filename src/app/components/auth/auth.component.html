@@ -1,0 +1,19 @@
+<div class="container ng-scope">
+  <h2 class="text-center">Hub | ITÜK</h2>
+  <div class="well well-lg">
+    <form class="ng-valid ng-dirty ng-valid-parse">
+      <div class="form-group">
+        <label class="control-label">E-mail</label>
+        <input type="text" [(ngModel)]="loginDetails.username" name="userName" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Parool</label>
+        <input type="password" [(ngModel)]="loginDetails.password" name="password" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched">
+      </div>
+      <div class="form-group">
+        <button (click)="login()" class="btn btn-success btn-block">Logi sisse</button>
+      </div>
+      <div class="form-group text-center"><a ui-sref="recoverPassword({email: user.username})" href="/recover">Unustasid parooli?</a></div>
+    </form>
+  </div>
+</div>

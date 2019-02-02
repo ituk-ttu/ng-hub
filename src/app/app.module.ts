@@ -22,6 +22,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
 import {httpInterceptorProviders} from './interceptor';
 import {AuthContext} from './services/authContext';
+import { AuthComponent } from './components/auth/auth.component';
+import {CookieModule} from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -34,8 +36,10 @@ import {AuthContext} from './services/authContext';
     SettingsComponent,
     MyMentorProfileComponent,
     ProfilePicSelectComponent,
+    AuthComponent,
   ],
   imports: [
+    CookieModule.forRoot(),
     BrowserAnimationsModule,
     MatDialogModule,
     BsDropdownModule.forRoot(),
