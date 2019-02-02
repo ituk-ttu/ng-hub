@@ -11,6 +11,8 @@ export class MyMentorProfileComponent implements OnInit {
 
   public myProfile: MentorProfileModel;
   public showModal: boolean;
+  public openGifs: number[] = [];
+  public showGif: boolean = false;
 
   constructor(private mentorHttpService: MyDetailsHttpService) {
     this.getProfile();
@@ -22,6 +24,19 @@ export class MyMentorProfileComponent implements OnInit {
   public setProfileEnabledStatus(status: boolean) {
     if (this.myProfile) {
       this.myProfile.enabled = status;
+    }
+  }
+
+  public toggleGif(currentStatus: boolean) {
+    if (!currentStatus) {
+      this.openGifs.push(this.myProfile.id);
+      this.showGif = true;
+    } else {
+      const index: number = this.openGifs.indexOf(this.myProfile.id);
+      if (index !== -1) {
+        this.openGifs.splice(index, 1);
+      }
+      this.showGif = false;
     }
   }
 

@@ -7,7 +7,7 @@ import {SpinnerComponent} from './components/spinner/spinner.component';
 import {UsersComponent} from './components/users/users.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {MyMentorProfileComponent} from './components/my-mentor-profile/my-mentor-profile.component';
-import {ProfilePicSelectComponent} from './profile-pic-select/profile-pic-select.component';
+import {ProfilePicSelectComponent} from './components/profile-pic-select/profile-pic-select.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
@@ -45,6 +45,5 @@ import {MentorProfilesHttpService} from './services/mentor-profiles.http-service
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  isCollapsed = true;
 
 }

@@ -1,6 +1,8 @@
 <h1>{{myProfile.name}}</h1>
 <div class="row">
   <div class="well col-md-8 col-sm-6 col-lg-8 col-xs-12">
+    <app-profile-pic-select></app-profile-pic-select>
+
     <form class="ng-pristine ng-valid">
       <div class="form-group">
         <label class="control-label">Eriala
@@ -42,6 +44,7 @@
         <div class="btn-group">
           <button type="button" (click)="setProfileEnabledStatus(false)" [ngClass]="{'btn-primary': !myProfile.enabled}" class="btn  btn-primary ml-3">jah</button>
           <button type="button" (click)="setProfileEnabledStatus(true)" [ngClass]="{'btn-primary': myProfile.enabled}" class="btn btn-default">ei</button>
+
         </div>
       </div>
       <div class="form-group">
@@ -50,16 +53,19 @@
       </div>
     </form>
   </div>
+
+
   <div class="col-md-4 col-lg-4 col-sm-6 hidden-xs mentor-select mentors">
     <div class="mentor mentor-preview">
       <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80">
       <div class="mentor-info">
-        <p class="mentor-name ng-binding">user</p>
-        <p class="mentor-curriculum ng-binding">Informaatika</p>
-        <p class="mentor-description ng-binding">
-          ITÜKis on väga hea energia. NB see kõik pidi riimuma aga siin tekstilahtris ei saa tekitada uut rida.</p>
-        <a class="gif-btn ng-scope">Lemmik GIF +</a>
-        <a class="btn btn-primary btn-block disabled">Vali</a>
+        <p class="mentor-name ng-binding">{{myProfile.name}}</p>
+        <p class="mentor-curriculum ng-binding">{{myProfile.curriculum}}</p>
+        <p class="mentor-description ng-binding pb-2">{{myProfile.text}}</p>
+        <a (click)="toggleGif(openGifs.indexOf(myProfile.id) > -1)" class="mentor-quote"><em class="ng-binding">Lemmik GIF +</em></a>
+        <img *ngIf="showGif" src="{{myProfile.gif}}">
+        <p class="mentor-quote"><em class="ng-binding">{{myProfile.quote}}</em></p>
+        <a class="btn btn-primary btn-block disabled mt-2">Vali</a>
       </div>
     </div>
   </div>
@@ -68,4 +74,3 @@
 
 
 
-<app-profile-pic-select></app-profile-pic-select>

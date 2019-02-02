@@ -3,7 +3,6 @@ export class MentorProfileModel {
   enabled: boolean;
   gif: string;
   id: number;
-  mentorship: string;
   mentorshipId: number;
   photo: string;
   quote: string;
