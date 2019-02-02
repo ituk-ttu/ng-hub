@@ -7,4 +7,5 @@ export class MentorProfileModel {
   photo: string;
   quote: string;
   text: string;
+  name: string;
 }

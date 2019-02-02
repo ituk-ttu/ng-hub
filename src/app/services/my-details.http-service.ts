@@ -25,10 +25,20 @@ export class MyDetailsHttpService {
       mentorshipId: 63,
       photo: '/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQ',
       quote: '\'Sõitsime auto jumala kuubikuks\' -Nils',
-      text: 'Olen Nortalist.↵ Mulle ei meeldi ruudulised pildid vist.↵ Olen kaugeim asi introverdist ning  juurin sinust välja '
+      text: 'Olen .↵ Mulle ei meeldi ruudulised pildid vist.↵ Olen kaugeim asi introverdist ning  juurin sinust välja ',
+      name: 'Angular hub'
     };
     return new Observable<MentorProfileModel>((subscriber: Subscriber<MentorProfileModel>) =>
       subscriber.next(modal));
   }
+
+  public saveMentorProfile(mentorProfile: MentorProfileModel): Observable<MentorProfileModel> {
+    // TODO mock this till api running
+    // getUsers is a lazy method. In order to get the actual users subscribe to it. See usages for example
+    const url = this.API_PREFIX + '/mentor/user/63';
+    return <Observable<MentorProfileModel>> this.http.post(url, mentorProfile);
+
+  }
+
 
 }

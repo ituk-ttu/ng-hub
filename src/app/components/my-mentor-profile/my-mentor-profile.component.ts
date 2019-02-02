@@ -10,16 +10,31 @@ import {MentorProfileModel} from '../../models/mentor-profile.model';
 export class MyMentorProfileComponent implements OnInit {
 
   public myProfile: MentorProfileModel;
+  public showModal: boolean;
 
   constructor(private mentorHttpService: MyDetailsHttpService) {
-    mentorHttpService.getMyMentorProfile().subscribe(
+    this.getProfile();
+  }
+
+  ngOnInit() {
+  }
+
+  public setProfileEnabledStatus(status: boolean) {
+    if (this.myProfile) {
+      this.myProfile.enabled = status;
+    }
+  }
+
+  public save() {
+    this.mentorHttpService.saveMentorProfile(this.myProfile).subscribe(
+      () => console.log('nice'),
+      () => console.log('not nice'));
+  }
+
+  public getProfile() {
+    this.mentorHttpService.getMyMentorProfile().subscribe(
       (response) => this.myProfile = response,
       () => console.log('error getting my mentor profile')
     );
   }
-
-  ngOnInit() {
-
-  }
-
 }
