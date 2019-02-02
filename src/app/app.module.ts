@@ -17,6 +17,7 @@ import {MyDetailsHttpService} from './services/my-details.http-service';
 import {ModalModule} from 'ngx-bootstrap';
 import {ResourcesHttpService} from './services/resources.http-service';
 import {ImageCropperModule} from 'ngx-image-cropper';
+import {MentorProfilesHttpService} from './services/mentor-profiles.http-service';
 
 @NgModule({
   declarations: [
