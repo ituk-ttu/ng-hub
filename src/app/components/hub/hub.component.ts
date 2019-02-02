@@ -17,5 +17,12 @@ export class HubComponent implements OnInit {
             () => console.log('Error getting content'))
     }
 
+    private copyInputMessage(inputElement){
+        inputElement.select();
+        document.execCommand('copy');
+        inputElement.setSelectionRange(0, 0);
+    }
+
     ngOnInit() { }
+
 }
