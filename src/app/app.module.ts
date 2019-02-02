@@ -38,7 +38,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UserHttpService, MyDetailsHttpService, ResourcesHttpService],
+  providers: [UserHttpService, MyDetailsHttpService, ResourcesHttpService, MentorProfilesHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

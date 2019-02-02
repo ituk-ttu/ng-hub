@@ -14,7 +14,7 @@ export class MyDetailsHttpService {
 
   public getMyMentorProfile(): Observable<MentorProfileModel> {
     // TODO mock this till api running
-    // getUsers is a lazy method. In order to get the actual users subscribe to it. See usages for example
+    // getMyMentorProfile is a lazy method. In order to get the actual users subscribe to it. See usages for example
     // const url = this.API_PREFIX + '/mentor/user/63';
     // return <Observable<MentorProfileModel[]>> this.http.get(url);
     const modal: MentorProfileModel = {
