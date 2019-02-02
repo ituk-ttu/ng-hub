@@ -1,8 +1,6 @@
 <div ng-repeat="resource in resources | orderBy: 'name'" class="ng-scope">
-
     <ng-container *ngFor="let resource of resources">
         <ng-container *ngIf="!isAdmin">
-
             <div>
                 <h3>{{resource.name}}</h3>
                 <p>
@@ -11,9 +9,9 @@
                 <div class="form-group">
                     <div class="input-group">
                         <input [(ngModel)]="resource.url" name="url"
-                               readonly class="form-control ng-pristine ng-touched ng-valid"><span class="input-group-btn">
-                        <button ngclipboard=""
-                                data-clipboard-text="https://calendar.google.com/calendar/embed?src=g86lrthmecu19gh7arvcj76f08%40group.calendar.google.com&amp;ctz=Europe/Tallinn"
+                               readonly class="form-control ng-pristine ng-touched ng-valid" #input>
+                        <span class="input-group-btn">
+                        <button (click)="copyInputMessage(input)"
                                 class="btn btn-primary ng-isolate-scope">Kopeeri</button>
                     </span>
                     </div>
@@ -49,6 +47,4 @@
             </div>
         </ng-container>
     </ng-container>
-
-
 </div>
