@@ -1,21 +1,21 @@
 <div ui-view="" class="container content ng-scope">
     <h1 class="ng-scope">Sätted</h1>
-    <h3 class="ng-scope">Kasutaja andmed:</h3>
+    <h3 class="ng-scope">Kasutaja andmed</h3>
     <div class="well ng-scope">
         <form ng-submit="saveInfo()" class="ng-pristine ng-valid">
             <div class="form-group">
                 <label class="control-label">Nimi</label>
-                <input ng-model="user.name" type="text" ng-disabled="working.info"
+                <input [(ngModel)]="user.name" name="name" type="text" ng-disabled="working.info"
                        class="form-control ng-pristine ng-untouched ng-valid">
             </div>
             <div class="form-group">
                 <label class="control-label">E-mail</label>
-                <input ng-model="user.email" type="text" ng-disabled="working.info"
+                <input [(ngModel)]="user.email" name="email" type="text" ng-disabled="working.info"
                        class="form-control ng-pristine ng-untouched ng-valid">
             </div>
             <div class="form-group">
                 <label class="control-label">Telegram</label>
-                <input ng-model="user.telegram" type="text" ng-disabled="working.info"
+                <input [(ngModel)]="user.telegram" name="telegram" type="text" ng-disabled="working.info"
                        class="form-control ng-pristine ng-untouched ng-valid">
             </div>
             <div class="form-group">
@@ -25,7 +25,7 @@
             </div>
         </form>
     </div>
-    <h3 class="ng-scope">Muuda parooli:</h3>
+    <h3 class="ng-scope">Muuda parooli</h3>
     <div class="well ng-scope">
         <form ng-submit="savePassword()" class="ng-pristine ng-valid">
             <div class="form-group">

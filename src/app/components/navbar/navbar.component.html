@@ -1,39 +1,37 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <span class="navbar-brand" href="#" (click)="toggleNavbar()">
-    Hub | Itük
-  </span>
-  <div class="collapse navbar-collapse"
-       [ngClass]="{ 'show': navbarOpen }">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="hub">Ressursid</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="mentors">Mentorid</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="users">Kasutajad</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-
-      <li>
-        <div class="btn-group pull" dropdown>
-          <button dropdownToggle type="button" class="btn navbar-dark bg-dark dropdown-toggle" style="left: 0">
-            Button dropdown <span class="caret"></span>
-          </button>
-          <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-            <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-            <li class="divider dropdown-divider"></li>
-            <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+    <span class="navbar-brand" href="#" (click)="toggleNavbar()">
+        Hub | ITÜK
+    </span>
+    <div class="collapse navbar-collapse"
+         [ngClass]="{ 'show': navbarOpen }">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="hub">Ressursid</a>
             </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+            <li class="nav-item">
+                <a class="nav-link" href="mentors">Mentorid</a>
+            </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="users">Kasutajad</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li>
+                <div class="btn-group pull" dropdown>
+                    <button dropdownToggle type="button" class="btn navbar-dark bg-light dropdown-toggle"
+                            style="left: 0">
+                        Stiiven Siigal<span class="caret"></span>
+                    </button>
+                    <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li role="menuitem"><a class="dropdown-item" href="settings">Sätted</a></li>
+                        <li role="menuitem"><a class="dropdown-item" href="settings/mentor">Mentori profiil</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li role="menuitem"><a class="dropdown-item" href="#">Log out</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
