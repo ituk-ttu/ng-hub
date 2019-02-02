@@ -5,22 +5,23 @@ import {MentorsComponent} from './components/mentors/mentors.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {UsersComponent} from './components/users/users.component';
 import {MyMentorProfileComponent} from './components/my-mentor-profile/my-mentor-profile.component';
+import {AppComponent} from "./app.component";
 
 // TODO replace settings/mentor with settings/mentor{id}
 // TODO rename components - remove "Component" from name
 const routes: Routes = [
-  {path: 'hub', component: HubComponent},
-  {path: 'mentors', component: MentorsComponent},
-  {path: 'setting', component: SettingsComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'mentors', component: MentorsComponent},
-  {path: 'settings/mentor', component: MyMentorProfileComponent},
-  {path: 'settings', component: SettingsComponent},
+    {path: 'hub', component: HubComponent},
+    {path: 'hub/mentors', component: MentorsComponent},
+    {path: 'hub/users', component: UsersComponent},
+    {path: 'hub/mentors', component: MentorsComponent},
+    {path: 'hub/settings', component: SettingsComponent},
+    {path: 'hub/settings/mentor', component: MyMentorProfileComponent},
+    {path: '**', redirectTo: '/hub', pathMatch: 'full'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+
+export class AppRoutingModule { }

@@ -1,19 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <span class="navbar-brand" href="#" (click)="toggleNavbar()">
+    <a class="navbar-brand" routerLink="" (click)="toggleNavbar()">
         Hub | ITÜK
-    </span>
+    </a>
     <div class="collapse navbar-collapse"
          [ngClass]="{ 'show': navbarOpen }">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="hub">Ressursid</a>
+                <a class="nav-link" routerLink="/hub">Ressursid</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="mentors">Mentorid</a>
+                <a class="nav-link" routerLink="/hub/mentors">Mentorid</a>
             </li>
-
             <li class="nav-item">
-                <a class="nav-link" href="users">Kasutajad</a>
+                <a class="nav-link" routerLink="/hub/users">Kasutajad</a>
             </li>
         </ul>
         <ul class="navbar-nav">
@@ -24,11 +23,13 @@
                         {{authContext.getName()}}<span class="caret"></span>
                     </button>
                     <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li role="menuitem"><a class="dropdown-item" href="settings">Sätted</a></li>
-                        <li role="menuitem"><a class="dropdown-item" href="settings/mentor">Mentori profiil</a></li>
+                        <li role="menuitem">
+                            <a class="dropdown-item" routerLink="/hub/settings">Sätted</a></li>
+                        <li role="menuitem">
+                            <a class="dropdown-item" routerLink="/hub/settings/mentor">Mentori profiil</a></li>
                         <li class="divider dropdown-divider"></li>
-                        <li role="menuitem"><a class="dropdown-item" href="#">Log out</a>
-                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-item" href="#">Log out</a></li>
                     </ul>
                 </div>
             </li>
