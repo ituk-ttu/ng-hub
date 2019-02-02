@@ -19,10 +19,7 @@ export class MyMentorProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.mentorHttpService.getMyMentorProfile().subscribe(
-      (response) => this.myProfile = response,
-      () => console.log('error getting my mentor profile')
-    );
+
   }
 
 }

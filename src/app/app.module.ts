@@ -14,6 +14,7 @@ import {SettingsComponent} from './components/settings/settings.component';
 import {MyMentorProfileComponent} from './components/my-mentor-profile/my-mentor-profile.component';
 import {UserHttpService} from './services/user.http-service';
 import {MyDetailsHttpService} from './services/my-details.http-service';
+import {ResourcesHttpService} from "./services/resources.http-service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import {MyDetailsHttpService} from './services/my-details.http-service';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UserHttpService, MyDetailsHttpService],
+  providers: [UserHttpService, MyDetailsHttpService, ResourcesHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
