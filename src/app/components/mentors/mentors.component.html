@@ -1,3 +1,10 @@
 <div>
-  Mentorid
+    <ng-container *ngFor="let mentor of mentorProfiles">
+        <ng-container *ngIf="mentor.enabled">
+            <div>
+                <img src="{{mentor.gif}}">
+                <p>{{mentor.curriculum}}</p>
+            </div>
+        </ng-container>
+    </ng-container>
 </div>

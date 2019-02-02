@@ -1,3 +1,80 @@
-<p>
-  settings works!
-</p>
+<div ui-view="" class="container content ng-scope">
+    <h1 class="ng-scope">Sätted</h1>
+    <h3 class="ng-scope">Kasutaja andmed:</h3>
+    <div class="well ng-scope">
+        <form ng-submit="saveInfo()" class="ng-pristine ng-valid">
+            <div class="form-group">
+                <label class="control-label">Nimi</label>
+                <input ng-model="user.name" type="text" ng-disabled="working.info"
+                       class="form-control ng-pristine ng-untouched ng-valid">
+            </div>
+            <div class="form-group">
+                <label class="control-label">E-mail</label>
+                <input ng-model="user.email" type="text" ng-disabled="working.info"
+                       class="form-control ng-pristine ng-untouched ng-valid">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Telegram</label>
+                <input ng-model="user.telegram" type="text" ng-disabled="working.info"
+                       class="form-control ng-pristine ng-untouched ng-valid">
+            </div>
+            <div class="form-group">
+                <button type="submit" ng-disabled="working.info" class="btn btn-success">Salvesta</button>
+                <button type="button" ng-click="resetInfo()" ng-disabled="working.info" class="btn btn-danger">Taasta
+                </button>
+            </div>
+        </form>
+    </div>
+    <h3 class="ng-scope">Muuda parooli:</h3>
+    <div class="well ng-scope">
+        <form ng-submit="savePassword()" class="ng-pristine ng-valid">
+            <div class="form-group">
+                <label class="control-label">Vana parool</label>
+                <input ng-model="password.old" type="password" ng-disabled="working.password"
+                       class="form-control ng-pristine ng-untouched ng-valid">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Uus parool (vähemalt 8 sümbolit)</label>
+                <input ng-model="password.new" type="password" ng-disabled="working.password"
+                       class="form-control ng-pristine ng-untouched ng-valid">
+            </div>
+            <div class="form-group">
+                <label class="control-label">E-mail</label>
+                <input ng-model="password.newConfirm" type="password" ng-disabled="working.password"
+                       class="form-control ng-pristine ng-untouched ng-valid">
+            </div>
+            <div class="form-group">
+                <button type="submit" ng-disabled="working.password || password.new != password.newConfirm"
+                        class="btn btn-success">Muuda
+                </button>
+            </div>
+        </form>
+    </div>
+    <h3 class="ng-scope">Aktiivsed sessioonid</h3>
+    <div class="table-responsive ng-scope">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Selgitus</th>
+                <th>Loodud</th>
+                <th>Kustuta</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- ngRepeat: session in sessions -->
+            <tr ng-repeat="session in sessions" class="ng-scope">
+                <td class="ng-binding">170</td>
+                <td class="ng-binding">Windows 10.0 | Chrome</td>
+                <td class="ng-binding">23:48 16.05.2018</td>
+                <td><!-- ngIf: deleting != session.id --><a ng-if="deleting != session.id"
+                                                            ng-click="invalidateSession(session)"
+                                                            class="btn btn-danger btn-xs ng-scope">Kustuta</a>
+                    <!-- end ngIf: deleting != session.id -->
+                    <!-- ngIf: deleting == session.id -->
+                </td>
+            </tr><!-- end ngRepeat: session in sessions -->
+            </tbody>
+        </table>
+    </div>
+</div>

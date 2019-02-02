@@ -14,10 +14,8 @@ export class HubComponent implements OnInit {
     constructor(private usehttps: ResourcesHttpService) {
         usehttps.getResources().subscribe(
             (response) => this.resources = response,
-            () => console.log('fuck, this shit broke'))
+            () => console.log('Error getting content'))
     }
 
-    ngOnInit() {
-    }
-
+    ngOnInit() { }
 }

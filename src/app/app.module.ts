@@ -15,6 +15,7 @@ import {MyMentorProfileComponent} from './components/my-mentor-profile/my-mentor
 import {UserHttpService} from './services/user.http-service';
 import {MyDetailsHttpService} from './services/my-details.http-service';
 import {ResourcesHttpService} from "./services/resources.http-service";
+import {MentorProfilesHttpService} from "./services/mentor-profiles.http-service";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {ResourcesHttpService} from "./services/resources.http-service";
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UserHttpService, MyDetailsHttpService, ResourcesHttpService],
+  providers: [UserHttpService, MyDetailsHttpService, ResourcesHttpService, MentorProfilesHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
