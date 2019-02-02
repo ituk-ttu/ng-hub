@@ -15,7 +15,7 @@ export class MentorsComponent implements OnInit {
         httpservice.getMentorProfiles().subscribe(
             (response) => this.mentorProfiles = response,
             () => console.log('Error getting mentor profiles')
-        )
+        );
     }
 
     ngOnInit() { }
