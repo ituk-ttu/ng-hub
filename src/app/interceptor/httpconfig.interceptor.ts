@@ -13,7 +13,6 @@ export class NoopInterceptor implements HttpInterceptor {
     const token: string = this.cookeiService.get('token');
     if (token) {
       request = request.clone({headers: request.headers.set('Authorization', 'Bearer ' + token)});
-      console.log('had token');
     }
 
     if (!request.headers.has('Content-Type')) {
