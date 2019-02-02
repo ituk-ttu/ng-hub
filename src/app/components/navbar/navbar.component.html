@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <span class="navbar-brand" href="#" (click)="toggleNavbar()">
+    Hub | Itük
+  </span>
+  <div class="collapse navbar-collapse"
+       [ngClass]="{ 'show': navbarOpen }">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="hub">Ressursid</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mentors">Mentorid</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="users">Kasutajad</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li ngbDropdown class="nav-item dropdown">
+        <span ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          User
+        </span>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: 0">
+          <a class="dropdown-item" href="settings">Sätted</a>
+          <a class="dropdown-item" href="settings/mentor">Mentori profiil</a>
+          <span class="dropdown-item" onclick="alert('not implemented')">Logi välja</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
