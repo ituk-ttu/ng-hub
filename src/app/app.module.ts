@@ -14,7 +14,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {UserHttpService} from './services/user.http-service';
 import {MyDetailsHttpService} from './services/my-details.http-service';
-import {ModalModule} from 'ngx-bootstrap';
+import {BsDropdownModule, CollapseModule, ModalModule} from 'ngx-bootstrap';
 import {ResourcesHttpService} from './services/resources.http-service';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {MentorProfilesHttpService} from './services/mentor-profiles.http-service';
@@ -32,6 +32,8 @@ import {MentorProfilesHttpService} from './services/mentor-profiles.http-service
     ProfilePicSelectComponent,
   ],
   imports: [
+    BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
     ModalModule.forRoot(),
     ImageCropperModule,
     HttpClientModule,
@@ -43,4 +45,6 @@ import {MentorProfilesHttpService} from './services/mentor-profiles.http-service
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  isCollapsed = true;
+
 }

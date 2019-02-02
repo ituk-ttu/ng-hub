@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <span class="navbar-brand" href="#" (click)="toggleNavbar()">
-    Hub | ITÜK
+    Hub | Itük
   </span>
   <div class="collapse navbar-collapse"
        [ngClass]="{ 'show': navbarOpen }">
@@ -17,14 +17,20 @@
       </li>
     </ul>
     <ul class="navbar-nav">
-      <li ngbDropdown class="nav-item dropdown">
-        <span ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          User
-        </span>
-        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: 0">
-          <a class="dropdown-item" href="settings">Sätted</a>
-          <a class="dropdown-item" href="settings/mentor">Mentori profiil</a>
-          <span class="dropdown-item" onclick="alert('not implemented')">Logi välja</span>
+
+      <li>
+        <div class="btn-group pull" dropdown>
+          <button dropdownToggle type="button" class="btn navbar-dark bg-dark dropdown-toggle" style="left: 0">
+            Button dropdown <span class="caret"></span>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+            <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+            </li>
+          </ul>
         </div>
       </li>
     </ul>
