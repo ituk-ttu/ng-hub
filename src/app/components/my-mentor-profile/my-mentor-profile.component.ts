@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MyDetailsHttpService} from '../../services/my-details.http-service';
+import {MentorProfileModel} from '../../models/mentor-profile.model';
 
 @Component({
   selector: 'app-my-mentor-profile',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyMentorProfileComponent implements OnInit {
 
-  constructor() { }
+  public myProfile: MentorProfileModel;
+
+  constructor(private mentorHttpService: MyDetailsHttpService) {
+    mentorHttpService.getMyMentorProfile().subscribe(
+      (response) => this.myProfile = response,
+      () => console.log('error getting my mentor profile')
+    );
+  }
 
   ngOnInit() {
+    this.mentorHttpService.getMyMentorProfile().subscribe(
+      (response) => this.myProfile = response,
+      () => console.log('error getting my mentor profile')
+    );
   }
 
 }
