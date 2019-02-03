@@ -3,15 +3,17 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subscriber} from 'rxjs';
 import {MentorProfileModel} from '../models/mentor-profile.model';
 import {environment} from '../../environments/environment';
+import {AuthContext} from './authContext';
 
 @Injectable()
 export class MyDetailsHttpService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private authContext: AuthContext) {
   }
 
   public getMyMentorProfile(): Observable<MentorProfileModel> {
-    const url = environment.API_URL + '/mentor/user/63';
+    const url = environment.API_URL + '/mentor/user/' + this.authContext.getUserId();
     return <Observable<MentorProfileModel>> this.http.get(url);
   }
 

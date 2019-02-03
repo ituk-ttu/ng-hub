@@ -24,6 +24,10 @@ export class AuthContext {
     return this.http.get(url) as Observable<User>;
   }
 
+  public refreshSession() {
+    this.getSessionUser().subscribe((response) => this.user = response);
+  }
+
   public getUserId() {
     return this.user.id;
   }
@@ -36,7 +40,7 @@ export class AuthContext {
   }
 
   public logout(): void {
-    this.cookieService.remove('token')
+    this.cookieService.remove('token');
     const url = `${environment.API_URL}/authenticate/invalidate`;
     this.http.post(url, null).subscribe(
       () => this.router.navigate(['hub/auth']),
