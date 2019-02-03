@@ -1,47 +1,46 @@
 <ng-container *ngIf="users; else spinner">
-<div ui-view="" class="container content ng-scope">
-    <h1 class="ng-scope">Kasutajad
-        <!-- ngIf: $parent.currentUser.admin -->
-    </h1>
-    <div class="table-responsive ng-scope">
-        <table class="table table-striped table-hover table-list">
-            <thead>
-
-            <tr>
-                <th>ID</th>
-                <th>Nimi</th>
-                <th>E-mail</th>
-                <th>Telegram</th>
-                <th>Admin</th>
-                <th>Mentor</th>
-                <th>Arhiveeritud</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <th></th>
-              <td><input type="search" placeholder="Otsi nime, meili, telegrami..." [(ngModel)]="searchString" class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr *ngFor="let user of users; let i = index;">
-              <ng-container *ngIf="showUser(user)">
-                <td>{{i + 1}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.telegram}}</td>
-                <td><span *ngIf="user.admin" class="badge badge-dark">admin</span></td>
-                <td><span *ngIf="user.canBeMentor" class="badge badge-success">mentor</span></td>
-                <td><span *ngIf="user.archived" class="badge badge-danger">archived</span></td>
-              </ng-container>
-            </tr>
-            </tbody>
-        </table>
+    <div ui-view="" class="container content ng-scope">
+        <h1 class="ng-scope">Kasutajad
+        </h1>
+        <div class="table-responsive ng-scope">
+            <table class="table table-striped table-hover table-list">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nimi</th>
+                    <th>E-mail</th>
+                    <th>Telegram</th>
+                    <th>Admin</th>
+                    <th>Mentor</th>
+                    <th>Arhiveeritud</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th></th>
+                    <td><input type="search" placeholder="Otsi nime, meili, telegrami..." [(ngModel)]="searchString"
+                               class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let user of users; let i = index;" (click)="goToUser(user.id)">
+                    <ng-container *ngIf="showUser(user)">
+                        <td>{{i + 1}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.telegram}}</td>
+                        <td><span *ngIf="user.admin" class="badge badge-dark">admin</span></td>
+                        <td><span *ngIf="user.canBeMentor" class="badge badge-success">mentor</span></td>
+                        <td><span *ngIf="user.archived" class="badge badge-danger">archived</span></td>
+                    </ng-container>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </ng-container>
 <ng-template #spinner>
     <app-spinner></app-spinner>

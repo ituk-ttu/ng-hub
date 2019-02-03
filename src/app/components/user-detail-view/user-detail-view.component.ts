@@ -1,22 +1,28 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {UserHttpService} from "../../services/user.http-service";
+import {User} from "../../models/user.model";
 
 @Component({
-  selector: 'app-user-detail-view',
-  templateUrl: './user-detail-view.component.html',
-  styleUrls: ['./user-detail-view.component.css']
+    selector: 'app-user-detail-view',
+    templateUrl: './user-detail-view.component.html',
+    styleUrls: ['./user-detail-view.component.css']
 })
 
 export class UserDetailViewComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {
-  }
+    public user: User;
 
+    constructor(private route: ActivatedRoute,
+                private userService: UserHttpService) {
+    }
 
-  ngOnInit() {
-    const userId = this.route.snapshot.paramMap.get('id');
-    alert(userId);
-
-  }
+    ngOnInit() {
+        const userId = this.route.snapshot.paramMap.get('id');
+        this.userService.getUserById(userId).subscribe((result) => {
+            console.table(result);
+            this.user = result;
+        })
+    }
 
 }
