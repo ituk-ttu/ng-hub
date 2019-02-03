@@ -25,6 +25,10 @@ import {AuthContext} from './services/authContext';
 import { AuthComponent } from './components/auth/auth.component';
 import {CookieModule} from 'ngx-cookie';
 import {AuthGuard} from './config/auth-guard';
+import { ApplicationsComponent } from './components/applications/applications.component';
+import {ApplicationHttpService} from './services/application.http-service';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { DoorPermissionsComponent } from './components/door-permissions/door-permissions.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,9 @@ import {AuthGuard} from './config/auth-guard';
     MyMentorProfileComponent,
     ProfilePicSelectComponent,
     AuthComponent,
+    ApplicationsComponent,
+    RecoverPasswordComponent,
+    DoorPermissionsComponent,
   ],
   imports: [
     CookieModule.forRoot(),
@@ -59,6 +66,7 @@ import {AuthGuard} from './config/auth-guard';
     ResourcesHttpService,
     MentorProfilesHttpService,
     httpInterceptorProviders,
+    ApplicationHttpService,
     AuthContext],
   bootstrap: [AppComponent]
 })

@@ -7,13 +7,19 @@ import {UsersComponent} from './components/users/users.component';
 import {MyMentorProfileComponent} from './components/my-mentor-profile/my-mentor-profile.component';
 import {AuthComponent} from './components/auth/auth.component';
 import {AuthGuard} from './config/auth-guard';
+import {ApplicationsComponent} from './components/applications/applications.component';
+import {RecoverPasswordComponent} from './components/recover-password/recover-password.component';
+import {DoorPermissionsComponent} from './components/door-permissions/door-permissions.component';
 
 const routes: Routes = [
   {path: 'hub/auth', component: AuthComponent},
+  {path: 'hub/recover', component: RecoverPasswordComponent},
   {path: 'hub', component: HubComponent, canActivate: [AuthGuard]},
+  {path: 'hub/door-permissions', component: DoorPermissionsComponent, canActivate: [AuthGuard]},
   {path: 'hub/mentors', component: MentorsComponent, canActivate: [AuthGuard]},
   {path: 'hub/users', component: UsersComponent, canActivate: [AuthGuard]},
   {path: 'hub/mentors', component: MentorsComponent, canActivate: [AuthGuard]},
+  {path: 'hub/applications', component: ApplicationsComponent, canActivate: [AuthGuard]},
   {path: 'hub/settings', component: SettingsComponent, canActivate: [AuthGuard]},
   {path: 'hub/settings/mentor', component: MyMentorProfileComponent, canActivate: [AuthGuard]}
 ];
