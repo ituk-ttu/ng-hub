@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {MyDetailsHttpService} from '../../services/my-details.http-service';
@@ -17,6 +17,7 @@ export class ProfilePicSelectComponent {
   public imageChangedEvent: any = '';
   public croppedImage: any = '';
   public showCropper;
+  public showRestore = false;
 
   constructor(private modalService: BsModalService,
               private mentorHttpService: MyDetailsHttpService,
@@ -37,6 +38,7 @@ export class ProfilePicSelectComponent {
       this.modalRef.hide();
     }
     this.modalRef = undefined;
+    this.restore();
   }
 
   public fileChangeEvent(event: any): void {
@@ -50,12 +52,26 @@ export class ProfilePicSelectComponent {
 
   public save(): void {
     this.imageChangedEvent = this.croppedImage;
-
+    this.closeModal();
+    // TODO save
     //this.mentorHttpService.saveProfilePic(this.croppedImage).subscribe(
-     // () => this.closeModal(),
-     // () => console.log('Error saving image')
-   // );
+    // () => this.closeModal(),
+    // () => console.log('Error saving image')
+    // );
   }
+
+  public preview(): void {
+    this.showRestore = true;
+    this.imageChangedEvent = this.croppedImage;
+  }
+
+  public restore(): void {
+    this.showRestore = false;
+    this.mentorHttpService.getMyMentorProfile()
+      .subscribe((response) => this.imageChangedEvent = 'data:image/png;base64,' + response.photo);
+
+  }
+
 
   public imageLoaded(): void {
     // show cropper

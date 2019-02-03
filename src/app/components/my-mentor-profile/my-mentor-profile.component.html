@@ -4,9 +4,7 @@
   </h1>
   <div class="row">
     <div class="well col-md-8 col-sm-6 col-lg-8 col-xs-12">
-      <app-profile-pic-select
-        [imageChangedEvent]="'data:image/png;base64,' + myProfile.photo">
-      </app-profile-pic-select>
+
       <form class="ng-pristine ng-valid">
         <div class="form-group">
           <label class="control-label">Eriala
@@ -21,7 +19,7 @@
         <div class="form-group">
           <label class="control-label">Sinust
           </label>
-          <textarea [(ngModel)]="myProfile.text" rows="4" name="text"
+          <textarea [(ngModel)]="myProfile.text" rows="8" name="text"
                     class="form-control ng-pristine ng-untouched ng-valid">
                     </textarea>
         </div>
@@ -48,16 +46,19 @@
           </label>
           <div class="btn-group">
             <button type="button" (click)="setProfileEnabledStatus(false)"
-                    [ngClass]="{'btn-primary': !myProfile.enabled}" class="btn  btn-primary ml-3">jah
+                    [ngClass]="{'btn-dark': !myProfile.enabled}" class="btn  btn-dark ml-3">jah
             </button>
             <button type="button" (click)="setProfileEnabledStatus(true)"
-                    [ngClass]="{'btn-primary': myProfile.enabled}" class="btn btn-default">ei
+                    [ngClass]="{'btn-dark': myProfile.enabled}" class="btn btn-dark">ei
             </button>
           </div>
         </div>
-        <div class="form-group">
-          <button (click)="save()" class="btn btn-success">Salvesta</button>
-          <button (click)="getProfile()" class="btn btn-danger">Taasta</button>
+        <div class="form-group row pl-3">
+          <button (click)="save()" class="btn btn-success mr-2">Salvesta</button>
+          <button (click)="getProfile()" class="btn btn-danger mr-2">Taasta</button>
+          <app-profile-pic-select
+            [imageChangedEvent]="'data:image/png;base64,' + myProfile.photo">
+          </app-profile-pic-select>
         </div>
       </form>
     </div>

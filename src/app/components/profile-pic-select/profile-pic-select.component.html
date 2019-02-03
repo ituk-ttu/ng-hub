@@ -1,8 +1,12 @@
 <div>
-  <button type="button" (click)="openModal()" class="btn  btn-primary my-3">Vaheta profiilipilti</button>
+  <button type="button" (click)="openModal()" class="btn btn-dark">Vaheta profiilipilti</button>
+
   <ng-template #template>
     <div class="modal-header">
-      <h4 class="modal-title">Valige uus profiilipilt</h4>
+      <h4 class="modal-title pr-3">Valige uus profiilipilt</h4>
+      <span class="btn btn-primary btn-file">
+          Sirvi <input type="file" (change)="fileChangeEvent($event)">
+        </span>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <!-- Modal body -->
@@ -18,11 +22,27 @@
         (imageLoaded)="imageLoaded()"
         (loadImageFailed)="loadImageFailed()">
       </image-cropper>
-      <input type="file" (change)="fileChangeEvent($event)"/>
+
     </div>
     <!-- Modal footer -->
     <div class="modal-footer">
       <div class="text-center">
+
+        <button *ngIf="showRestore"
+                (click)="restore()"
+                type="button"
+                class="btn btn-danger btn-mobile-big mr-1 pull-left"
+                data-dismiss="modal">
+          Taasta
+        </button>
+        <button *ngIf="!showRestore"
+                (click)="preview()"
+                type="button"
+                class="btn btn-success btn-mobile-big mr-1 pull-left"
+                data-dismiss="modal">
+          Eelvaade
+        </button>
+
         <button (click)="closeModal()"
                 type="button"
                 class="btn btn-danger btn-mobile-big mr-1"
