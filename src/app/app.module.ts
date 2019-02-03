@@ -30,6 +30,7 @@ import {ApplicationHttpService} from './services/application.http-service';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { DoorPermissionsComponent } from './components/door-permissions/door-permissions.component';
 import { UserDetailViewComponent } from './components/user-detail-view/user-detail-view.component';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { UserDetailViewComponent } from './components/user-detail-view/user-deta
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   providers: [
     AuthGuard,

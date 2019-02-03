@@ -1,19 +1,26 @@
-<div class="row">
-  <div class="col-4 col-sm-4 col-md-4 col-lg-4  mentor-select mentors" *ngFor="let mentor of mentorProfiles">
-    <div class="mentor mentor-preview">
-      <img src="data:image/png;base64,{{mentor.photo}}">
-      <div class="mentor-info">
-        <p class="mentor-name ng-binding"> {{mentor.mentorship.name}}
-          <!--{{mentor.name}}-->
-        </p>
-        <p class="mentor-curriculum ng-binding">{{mentor.curriculum}}</p>
-        <p class="mentor-description ng-binding pb-2">{{mentor.text}}</p>
-        <a (click)="toggleGif(openGifs.indexOf(mentor.id) > -1)" class="mentor-quote"><em class="ng-binding">Lemmik
-          GIF +</em></a>
-        <img *ngIf="showGif" src="{{mentor.gif}}">
-        <p class="mentor-quote"><em class="ng-binding">{{mentor.quote}}</em></p>
-        <a class="btn btn-primary btn-block disabled mt-2">Vali</a>
-      </div>
+<ng-container *ngIf="mentorProfiles; else spinner">
+    <div class="row">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4  mentor-select mentors" *ngFor="let mentor of mentorProfiles">
+            <div class="mentor mentor-preview">
+                <img src="data:image/png;base64,{{mentor.photo}}">
+                <div class="mentor-info">
+                    <p class="mentor-name ng-binding"> {{mentor.mentorship.name}}
+                        <!--{{mentor.name}}-->
+                    </p>
+                    <p class="mentor-curriculum ng-binding">{{mentor.curriculum}}</p>
+                    <p class="mentor-description ng-binding pb-2">{{mentor.text}}</p>
+                    <a (click)="toggleGif(openGifs.indexOf(mentor.id) > -1)" class="mentor-quote"><em
+                            class="ng-binding">Lemmik
+                        GIF +</em></a>
+                    <img *ngIf="showGif" src="{{mentor.gif}}">
+                    <p class="mentor-quote"><em class="ng-binding">{{mentor.quote}}</em></p>
+                    <a class="btn btn-primary btn-block disabled mt-2">Vali</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+</ng-container>
+
+<ng-template #spinner>
+    <app-spinner></app-spinner>
+</ng-template>

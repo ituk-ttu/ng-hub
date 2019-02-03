@@ -23,9 +23,9 @@ export class UsersComponent implements OnInit {
   }
 
   showUser(user: User) {
-    if (user.name.indexOf(this.searchString) >= 0
-      || user.email.indexOf(this.searchString) >= 0
-      || user.telegram.indexOf(this.searchString) >= 0
+    if (user.name.toLowerCase().indexOf(this.searchString.toLowerCase()) >= 0
+      || user.email.toLowerCase().indexOf(this.searchString.toLowerCase()) >= 0
+      || user.telegram.toLowerCase().indexOf(this.searchString.toLowerCase()) >= 0
       || this.searchString === '') {
       return true;
     }

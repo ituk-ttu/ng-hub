@@ -1,3 +1,4 @@
+<ng-container *ngIf="users; else spinner">
 <div ui-view="" class="container content ng-scope">
     <h1 class="ng-scope">Kasutajad
         <!-- ngIf: $parent.currentUser.admin -->
@@ -5,6 +6,7 @@
     <div class="table-responsive ng-scope">
         <table class="table table-striped table-hover table-list">
             <thead>
+
             <tr>
                 <th>ID</th>
                 <th>Nimi</th>
@@ -17,13 +19,13 @@
             </thead>
             <tbody>
             <tr>
-              <th>ID</th>
-              <td><input type="text" placeholder="Otsi" [(ngModel)]="searchString" class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
-              <th>E-mail</th>
-              <th>Telegram</th>
-              <th>Admin</th>
-              <th>Mentor</th>
-              <th>Arhiveeritud</th>
+              <th></th>
+              <td><input type="text" placeholder="Otsi nime, meili, telegrami..." [(ngModel)]="searchString" class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
             <tr *ngFor="let user of users; let i = index;">
               <ng-container *ngIf="showUser(user)">
@@ -40,3 +42,7 @@
         </table>
     </div>
 </div>
+</ng-container>
+<ng-template #spinner>
+    <app-spinner></app-spinner>
+</ng-template>

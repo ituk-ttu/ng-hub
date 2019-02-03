@@ -1,3 +1,5 @@
+<ng-container *ngIf="applications; else spinner">
+
 <div ui-view="" class="container content ng-scope">
   <h1 class="ng-scope">Kasutajad
     <!-- ngIf: $parent.currentUser.admin -->
@@ -41,3 +43,7 @@
     </table>
   </div>
 </div>
+</ng-container>
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>
