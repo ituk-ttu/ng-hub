@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserHttpService} from '../../services/user.http-service';
 import {User} from '../../models/user.model';
-import {UserSearchModel} from '../../models/user-search.model';
 
 @Component({
   selector: 'app-users',
@@ -12,7 +11,7 @@ import {UserSearchModel} from '../../models/user-search.model';
 export class UsersComponent implements OnInit {
 
   public users: any[];
-  public searchString: string = '';
+  public searchString = '';
 
   constructor(private userService: UserHttpService) {
     this.userService.getAllUsers().subscribe(
@@ -24,11 +23,11 @@ export class UsersComponent implements OnInit {
   }
 
   showUser(user: User) {
-    if (user.name.indexOf(this.searchString)
-        || user.email.indexOf(this.searchString)
-        || user.telegram.indexOf(this.searchString)
-        || this.searchString == '') {
-        return true;
+    if (user.name.indexOf(this.searchString) >= 0
+      || user.email.indexOf(this.searchString) >= 0
+      || user.telegram.indexOf(this.searchString) >= 0
+      || this.searchString === '') {
+      return true;
     }
   }
 
