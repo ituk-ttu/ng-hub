@@ -29,6 +29,7 @@ import { ApplicationsComponent } from './components/applications/applications.co
 import {ApplicationHttpService} from './services/application.http-service';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { DoorPermissionsComponent } from './components/door-permissions/door-permissions.component';
+import { UserDetailViewComponent } from './components/user-detail-view/user-detail-view.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { DoorPermissionsComponent } from './components/door-permissions/door-per
     ApplicationsComponent,
     RecoverPasswordComponent,
     DoorPermissionsComponent,
+    UserDetailViewComponent,
   ],
   imports: [
     CookieModule.forRoot(),

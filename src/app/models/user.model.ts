@@ -7,5 +7,5 @@ export class User {
     createdAt: string;
     updatedAt: string;
     telegram: string;
-    isMentor: boolean;
+    canBeMentor: boolean;   // TODO: canBeMentor -> isMentor
 }

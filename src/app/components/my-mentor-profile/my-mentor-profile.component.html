@@ -1,9 +1,12 @@
 <ng-container *ngIf="myProfile">
-  <h1>{{myProfile.name}}</h1>
+  <h1>Eesnimi Perenimi
+    <!--TODO: replace with {{myProfile.name}}-->
+  </h1>
   <div class="row">
     <div class="well col-md-8 col-sm-6 col-lg-8 col-xs-12">
-      <app-profile-pic-select [imageChangedEvent]="'data:image/png;base64,' + myProfile.photo"></app-profile-pic-select>
-
+      <app-profile-pic-select
+        [imageChangedEvent]="'data:image/png;base64,' + myProfile.photo">
+      </app-profile-pic-select>
       <form class="ng-pristine ng-valid">
         <div class="form-group">
           <label class="control-label">Eriala
@@ -16,10 +19,11 @@
                  [(ngModel)]="myProfile.curriculum"/>
         </div>
         <div class="form-group">
-          <label class="control-label">Sinust (Supports innerHTML)
+          <label class="control-label">Sinust
           </label>
-          <textarea [(ngModel)]="myProfile.text" rows="4" name="text" class="form-control ng-pristine ng-untouched ng-valid">
-      </textarea>
+          <textarea [(ngModel)]="myProfile.text" rows="4" name="text"
+                    class="form-control ng-pristine ng-untouched ng-valid">
+                    </textarea>
         </div>
         <div class="form-group">
           <label class="control-label">Lemmik GIF
@@ -28,8 +32,7 @@
           </label>
           <input [(ngModel)]="myProfile.gif"
                  name="gif"
-                 class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
-
+                 class="form-control ng-pristine ng-valid ng-touched">
         </div>
         <div class="form-group">
           <label class="control-label">
@@ -44,9 +47,12 @@
             Avalik
           </label>
           <div class="btn-group">
-            <button type="button" (click)="setProfileEnabledStatus(false)" [ngClass]="{'btn-primary': !myProfile.enabled}" class="btn  btn-primary ml-3">jah</button>
-            <button type="button" (click)="setProfileEnabledStatus(true)" [ngClass]="{'btn-primary': myProfile.enabled}" class="btn btn-default">ei</button>
-
+            <button type="button" (click)="setProfileEnabledStatus(false)"
+                    [ngClass]="{'btn-primary': !myProfile.enabled}" class="btn  btn-primary ml-3">jah
+            </button>
+            <button type="button" (click)="setProfileEnabledStatus(true)"
+                    [ngClass]="{'btn-primary': myProfile.enabled}" class="btn btn-default">ei
+            </button>
           </div>
         </div>
         <div class="form-group">
@@ -59,10 +65,13 @@
       <div class="mentor mentor-preview">
         <img src="data:image/png;base64,{{myProfile.photo}}">
         <div class="mentor-info">
-          <p class="mentor-name ng-binding">{{myProfile.name}}</p>
+          <p class="mentor-name ng-binding">Eesnimi Perenimi
+            <!--TODO: replace with {{myProfile.name}}-->
+          </p>
           <p class="mentor-curriculum ng-binding">{{myProfile.curriculum}}</p>
-          <div [innerHTML]="myProfile.text"></div>
-          <a (click)="toggleGif(openGifs.indexOf(myProfile.id) > -1)" class="mentor-quote"><em class="ng-binding">Lemmik GIF +</em></a>
+          <p class="mentor-description ng-binding pb-2">{{myProfile.text}}</p>
+          <a (click)="toggleGif(openGifs.indexOf(myProfile.id) > -1)" class="mentor-quote"><em
+            class="ng-binding">Lemmik GIF +</em></a>
           <img *ngIf="showGif" src="{{myProfile.gif}}">
           <p class="mentor-quote"><em class="ng-binding">{{myProfile.quote}}</em></p>
           <a class="btn btn-primary btn-block disabled mt-2">Vali</a>
@@ -71,7 +80,3 @@
     </div>
   </div>
 </ng-container>
-
-
-
-
