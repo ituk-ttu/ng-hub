@@ -12,16 +12,15 @@ import {RecoverPasswordComponent} from './components/recover-password/recover-pa
 import {DoorPermissionsComponent} from './components/door-permissions/door-permissions.component';
 
 const routes: Routes = [
-  {path: 'hub/auth', component: AuthComponent},
-  {path: 'hub/recover', component: RecoverPasswordComponent},
   {path: 'hub', component: HubComponent, canActivate: [AuthGuard]},
-  {path: 'hub/door-permissions', component: DoorPermissionsComponent, canActivate: [AuthGuard]},
-  {path: 'hub/mentors', component: MentorsComponent, canActivate: [AuthGuard]},
+  {path: 'hub/auth', component: AuthComponent},
   {path: 'hub/users', component: UsersComponent, canActivate: [AuthGuard]},
+  {path: 'hub/recover', component: RecoverPasswordComponent},
   {path: 'hub/mentors', component: MentorsComponent, canActivate: [AuthGuard]},
-  {path: 'hub/applications', component: ApplicationsComponent, canActivate: [AuthGuard]},
   {path: 'hub/settings', component: SettingsComponent, canActivate: [AuthGuard]},
-  {path: 'hub/settings/mentor', component: MyMentorProfileComponent, canActivate: [AuthGuard]}
+  {path: 'hub/applications', component: ApplicationsComponent, canActivate: [AuthGuard]},
+  {path: 'hub/settings/mentor', component: MyMentorProfileComponent, canActivate: [AuthGuard]},
+  {path: 'hub/door-permissions', component: DoorPermissionsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
