@@ -1,5 +1,5 @@
 <ng-container *ngIf="myProfile">
-  <h1>Eesnimi Perenimi
+  <h1>{{myProfile.mentorship.name}}
     <!--TODO: replace with {{myProfile.name}}-->
   </h1>
   <div class="row">
@@ -65,11 +65,11 @@
       <div class="mentor mentor-preview">
         <img src="data:image/png;base64,{{myProfile.photo}}">
         <div class="mentor-info">
-          <p class="mentor-name ng-binding">Eesnimi Perenimi
+          <p class="mentor-name ng-binding"> {{myProfile.mentorship.name}}
             <!--TODO: replace with {{myProfile.name}}-->
           </p>
           <p class="mentor-curriculum ng-binding">{{myProfile.curriculum}}</p>
-          <p class="mentor-description ng-binding pb-2">{{myProfile.text}}</p>
+          <div [innerHTML]="myProfile.text"></div>
           <a (click)="toggleGif(openGifs.indexOf(myProfile.id) > -1)" class="mentor-quote"><em
             class="ng-binding">Lemmik GIF +</em></a>
           <img *ngIf="showGif" src="{{myProfile.gif}}">
