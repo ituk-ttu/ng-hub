@@ -14,8 +14,7 @@ const routes: Routes = [
   {path: 'hub/users', component: UsersComponent},
   {path: 'hub/mentors', component: MentorsComponent},
   {path: 'hub/settings', component: SettingsComponent},
-  {path: 'hub/settings/mentor', component: MyMentorProfileComponent},
-  {path: '**', redirectTo: '/hub', pathMatch: 'full'},
+  {path: 'hub/settings/mentor', component: MyMentorProfileComponent}
 ];
 
 @NgModule({

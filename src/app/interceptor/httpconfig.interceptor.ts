@@ -12,7 +12,7 @@ export class NoopInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token: string = this.cookeiService.get('token');
     if (token) {
-      request = request.clone({headers: request.headers.set('Authorization', 'Bearer ' + token)});
+      request = request.clone({headers: request.headers.set('Authorization', token)});
     }
 
     if (!request.headers.has('Content-Type')) {

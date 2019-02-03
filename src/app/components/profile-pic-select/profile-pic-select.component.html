@@ -7,18 +7,17 @@
     </div>
     <!-- Modal body -->
     <div class="modal-body">
-      <ng-container *ngIf="showCropper">
-        <image-cropper
-          [imageChangedEvent]="imageChangedEvent"
-          [maintainAspectRatio]="true"
-          [aspectRatio]="4 / 4"
-          [resizeToWidth]="128"
-          format="png"
-          (imageCropped)="imageCropped($event)"
-          (imageLoaded)="imageLoaded()"
-          (loadImageFailed)="loadImageFailed()">
-        </image-cropper>
-      </ng-container>
+      <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [imageBase64]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="4 / 4"
+        [resizeToWidth]="800"
+        format="png"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()"
+        (loadImageFailed)="loadImageFailed()">
+      </image-cropper>
       <input type="file" (change)="fileChangeEvent($event)"/>
     </div>
     <!-- Modal footer -->
