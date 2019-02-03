@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
   login() {
     this.authContext.login(this.loginDetails).subscribe((token) => {
       this.cookieService.put('token', token.token);
-      this.router.navigate(['hub/auth']);
+      this.router.navigate(['hub']);
     },
       () => alert('Wrong password'));
   }
