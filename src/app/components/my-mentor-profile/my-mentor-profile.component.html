@@ -16,7 +16,7 @@
                  [(ngModel)]="myProfile.curriculum"/>
         </div>
         <div class="form-group">
-          <label class="control-label">Sinust
+          <label class="control-label">Sinust (Supports innerHTML)
           </label>
           <textarea [(ngModel)]="myProfile.text" rows="4" name="text" class="form-control ng-pristine ng-untouched ng-valid">
       </textarea>
@@ -28,7 +28,8 @@
           </label>
           <input [(ngModel)]="myProfile.gif"
                  name="gif"
-                 class="form-control ng-pristine ng-valid ng-touched">
+                 class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
+
         </div>
         <div class="form-group">
           <label class="control-label">
@@ -60,7 +61,7 @@
         <div class="mentor-info">
           <p class="mentor-name ng-binding">{{myProfile.name}}</p>
           <p class="mentor-curriculum ng-binding">{{myProfile.curriculum}}</p>
-          <p class="mentor-description ng-binding pb-2">{{myProfile.text}}</p>
+          <div [innerHTML]="myProfile.text"></div>
           <a (click)="toggleGif(openGifs.indexOf(myProfile.id) > -1)" class="mentor-quote"><em class="ng-binding">Lemmik GIF +</em></a>
           <img *ngIf="showGif" src="{{myProfile.gif}}">
           <p class="mentor-quote"><em class="ng-binding">{{myProfile.quote}}</em></p>

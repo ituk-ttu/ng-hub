@@ -26,7 +26,7 @@ export class ProfilePicSelectComponent {
 
   public openModal() {
     this.modalRef = this.modalService.show(this.picSelectTemplate, {
-      class: 'modal-lg',
+      class: 'modal-md',
       ignoreBackdropClick: true,
       keyboard: false
     });
