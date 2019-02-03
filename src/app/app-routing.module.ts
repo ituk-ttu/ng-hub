@@ -16,7 +16,7 @@ const routes: Routes = [
     {path: 'hub', component: HubComponent, canActivate: [AuthGuard]},
     {path: 'hub/auth', component: AuthComponent},
     {path: 'hub/users', component: UsersComponent, canActivate: [AuthGuard]},
-    {path: 'hub/users/{id}', component: UserDetailViewComponent, canActivate: [AuthGuard]},
+    {path: 'hub/users/:id', component: UserDetailViewComponent, canActivate: [AuthGuard]},
     {path: 'hub/recover', component: RecoverPasswordComponent},
     {path: 'hub/mentors', component: MentorsComponent, canActivate: [AuthGuard]},
     {path: 'hub/settings', component: SettingsComponent, canActivate: [AuthGuard]},
