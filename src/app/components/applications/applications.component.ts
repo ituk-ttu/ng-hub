@@ -8,7 +8,7 @@ import {ApplicationModel} from '../../models/application.model';
   styleUrls: ['./applications.component.css']
 })
 export class ApplicationsComponent implements OnInit {
-
+  public showSpinner: false;
   public applications: ApplicationModel[];
 
   constructor(private applicationHttpService: ApplicationHttpService) {

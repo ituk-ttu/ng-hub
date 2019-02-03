@@ -7,6 +7,9 @@
         type = "ball-clip-rotate-multiple"
         fullScreen = "false"
         >
-<p style="color: #212529" > Laadin... </p>
+<p style="color: #212529" > <b>Laadin...</b> </p>
 </ngx-spinner>
+<ng-container *ngIf="!this.showing">
+    OOPSIE DOOPSIE!
+</ng-container>
 
