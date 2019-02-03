@@ -1,16 +1,19 @@
 <div class="row">
-  <div class="col-4 col-sm-4 col-md-4 col-lg-4  mentor-select mentors" *ngFor="let product of mentorProfiles">
-    <div class="mentor mentor-preview">
-      <img src="data:image/png;base64,{{product.photo}}">
-      <div class="mentor-info">
-        <p class="mentor-name ng-binding">{{product.name}}</p>
-        <p class="mentor-curriculum ng-binding">{{product.curriculum}}</p>
-        <p class="mentor-description ng-binding pb-2">{{product.text}}</p>
-        <a (click)="toggleGif(openGifs.indexOf(product.id) > -1)" class="mentor-quote"><em class="ng-binding">Lemmik GIF +</em></a>
-        <img *ngIf="showGif" src="{{product.gif}}">
-        <p class="mentor-quote"><em class="ng-binding">{{product.quote}}</em></p>
-        <a class="btn btn-primary btn-block disabled mt-2">Vali</a>
-      </div>
+    <div class="col-4 col-sm-4 col-md-4 col-lg-4  mentor-select mentors" *ngFor="let product of mentorProfiles">
+        <div class="mentor mentor-preview">
+            <img src="data:image/png;base64,{{product.photo}}">
+            <div class="mentor-info">
+                <p class="mentor-name ng-binding">Eesnimi Perenimi
+                    <!--{{product.name}}-->
+                </p>
+                <p class="mentor-curriculum ng-binding">{{product.curriculum}}</p>
+                <p class="mentor-description ng-binding pb-2">{{product.text}}</p>
+                <a (click)="toggleGif(openGifs.indexOf(product.id) > -1)" class="mentor-quote"><em class="ng-binding">Lemmik
+                    GIF +</em></a>
+                <img *ngIf="showGif" src="{{product.gif}}">
+                <p class="mentor-quote"><em class="ng-binding">{{product.quote}}</em></p>
+                <a class="btn btn-primary btn-block disabled mt-2">Vali</a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
