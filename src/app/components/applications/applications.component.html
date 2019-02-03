@@ -8,16 +8,25 @@
       <tr>
         <th>ID</th>
         <th>Nimi</th>
+        <th>Isikukood</th>
         <th>E-mail</th>
-        <th>Telegram</th>
-        <th>Admin</th>
+        <th>Tudengikood</th>
         <th>Mentor</th>
-        <th>Arhiveeritud</th>
         <th>Saadetud</th>
         <th>Staatus</th>
       </tr>
       </thead>
       <tbody>
+      <tr>
+        <td></td>
+        <td><input type="text" placeholder="Otsi" ng-model="search.name" class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
+        <td><input type="text" placeholder="Otsi" ng-model="search.name" class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
+        <td><input type="text" placeholder="Otsi" ng-model="search.name" class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
+        <td><input type="text" placeholder="Otsi" ng-model="search.name" class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
+        <td><input type="text" placeholder="Otsi" ng-model="search.name" class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
+        <td></td>
+        <td></td>
+      </tr>
       <tr *ngFor="let application of applications; let i = index;">
         <td class="">{{i+1}}</td>
         <td>{{application.name}}</td>
@@ -25,7 +34,6 @@
         <td>{{application.email}}</td>
         <td>{{application.studentCode}}</td>
         <td><ng-container *ngIf="application.mentor">{{application.mentor.name}}</ng-container></td>
-        <td>{{application.updatedAt}}</td>
         <td>{{application.createdAt}}</td>
         <td><span class="badge badge-dark">{{application.status}}</span></td>
       </tr>

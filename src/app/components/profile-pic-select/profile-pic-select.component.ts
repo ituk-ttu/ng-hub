@@ -18,7 +18,6 @@ export class ProfilePicSelectComponent {
   public croppedImage: any = '';
   public showCropper;
 
-  @Input()
   constructor(private modalService: BsModalService,
               private mentorHttpService: MyDetailsHttpService,
               private authContext: AuthContext) {
