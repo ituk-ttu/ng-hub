@@ -12,7 +12,7 @@ import {UserSearchModel} from '../../models/user-search.model';
 export class UsersComponent implements OnInit {
 
   public users: any[];
-  public searchParams: UserSearchModel = {} as UserSearchModel;
+  public searchString: string = '';
 
   constructor(private userService: UserHttpService) {
     this.userService.getAllUsers().subscribe(
@@ -24,8 +24,11 @@ export class UsersComponent implements OnInit {
   }
 
   showUser(user: User) {
-    if (user.name.startsWith(this.searchParams.name)) {
-      return true;
+    if (user.name.indexOf(this.searchString)
+        || user.email.indexOf(this.searchString)
+        || user.telegram.indexOf(this.searchString)
+        || this.searchString == '') {
+        return true;
     }
   }
 
