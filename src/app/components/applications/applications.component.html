@@ -1,7 +1,35 @@
-
-<br>
-<ng-container *ngFor="let element of applications">
-  <span> {{element.studentCode}} | {{element.status}}<br>
-</span> <br>
-
-</ng-container>
+<div ui-view="" class="container content ng-scope">
+  <h1 class="ng-scope">Kasutajad
+    <!-- ngIf: $parent.currentUser.admin -->
+  </h1>
+  <div class="table-responsive ng-scope">
+    <table class="table table-striped table-hover table-list">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nimi</th>
+        <th>E-mail</th>
+        <th>Telegram</th>
+        <th>Admin</th>
+        <th>Mentor</th>
+        <th>Arhiveeritud</th>
+        <th>Saadetud</th>
+        <th>Staatus</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let application of applications; let i = index;">
+        <td class="">{{i+1}}</td>
+        <td>{{application.name}}</td>
+        <td>{{application.personalCode}}</td>
+        <td>{{application.email}}</td>
+        <td>{{application.studentCode}}</td>
+        <td><ng-container *ngIf="application.mentor">{{application.mentor.name}}</ng-container></td>
+        <td>{{application.updatedAt}}</td>
+        <td>{{application.createdAt}}</td>
+        <td><span class="badge badge-dark">{{application.status}}</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
