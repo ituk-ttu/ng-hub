@@ -6,6 +6,7 @@ import {environment} from '../../environments/environment';
 import {TokenModel} from '../models/token.model';
 import {LoginDetails} from '../models/login-details.model';
 import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie';
 
 @Injectable()
 export class AuthContext {
@@ -13,7 +14,8 @@ export class AuthContext {
   public user: User;
 
   constructor(private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private cookieService: CookieService) {
     this.getSessionUser().subscribe((response) => this.user = response);
   }
 
@@ -34,6 +36,7 @@ export class AuthContext {
   }
 
   public logout(): void {
+    this.cookieService.remove('token')
     const url = `${environment.API_URL}/authenticate/invalidate`;
     this.http.post(url, null).subscribe(
       () => this.router.navigate(['hub/auth']),

@@ -24,6 +24,7 @@ import {httpInterceptorProviders} from './interceptor';
 import {AuthContext} from './services/authContext';
 import { AuthComponent } from './components/auth/auth.component';
 import {CookieModule} from 'ngx-cookie';
+import {AuthGuard} from './config/auth-guard';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {CookieModule} from 'ngx-cookie';
     FormsModule
   ],
   providers: [
+    AuthGuard,
     UserHttpService,
     MyDetailsHttpService,
     ResourcesHttpService,

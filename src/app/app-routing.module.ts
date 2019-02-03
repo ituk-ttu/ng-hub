@@ -6,15 +6,16 @@ import {SettingsComponent} from './components/settings/settings.component';
 import {UsersComponent} from './components/users/users.component';
 import {MyMentorProfileComponent} from './components/my-mentor-profile/my-mentor-profile.component';
 import {AuthComponent} from './components/auth/auth.component';
+import {AuthGuard} from './config/auth-guard';
 
 const routes: Routes = [
-  {path: 'hub', component: HubComponent},
   {path: 'hub/auth', component: AuthComponent},
-  {path: 'hub/mentors', component: MentorsComponent},
-  {path: 'hub/users', component: UsersComponent},
-  {path: 'hub/mentors', component: MentorsComponent},
-  {path: 'hub/settings', component: SettingsComponent},
-  {path: 'hub/settings/mentor', component: MyMentorProfileComponent}
+  {path: 'hub', component: HubComponent, canActivate: [AuthGuard]},
+  {path: 'hub/mentors', component: MentorsComponent, canActivate: [AuthGuard]},
+  {path: 'hub/users', component: UsersComponent, canActivate: [AuthGuard]},
+  {path: 'hub/mentors', component: MentorsComponent, canActivate: [AuthGuard]},
+  {path: 'hub/settings', component: SettingsComponent, canActivate: [AuthGuard]},
+  {path: 'hub/settings/mentor', component: MyMentorProfileComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
