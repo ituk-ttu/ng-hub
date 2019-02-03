@@ -16,7 +16,17 @@
             </tr>
             </thead>
             <tbody>
+            <tr>
+              <th>ID</th>
+              <td><input type="text" placeholder="Otsi" [(ngModel)]="searchParams.name" class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
+              <th>E-mail</th>
+              <th>Telegram</th>
+              <th>Admin</th>
+              <th>Mentor</th>
+              <th>Arhiveeritud</th>
+            </tr>
             <tr *ngFor="let user of users; let i = index;">
+              <ng-container *ngIf="showUser(user)">
                 <td>{{i + 1}}</td>
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
@@ -24,6 +34,7 @@
                 <td><span *ngIf="user.admin" class="badge badge-dark">admin</span></td>
                 <td><span *ngIf="user.canBeMentor" class="badge badge-success">mentor</span></td>
                 <td><span *ngIf="user.archived" class="badge badge-danger">archived</span></td>
+              </ng-container>
             </tr>
             </tbody>
         </table>
