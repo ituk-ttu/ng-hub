@@ -1,24 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {MyDetailsHttpService} from '../../services/my-details.http-service';
-import {MentorProfileModel} from '../../models/mentor-profile.model';
+import { Component, OnInit } from '@angular/core';
+import { MyDetailsHttpService } from '../../services/my-details.http-service';
+import { MentorProfileModel } from '../../models/mentor-profile.model';
 
 @Component({
   selector: 'app-my-mentor-profile',
   templateUrl: './my-mentor-profile.component.html',
   styleUrls: ['./my-mentor-profile.component.sass']
 })
-export class MyMentorProfileComponent implements OnInit {
+export class MyMentorProfileComponent {
 
   public myProfile: MentorProfileModel;
-  public showModal: boolean;
   public openGifs: number[] = [];
-  public showGif: boolean = false;
+  public showGif = false;
 
   constructor(private mentorHttpService: MyDetailsHttpService) {
     this.getProfile();
-  }
-
-  ngOnInit() {
   }
 
   public setProfileEnabledStatus(status: boolean) {

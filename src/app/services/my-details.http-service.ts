@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable, Subscriber} from 'rxjs';
-import {MentorProfileModel} from '../models/mentor-profile.model';
-import {environment} from '../../environments/environment';
-import {AuthContext} from './authContext';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { MentorProfileModel } from '../models/mentor-profile.model';
+import { environment } from '../../environments/environment';
+import { AuthContext } from './authContext';
 
 @Injectable()
 export class MyDetailsHttpService {
@@ -14,16 +14,16 @@ export class MyDetailsHttpService {
 
   public getMyMentorProfile(): Observable<MentorProfileModel> {
     const url = environment.API_URL + '/mentor/user/' + this.authContext.getUserId();
-    return <Observable<MentorProfileModel>> this.http.get(url);
+    return this.http.get<MentorProfileModel>(url);
   }
 
   public saveMentorProfile(mentorProfile: MentorProfileModel): Observable<any> {
     const url = environment.API_URL + '/mentor/user/' + mentorProfile.id;
-    return <Observable<any>> this.http.post(url, mentorProfile) as Observable<MentorProfileModel>;
+    return this.http.post<MentorProfileModel>(url, mentorProfile);
   }
 
   public saveProfilePic(pic: any): Observable<any> {
     const url = environment.API_URL + '/mentor/user/picture/';
-    return <Observable<any>> this.http.post(url, pic) as Observable<MentorProfileModel>;
+    return this.http.post<MentorProfileModel>(url, pic);
   }
 }

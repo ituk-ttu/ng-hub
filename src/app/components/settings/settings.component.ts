@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {User} from '../../models/user.model';
-import {AuthContext} from '../../services/authContext';
+import { Component } from '@angular/core';
+import { User } from '../../models/user.model';
+import { AuthContext } from '../../services/authContext';
 
 @Component({
   selector: 'app-settings',

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ApplicationHttpService} from '../../services/application.http-service';
-import {ApplicationModel} from '../../models/application.model';
+import { Component, OnInit } from '@angular/core';
+import { ApplicationHttpService } from '../../services/application.http-service';
+import { ApplicationModel } from '../../models/application.model';
 
 @Component({
   selector: 'app-applications',

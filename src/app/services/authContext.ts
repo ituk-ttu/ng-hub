@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {User} from '../models/user.model';
-import {environment} from '../../environments/environment';
-import {TokenModel} from '../models/token.model';
-import {LoginDetails} from '../models/login-details.model';
-import {Router} from '@angular/router';
-import {CookieService} from 'ngx-cookie';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
+import { environment } from '../../environments/environment';
+import { TokenModel } from '../models/token.model';
+import { LoginDetails } from '../models/login-details.model';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 
 @Injectable()
 export class AuthContext {
@@ -21,7 +21,7 @@ export class AuthContext {
 
   public getSessionUser(): Observable<User> {
     const url = `${environment.API_URL}/user/me`;
-    return this.http.get(url) as Observable<User>;
+    return this.http.get<User>(url);
   }
 
   public refreshSession() {
@@ -49,7 +49,7 @@ export class AuthContext {
 
   public login(details: LoginDetails): Observable<TokenModel> {
     const url = `${environment.API_URL}/authenticate/password`;
-    return this.http.post(url, details) as Observable<TokenModel>;
+    return this.http.post<TokenModel>(url, details);
   }
 
 }

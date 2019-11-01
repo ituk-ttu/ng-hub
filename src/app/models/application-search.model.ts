@@ -1,7 +1,3 @@
-import {MentorProfileModel} from './mentor-profile.model';
-import {ApplicationStatus} from './application-status.enum';
-
-
 export class ApplicationModel {
   createdAt: string;
   email: string;

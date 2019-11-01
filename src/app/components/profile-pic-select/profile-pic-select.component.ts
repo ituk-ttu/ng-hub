@@ -1,8 +1,7 @@
-import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {ImageCroppedEvent} from 'ngx-image-cropper';
-import {MyDetailsHttpService} from '../../services/my-details.http-service';
-import {AuthContext} from '../../services/authContext';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { MyDetailsHttpService } from '../../services/my-details.http-service';
 
 @Component({
   selector: 'app-profile-pic-select',
@@ -20,8 +19,7 @@ export class ProfilePicSelectComponent {
   public showRestore = false;
 
   constructor(private modalService: BsModalService,
-              private mentorHttpService: MyDetailsHttpService,
-              private authContext: AuthContext) {
+              private mentorHttpService: MyDetailsHttpService) {
   }
 
 
@@ -54,7 +52,7 @@ export class ProfilePicSelectComponent {
     this.imageChangedEvent = this.croppedImage;
     this.closeModal();
     // TODO save
-    //this.mentorHttpService.saveProfilePic(this.croppedImage).subscribe(
+    // this.mentorHttpService.saveProfilePic(this.croppedImage).subscribe(
     // () => this.closeModal(),
     // () => console.log('Error saving image')
     // );

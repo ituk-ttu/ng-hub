@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-door-permissions',
@@ -7,12 +7,12 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class DoorPermissionsComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService) { }
-
+  constructor(private spinner: NgxSpinnerService) {
+  }
 
   ngOnInit() {
     this.spinner.show();
-    setTimeout(function() {
+    setTimeout(() => {
       this.spinner.hide();
     }, 10000);
   }
