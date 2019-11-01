@@ -3,8 +3,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-door-permissions',
-  templateUrl: './door-permissions.component.html',
-  styleUrls: ['./door-permissions.component.css']
+  templateUrl: './door-permissions.component.html'
 })
 export class DoorPermissionsComponent implements OnInit {
 

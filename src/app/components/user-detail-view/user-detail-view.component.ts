@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {UserHttpService} from "../../services/user.http-service";
-import {User} from "../../models/user.model";
+import {UserHttpService} from '../../services/user.http-service';
+import {User} from '../../models/user.model';
 
 @Component({
     selector: 'app-user-detail-view',
-    templateUrl: './user-detail-view.component.html',
-    styleUrls: ['./user-detail-view.component.css']
+    templateUrl: './user-detail-view.component.html'
 })
 
 export class UserDetailViewComponent implements OnInit {
@@ -22,7 +21,7 @@ export class UserDetailViewComponent implements OnInit {
         this.userService.getUserById(userId).subscribe((result) => {
             console.table(result);
             this.user = result;
-        })
+        });
     }
 
 }

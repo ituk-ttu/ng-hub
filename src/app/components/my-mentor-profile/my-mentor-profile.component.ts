@@ -5,7 +5,7 @@ import {MentorProfileModel} from '../../models/mentor-profile.model';
 @Component({
   selector: 'app-my-mentor-profile',
   templateUrl: './my-mentor-profile.component.html',
-  styleUrls: ['./my-mentor-profile.component.css']
+  styleUrls: ['./my-mentor-profile.component.sass']
 })
 export class MyMentorProfileComponent implements OnInit {
 

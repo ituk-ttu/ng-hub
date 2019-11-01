@@ -7,7 +7,7 @@ import {AuthContext} from '../../services/authContext';
 @Component({
   selector: 'app-profile-pic-select',
   templateUrl: './profile-pic-select.component.html',
-  styleUrls: ['./profile-pic-select.component.css']
+  styleUrls: ['./profile-pic-select.component.sass']
 })
 export class ProfilePicSelectComponent {
   @ViewChild('template')

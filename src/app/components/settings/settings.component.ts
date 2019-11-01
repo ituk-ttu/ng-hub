@@ -4,8 +4,7 @@ import {AuthContext} from '../../services/authContext';
 
 @Component({
   selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  templateUrl: './settings.component.html'
 })
 
 export class SettingsComponent {

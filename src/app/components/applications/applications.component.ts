@@ -4,8 +4,7 @@ import {ApplicationModel} from '../../models/application.model';
 
 @Component({
   selector: 'app-applications',
-  templateUrl: './applications.component.html',
-  styleUrls: ['./applications.component.css']
+  templateUrl: './applications.component.html'
 })
 export class ApplicationsComponent implements OnInit {
   public showSpinner: false;
