@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthContext } from '../../../core/services/authContext';
 import { Router } from '@angular/router';
 
@@ -7,18 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.sass']
 })
-export class ContainerComponent implements OnInit {
-  navbarOpen = false;
+export class ContainerComponent {
 
   constructor(public authContext: AuthContext,
               public router: Router) {
   }
-
-  ngOnInit() {
-  }
-
-  toggleNavbar() {
-    this.navbarOpen = !this.navbarOpen;
-  }
-
 }

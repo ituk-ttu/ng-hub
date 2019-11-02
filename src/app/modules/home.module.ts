@@ -18,6 +18,7 @@ import { AppComponent } from '../app.component';
 import { ContainerComponent } from './components/authenticated-container/container.component';
 import { ProfilePicSelectComponent } from './components/profile-pic-select/profile-pic-select.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { BsDropdownModule } from "ngx-bootstrap";
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ReactiveFormsModule,
     NgxSpinnerModule,
     ImageCropperModule,
+    BsDropdownModule,
   ],
   declarations: [
     AppComponent,
