@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HubComponent } from './components/hub/hub.component';
-import { MentorsComponent } from './components/mentors/mentors.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { UsersComponent } from './components/users/users.component';
-import { MyMentorProfileComponent } from './components/my-mentor-profile/my-mentor-profile.component';
-import { AuthComponent } from './components/auth/auth.component';
-import { AuthGuard } from './config/auth-guard';
-import { ApplicationsComponent } from './components/applications/applications.component';
-import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
-import { DoorPermissionsComponent } from './components/door-permissions/door-permissions.component';
-import { UserDetailViewComponent } from './components/user-detail-view/user-detail-view.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { LandingPageComponent } from './modules/pages/landingpage/landing-page.component';
+import { MentorsComponent } from './modules/pages/mentors/mentors.component';
+import { SettingsComponent } from './modules/pages/settings/settings.component';
+import { UsersComponent } from './modules/pages/users/users.component';
+import { MyMentorProfileComponent } from './modules/pages/my-mentor-profile/my-mentor-profile.component';
+import { AuthComponent } from './modules/pages/auth/auth.component';
+import { AuthGuard } from './core/config/auth-guard';
+import { ApplicationsComponent } from './modules/pages/applications/applications.component';
+import { RecoverPasswordComponent } from './modules/pages/recover-password/recover-password.component';
+import { DoorPermissionsComponent } from './modules/pages/door-permissions/door-permissions.component';
+import { UserDetailViewComponent } from './modules/pages/user-detail-view/user-detail-view.component';
+import { ContainerComponent } from './modules/components/authenticated-container/container.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: NavbarComponent,
+    component: ContainerComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'hub', component: HubComponent },
+      { path: 'hub', component: LandingPageComponent },
       { path: 'hub/users', component: UsersComponent },
       { path: 'hub/users/:id', component: UserDetailViewComponent },
       { path: 'hub/mentors', component: MentorsComponent },
@@ -32,6 +32,7 @@ const routes: Routes = [
   },
   { path: 'hub/auth', component: AuthComponent },
   { path: 'hub/recover', component: RecoverPasswordComponent },
+  { path: '**', redirectTo: 'hub/auth', pathMatch: 'full' },
 
 ];
 

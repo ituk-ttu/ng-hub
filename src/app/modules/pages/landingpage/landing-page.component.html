@@ -1,0 +1,59 @@
+<section>
+    <h1>Ressursid</h1>
+    <ng-container *ngIf="auth.user?.admin && newItemFormActive">
+        <ng-container *ngTemplateOutlet="form"></ng-container>
+    </ng-container>
+    <div class="btn btn-dark mb-3" *ngIf="!newItemFormActive" (click)="toggleNewLinkForm()">Add new</div>
+    <ng-container *ngFor="let resource of resources | async; trackBy: trackByFn">
+        <div>
+            <h3>{{resource.name}}</h3>
+            <p>
+                <small>{{resource.comment}}</small>
+            </p>
+            <div class="form-group">
+                <div class="input-group">
+                    <input [(ngModel)]="resource.url" name="url"
+                           readonly class="form-control" #input>
+                    <div class="btn-group input-group-btn">
+                        <button (click)="copyInputMessage(input)" class="btn btn-primary">Kopeeri</button>
+                        <button *ngIf="auth.user?.admin && activeId != resource.id" (click)="setEditActive(resource)"
+                                class="btn btn-dark">Muuda
+                        </button>
+                        <button *ngIf="auth.user?.admin && activeId == resource.id" (click)="activeId = null"
+                                class="btn btn-dark">Tühista
+                        </button>
+                        <button *ngIf="auth.user?.admin" (click)="activeId = null" class="btn btn-danger">Kustuta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="auth.user?.admin && activeId == resource.id">
+            <ng-container *ngTemplateOutlet="form"></ng-container>
+        </ng-container>
+    </ng-container>
+</section>
+
+<ng-template #form>
+    <form [formGroup]="resourceFrom" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label class="control-labe parent-width">
+                <input class="form-control" formControlName="name">
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-labe parent-width">
+                <input class="form-control" formControlName="comment">
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-label parent-width">
+                <input class="form-control" formControlName="url">
+            </label>
+        </div>
+        <div class="from-group">
+            <button type="submit" class="btn btn-success mb-3">Salvesta</button>
+            <button class="btn btn-dark  ml-2 mb-3" (click)="hideInputForm()">Tühista</button>
+        </div>
+    </form>
+</ng-template>
