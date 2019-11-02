@@ -58,6 +58,7 @@ export class GeneralMeetingsComponent implements OnInit {
 
   hideFrom() {
     this.isNewMeetingFormActive = false;
+    this.newMeetingForm.reset();
     delete this.selectedGeneralMeeting;
   }
 
