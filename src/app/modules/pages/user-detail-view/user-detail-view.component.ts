@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { UserHttpService } from '../../../core/services/user.http-service';
-import { User } from '../../../shared/models/user.model';
+import {UserHttpService} from '../../../core/services/user.http-service';
+import {User} from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-user-detail-view',
   templateUrl: './user-detail-view.component.html',
-  styleUrls: ['./user-detail-view.component.css']
+  styleUrls: ['./user-detail-view.component.sass']
 
 })
 
@@ -27,8 +27,9 @@ export class UserDetailViewComponent implements OnInit {
   }
 
   updateUser() {
-      this.userService.putUser(this.user).subscribe(response => {});
-      this.navigateBack();
+    this.userService.putUser(this.user).subscribe(response => {
+    });
+    this.navigateBack();
   }
 
   navigateBack() {

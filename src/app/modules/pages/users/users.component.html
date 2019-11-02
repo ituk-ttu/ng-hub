@@ -26,8 +26,8 @@
                     <th></th>
                     <th></th>
                 </tr>
-                <tr *ngFor="let user of users; let i = index;" (click)="goToUser(user.id)">
-                    <ng-container *ngIf="showUser(user)">
+                <tr *ngFor="let user of users; let i = index;" (click)="goToUser(user.id)" class="clickable">
+                    <ng-container *ngIf="showUser(user)" >
                         <td>{{i + 1}}</td>
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>

@@ -18,7 +18,7 @@ import { AppComponent } from '../app.component';
 import { ContainerComponent } from './components/authenticated-container/container.component';
 import { ProfilePicSelectComponent } from './components/profile-pic-select/profile-pic-select.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import {BooleanSelectorComponent} from '../components/boolean-selector/boolean-selector.component';
+import { BooleanSelectorComponent } from './components/boolean-selector/boolean-selector.component';
 
 @NgModule({
   imports: [
