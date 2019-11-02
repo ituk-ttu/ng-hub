@@ -13,6 +13,11 @@
                 <input type="text" class="form-control"  [(ngModel)]="user.telegram">
               </div>
 
+             <button
+                 class="btn, btn-success"
+                 (click)="router.navigate(['/hub/mentors/profile/' + user.id])"
+             >Muuda mentori profiili</button>
+
               <app-boolean-selector
                   [label]="'Admin'"
                   [isTrue]="user.isAdmin"

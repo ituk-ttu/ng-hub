@@ -27,9 +27,8 @@ export class UserDetailViewComponent implements OnInit {
   }
 
   updateUser() {
-    this.userService.putUser(this.user).subscribe(response => {
-    });
-    this.navigateBack();
+    this.userService.putUser(this.user).subscribe(() => this.navigateBack());
+
   }
 
   navigateBack() {

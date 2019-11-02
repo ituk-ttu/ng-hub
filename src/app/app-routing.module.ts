@@ -23,6 +23,7 @@ const routes: Routes = [
       { path: 'hub/users', component: UsersComponent },
       { path: 'hub/users/:id', component: UserDetailViewComponent },
       { path: 'hub/mentors', component: MentorsComponent },
+      { path: 'hub/mentors/profile/:id', component: MyMentorProfileComponent },
       { path: 'hub/settings', component: SettingsComponent },
       { path: 'hub/settings/mentor', component: MyMentorProfileComponent },
       { path: 'hub/applications', component: ApplicationsComponent},
