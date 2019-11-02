@@ -18,6 +18,7 @@ import { AppComponent } from '../app.component';
 import { ContainerComponent } from './components/authenticated-container/container.component';
 import { ProfilePicSelectComponent } from './components/profile-pic-select/profile-pic-select.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { BsDropdownModule } from "ngx-bootstrap";
 import { BooleanSelectorComponent } from './components/boolean-selector/boolean-selector.component';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { BooleanSelectorComponent } from './components/boolean-selector/boolean-
     ReactiveFormsModule,
     NgxSpinnerModule,
     ImageCropperModule,
+    BsDropdownModule,
   ],
   declarations: [
     AppComponent,
