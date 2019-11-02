@@ -28,7 +28,7 @@
                     <div class="btn-group pull" dropdown>
                         <button dropdownToggle type="button" class="btn navbar-dark bg-light dropdown-toggle"
                                 style="left: 0">
-                            {{authContext.user.name}}<span class="caret"></span>
+                            {{authContext.user.firstName + ' ' +  authContext.user.lastName}}<span class="caret"></span>
                         </button>
                         <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
                             <li role="menuitem">
