@@ -11,24 +11,32 @@ import { ApplicationsComponent } from './components/applications/applications.co
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { DoorPermissionsComponent } from './components/door-permissions/door-permissions.component';
 import { UserDetailViewComponent } from './components/user-detail-view/user-detail-view.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const routes: Routes = [
-  { path: 'hub', component: HubComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
+    component: NavbarComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'hub', component: HubComponent },
+      { path: 'hub/users', component: UsersComponent },
+      { path: 'hub/users/:id', component: UserDetailViewComponent },
+      { path: 'hub/mentors', component: MentorsComponent },
+      { path: 'hub/settings', component: SettingsComponent },
+      { path: 'hub/settings/mentor', component: MyMentorProfileComponent },
+      { path: 'hub/applications', component: ApplicationsComponent},
+      { path: 'hub/door-permissions', component: DoorPermissionsComponent},
+      { path: 'hub/**', redirectTo: 'hub', pathMatch: 'full' }
+    ]
+  },
   { path: 'hub/auth', component: AuthComponent },
-  { path: 'hub/users', component: UsersComponent, canActivate: [AuthGuard] },
-  { path: 'hub/users/:id', component: UserDetailViewComponent, canActivate: [AuthGuard] },
   { path: 'hub/recover', component: RecoverPasswordComponent },
-  { path: 'hub/mentors', component: MentorsComponent, canActivate: [AuthGuard] },
-  { path: 'hub/settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'hub/settings/mentor', component: MyMentorProfileComponent },
-  // {path: 'hub/settings/mentor', component: MyMentorProfileComponent, canActivate: [AuthGuard]},
-  { path: 'hub/applications', component: ApplicationsComponent, canActivate: [AuthGuard] },
-  { path: 'hub/door-permissions', component: DoorPermissionsComponent, canActivate: [AuthGuard] },
-  // {path: '**', redirectTo: 'hub', pathMatch: 'full', canActivate: [AuthGuard]}
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 

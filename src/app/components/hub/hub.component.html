@@ -1,50 +1,49 @@
-<div ng-repeat="resource in resources | orderBy: 'name'" class="ng-scope">
-    <ng-container *ngFor="let resource of resources">
-        <ng-container *ngIf="!isAdmin">
-            <div>
-                <h3>{{resource.name}}</h3>
-                <p>
-                    <small>{{resource.comment}}</small>
-                </p>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input [(ngModel)]="resource.url" name="url"
-                               readonly class="form-control ng-pristine ng-touched ng-valid" #input>
-                        <span class="input-group-btn">
-                        <button (click)="copyInputMessage(input)"
-                                class="btn btn-primary ng-isolate-scope">Kopeeri</button>
-                    </span>
+<section>
+    <ng-container *ngFor="let resource of resources | async">
+        <div>
+            <h3>{{resource.name}}</h3>
+            <p>
+                <small>{{resource.comment}}</small>
+            </p>
+            <div class="form-group">
+                <div class="input-group">
+                    <input [(ngModel)]="resource.url" name="url"
+                           readonly class="form-control" #input>
+                    <div class="btn-group input-group-btn">
+                        <button (click)="copyInputMessage(input)" class="btn btn-primary">Kopeeri</button>
+                        <button *ngIf="auth.user?.admin && activeId != resource.id" (click)="setEditActive(resource)"
+                                class="btn btn-dark">Muuda
+                        </button>
+                        <button *ngIf="auth.user?.admin && activeId == resource.id" (click)="activeId = null"
+                                class="btn btn-dark">Tühista
+                        </button>
+                        <button *ngIf="auth.user?.admin" (click)="activeId = null" class="btn btn-danger">Kustuta
+                        </button>
                     </div>
                 </div>
             </div>
-        </ng-container>
-
-        <ng-container *ngIf="isAdmin">
-            <div ng-show="editing == resource.id" class="ng-hide">
-                <form ng-submit="save()" class="ng-pristine ng-valid">
-                    <div class="form-group">
-                        <label class="control-label">Nimi</label>
-                        <input ng-model="edited.name" type="text"
-                               class="form-control ng-pristine ng-untouched ng-valid">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Kommentaar</label>
-                        <input ng-model="edited.comment" type="text"
-                               class="form-control ng-pristine ng-untouched ng-valid">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">URL</label>
-                        <input ng-model="edited.url" type="text" class="form-control ng-pristine ng-untouched ng-valid">
-                    </div>
-                    <div class="from-group">
-                        <!-- ngIf: !working -->
-                        <button type="submit" ng-if="!working" class="btn btn-success ng-scope">Salvesta</button>
-                        <!-- end ngIf: !working -->
-                        <!-- ngIf: working -->
-                        <button ng-click="editing = false" class="btn btn-danger">Katkesta</button>
-                    </div>
-                </form>
-            </div>
+        </div>
+        <ng-container *ngIf="auth.user?.admin && activeId == resource.id">
+            <form [formGroup]="resourceFrom" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label class="control-label">
+                        <input class="form-control" formControlName="name">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">
+                        <input class="form-control" formControlName="comment">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">
+                        <input class="form-control" formControlName="url">
+                    </label>
+                </div>
+                <div class="from-group">
+                    <button type="submit" class="btn btn-success">Salvesta</button>
+                </div>
+            </form>
         </ng-container>
     </ng-container>
-</div>
+</section>

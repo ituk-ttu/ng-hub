@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { MentorProfileModel } from '../models/mentor-profile.model';
 import { environment } from '../../environments/environment';
 import { AuthContext } from './authContext';
+import { Session } from '../models/session.model';
 
 @Injectable()
 export class MyDetailsHttpService {
@@ -13,7 +14,7 @@ export class MyDetailsHttpService {
   }
 
   public getMyMentorProfile(): Observable<MentorProfileModel> {
-    const url = environment.API_URL + '/mentor/user/' + this.authContext.getUserId();
+    const url = environment.API_URL + '/mentor/user/' + this.authContext.user.id;
     return this.http.get<MentorProfileModel>(url);
   }
 
@@ -25,5 +26,10 @@ export class MyDetailsHttpService {
   public saveProfilePic(pic: any): Observable<any> {
     const url = environment.API_URL + '/mentor/user/picture/';
     return this.http.post<MentorProfileModel>(url, pic);
+  }
+
+  public getSessions(): Observable<Session> {
+    const url = `${environment.API_URL}/authenticate/sessions`;
+    return this.http.get<Session>(url);
   }
 }

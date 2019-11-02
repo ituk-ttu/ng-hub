@@ -19,7 +19,6 @@ export class UserDetailViewComponent implements OnInit {
   ngOnInit() {
     const userId = this.route.snapshot.paramMap.get('id');
     this.userService.getUserById(userId).subscribe((result) => {
-      console.table(result);
       this.user = result;
     });
   }

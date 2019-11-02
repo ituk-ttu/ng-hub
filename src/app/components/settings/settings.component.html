@@ -1,57 +1,71 @@
-<div ui-view="" class="container content ng-scope">
-    <h1 class="ng-scope">Sätted</h1>
-    <h3 class="ng-scope">Kasutaja andmed</h3>
-    <div class="well ng-scope">
-        <form ng-submit="saveInfo()" class="ng-pristine ng-valid">
+<div class="container content">
+    <h1>Sätted</h1>
+    <h3>Kasutaja andmed</h3>
+    <div>
+        <form (ngSubmit)="submitUser()">
             <div class="form-group">
-                <label class="control-label">Nimi</label>
-                <input [(ngModel)]="user.name" name="name" type="text" ng-disabled="working.info"
-                       class="form-control ng-pristine ng-untouched ng-valid">
+                <label class="control-label parent-width">Nimi
+                    <input [(ngModel)]="user.name" name="name" type="text" class="form-control">
+                </label>
             </div>
             <div class="form-group">
-                <label class="control-label">E-mail</label>
-                <input [(ngModel)]="user.email" name="email" type="text" ng-disabled="working.info"
-                       class="form-control ng-pristine ng-untouched ng-valid">
+                <label class="control-label parent-width">E-mail
+                    <input [(ngModel)]="user.email" name="email" type="text"
+                           class="form-control">
+                </label>
             </div>
             <div class="form-group">
-                <label class="control-label">Telegram</label>
-                <input [(ngModel)]="user.telegram" name="telegram" type="text" ng-disabled="working.info"
-                       class="form-control ng-pristine ng-untouched ng-valid">
+                <label class="control-label parent-width">Telegram
+                    <input [(ngModel)]="user.telegram" name="telegram" type="text" class="form-control">
+                </label>
             </div>
             <div class="form-group">
-                <button type="submit" ng-disabled="working.info" class="btn btn-success">Salvesta</button>
-                <button type="button" ng-click="resetInfo()" ng-disabled="working.info" class="btn btn-danger">Taasta
+                <button type="submit" class="btn btn-success">Salvesta</button>
+                <button type="button" (click)="resetUser()" class="btn btn-danger">Taasta</button>
+            </div>
+        </form>
+    </div>
+    <h3>Muuda parooli</h3>
+    <div class="well">
+        <form [formGroup]="newPasswordForm" (ngSubmit)="submitNewPassword()">
+            <div class="form-group">
+                <label class="control-label parent-width">
+                    Vana parool
+                    <input formControlName="oldPassword"
+                           type="password"
+                           class="form-control">
+                </label>
+            </div>
+            <div class=" form-group">
+                <label class="control-label parent-width">
+                    Uus parool (vähemalt 8 sümbolit)
+                    <input formControlName="newPassword"
+                           type="password"
+                           class="form-control">
+                </label>
+
+            </div>
+            <div class=" form-group">
+                <label class="control-label parent-width">
+                    Uus parool (kinnitus)
+                    <input formControlName="newPasswordConfirmation"
+                           type="password"
+                           class="form-control ">
+                </label>
+                <div *ngIf="newPasswordForm.errors?.mismatch">
+                    Uus paroon ning kinnitusparool ei lange kokku
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit"
+                        class="btn btn-success">
+                    Muuda
                 </button>
             </div>
         </form>
     </div>
-    <h3 class="ng-scope">Muuda parooli</h3>
-    <div class="well ng-scope">
-        <form ng-submit="savePassword()" class="ng-pristine ng-valid">
-            <div class="form-group">
-                <label class="control-label">Vana parool</label>
-                <input ng-model="password.old" type="password" ng-disabled="working.password"
-                       class="form-control ng-pristine ng-untouched ng-valid">
-            </div>
-            <div class="form-group">
-                <label class="control-label">Uus parool (vähemalt 8 sümbolit)</label>
-                <input ng-model="password.new" type="password" ng-disabled="working.password"
-                       class="form-control ng-pristine ng-untouched ng-valid">
-            </div>
-            <div class="form-group">
-                <label class="control-label">E-mail</label>
-                <input ng-model="password.newConfirm" type="password" ng-disabled="working.password"
-                       class="form-control ng-pristine ng-untouched ng-valid">
-            </div>
-            <div class="form-group">
-                <button type="submit" ng-disabled="working.password || password.new != password.newConfirm"
-                        class="btn btn-success">Muuda
-                </button>
-            </div>
-        </form>
-    </div>
-    <h3 class="ng-scope">Aktiivsed sessioonid</h3>
-    <div class="table-responsive ng-scope">
+    <h3>Aktiivsed sessioonid</h3>
+    <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -62,18 +76,15 @@
             </tr>
             </thead>
             <tbody>
-            <!-- ngRepeat: session in sessions -->
-            <tr ng-repeat="session in sessions" class="ng-scope">
-                <td class="ng-binding">170</td>
-                <td class="ng-binding">Windows 10.0 | Chrome</td>
-                <td class="ng-binding">23:48 16.05.2018</td>
-                <td><!-- ngIf: deleting != session.id --><a ng-if="deleting != session.id"
-                                                            ng-click="invalidateSession(session)"
-                                                            class="btn btn-danger btn-xs ng-scope">Kustuta</a>
-                    <!-- end ngIf: deleting != session.id -->
-                    <!-- ngIf: deleting == session.id -->
+            <tr *ngFor="let session of (sessions | async)">
+                <td>{{session.id}}</td>
+                <td>{{session.agent}}</td>
+                <td>{{session.createdAt | date}}</td>
+                <td>
+                    <div class="btn btn-danger">Kustuta</div>
                 </td>
-            </tr><!-- end ngRepeat: session in sessions -->
+                <!--                TODO only deletable if not current session-->
+            </tr>
             </tbody>
         </table>
     </div>

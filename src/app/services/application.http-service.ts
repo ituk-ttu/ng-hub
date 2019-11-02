@@ -10,9 +10,9 @@ export class ApplicationHttpService {
   constructor(private http: HttpClient) {
   }
 
-  public getAllApplications(): Observable<ApplicationModel[]> {
+  public getAllApplications() {
     const url = environment.API_URL + '/application';
-    return this.http.get<ApplicationModel[]>(url);
+    return this.http.get(url);
   }
 
 }

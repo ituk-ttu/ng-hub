@@ -14,4 +14,9 @@ export class ResourcesHttpService {
     const url = environment.API_URL + '/resource';
     return this.http.get<ResourcesContentModel[]>(url);
   }
+
+  public saveResource(reseource: ResourcesContentModel): Observable<ResourcesContentModel[]> {
+    const url = `${environment.API_URL}/resource/${reseource.id}`;
+    return this.http.put<ResourcesContentModel[]>(url, reseource);
+  }
 }

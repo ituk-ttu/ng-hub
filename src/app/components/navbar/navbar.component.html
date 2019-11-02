@@ -1,47 +1,51 @@
 <ng-container *ngIf="router.url !== '/hub/auth' && router.url !== '/hub/recover' ">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="" (click)="toggleNavbar()">
-      Hub | ITÜK
-    </a>
-    <div class="collapse navbar-collapse"
-         [ngClass]="{ 'show': navbarOpen }">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/hub">Ressursid</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/hub/mentors">Mentorid</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/hub/users">Kasutajad</a>
-        </li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" routerLink="/hub" (click)="toggleNavbar()">
+            Hub | ITÜK
+        </a>
+        <div class="collapse navbar-collapse"
+             [ngClass]="{ 'show': navbarOpen }">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/hub">Ressursid</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/hub/mentors">Mentorid</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/hub/users">Kasutajad</a>
+                </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/hub/applications">Avaldused</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/hub/door-permissions">Usteõigused</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav">
-        <li>
-          <div class="btn-group pull" dropdown>
-            <button dropdownToggle type="button" class="btn navbar-dark bg-light dropdown-toggle"
-                    style="left: 0">
-              {{authContext.getName()}}<span class="caret"></span>
-            </button>
-            <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-              <li role="menuitem">
-                <a class="dropdown-item" routerLink="/hub/settings">Sätted</a></li>
-              <li role="menuitem">
-                <a class="dropdown-item" routerLink="/hub/settings/mentor">Mentori profiil</a></li>
-              <li class="divider dropdown-divider"></li>
-              <li role="menuitem">
-                <a (click)="authContext.logout()" class="dropdown-item">Log out</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/hub/applications">Avaldused</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/hub/door-permissions">Usteõigused</a>
+                </li>
             </ul>
-          </div>
-        </li>
-      </ul>
+            <ul class="navbar-nav">
+                <li>
+                    <div class="btn-group pull" dropdown>
+                        <button dropdownToggle type="button" class="btn navbar-dark bg-light dropdown-toggle"
+                                style="left: 0">
+                            {{authContext.user.name}}<span class="caret"></span>
+                        </button>
+                        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li role="menuitem">
+                                <a class="dropdown-item" routerLink="/hub/settings">Sätted</a></li>
+                            <li role="menuitem">
+                                <a class="dropdown-item" routerLink="/hub/settings/mentor">Mentori profiil</a></li>
+                            <li class="divider dropdown-divider"></li>
+                            <li role="menuitem">
+                                <a (click)="authContext.logout()" class="dropdown-item">Log out</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <router-outlet class="container-fluid container">
+        </router-outlet>
     </div>
-  </nav>
 </ng-container>

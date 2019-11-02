@@ -11,7 +11,7 @@ import { ProfilePicSelectComponent } from './components/profile-pic-select/profi
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserHttpService } from './services/user.http-service';
 import { MyDetailsHttpService } from './services/my-details.http-service';
 import { BsDropdownModule, CollapseModule, ModalModule } from 'ngx-bootstrap';
@@ -61,6 +61,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxSpinnerModule
   ],
   providers: [

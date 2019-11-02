@@ -1,0 +1,6 @@
+{
+  "https://api.hub.ituk.ee": {
+    "target": "https://api.hub.ituk.ee",
+    "secure": false
+  }
+}

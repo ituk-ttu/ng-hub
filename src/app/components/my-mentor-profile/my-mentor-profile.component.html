@@ -1,83 +1,83 @@
 <ng-container *ngIf="myProfile">
-  <h1>{{myProfile.mentorship.name}}
-    <!--TODO: replace with {{myProfile.name}}-->
-  </h1>
-  <div class="row">
-    <div class="well col-md-8 col-sm-6 col-lg-8 col-xs-12">
+    <h1>{{myProfile.mentorship.name}}
+        <!--TODO: replace with {{myProfile.name}}-->
+    </h1>
+    <div class="row">
+        <div class="well col-md-8 col-sm-6 col-lg-8 col-xs-12">
 
-      <form class="ng-pristine ng-valid">
-        <div class="form-group">
-          <label class="control-label">Eriala
-            <small class="text-muted">
-            </small>
-          </label>
-          <input type="text" class="form-control" id="name"
-                 required
-                 name="curriculum"
-                 [(ngModel)]="myProfile.curriculum"/>
-        </div>
-        <div class="form-group">
-          <label class="control-label">Sinust
-          </label>
-          <textarea [(ngModel)]="myProfile.text" rows="8" name="text"
-                    class="form-control ng-pristine ng-untouched ng-valid">
+            <form>
+                <div class="form-group">
+                    <label class="control-label">Eriala
+                        <small class="text-muted">
+                        </small>
+                    </label>
+                    <input type="text" class="form-control" id="name"
+                           required
+                           name="curriculum"
+                           [(ngModel)]="myProfile.curriculum"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Sinust
+                    </label>
+                    <textarea [(ngModel)]="myProfile.text" rows="8" name="text"
+                              class="form-control">
                     </textarea>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Lemmik GIF
+                        <small class="text-muted"> (URL)
+                        </small>
+                    </label>
+                    <input [(ngModel)]="myProfile.gif"
+                           name="gif"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="control-label parent-width">
+                        Tsitaat
+                        <input [(ngModel)]="myProfile.quote"
+                               name="quote"
+                               class="form-control">
+                    </label>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label">
+                        Avalik
+                    </label>
+                    <div class="btn-group">
+                        <button type="button" (click)="setProfileEnabledStatus(false)"
+                                [ngClass]="{'btn-dark': !myProfile.enabled}" class="btn  btn-dark ml-3">jah
+                        </button>
+                        <button type="button" (click)="setProfileEnabledStatus(true)"
+                                [ngClass]="{'btn-dark': myProfile.enabled}" class="btn btn-dark">ei
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group row pl-3">
+                    <button (click)="save()" class="btn btn-success mr-2">Salvesta</button>
+                    <button (click)="getProfile()" class="btn btn-danger mr-2">Taasta</button>
+                    <app-profile-pic-select
+                            [imageChangedEvent]="'data:image/png;base64,' + myProfile.photo">
+                    </app-profile-pic-select>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-          <label class="control-label">Lemmik GIF
-            <small class="text-muted"> (URL)
-            </small>
-          </label>
-          <input [(ngModel)]="myProfile.gif"
-                 name="gif"
-                 class="form-control ng-pristine ng-valid ng-touched">
+        <div class="col-md-4 col-lg-4 col-sm-6 hidden-xs mentor-select mentors">
+            <div class="mentor mentor-preview">
+                <img src="data:image/png;base64,{{myProfile.photo}}">
+                <div class="mentor-info">
+                    <p class="mentor-name"> {{myProfile.mentorship.name}}
+                        <!--TODO: replace with {{myProfile.name}}-->
+                    </p>
+                    <p class="mentor-curriculum">{{myProfile.curriculum}}</p>
+                    <div [innerHTML]="myProfile.text"></div>
+                    <a (click)="toggleGif(openGifs.indexOf(myProfile.id) > -1)" class="mentor-quote"><em>Lemmik GIF +</em></a>
+                    <img *ngIf="showGif" src="{{myProfile.gif}}">
+                    <p class="mentor-quote"><em>{{myProfile.quote}}</em></p>
+                    <a class="btn btn-primary btn-block disabled mt-2">Vali</a>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-          <label class="control-label">
-            Tsitaat
-          </label>
-          <input [(ngModel)]="myProfile.quote"
-                 name="quote"
-                 class="form-control ng-pristine ng-untouched ng-valid">
-        </div>
-        <div class="form-group">
-          <label class="control-label">
-            Avalik
-          </label>
-          <div class="btn-group">
-            <button type="button" (click)="setProfileEnabledStatus(false)"
-                    [ngClass]="{'btn-dark': !myProfile.enabled}" class="btn  btn-dark ml-3">jah
-            </button>
-            <button type="button" (click)="setProfileEnabledStatus(true)"
-                    [ngClass]="{'btn-dark': myProfile.enabled}" class="btn btn-dark">ei
-            </button>
-          </div>
-        </div>
-        <div class="form-group row pl-3">
-          <button (click)="save()" class="btn btn-success mr-2">Salvesta</button>
-          <button (click)="getProfile()" class="btn btn-danger mr-2">Taasta</button>
-          <app-profile-pic-select
-            [imageChangedEvent]="'data:image/png;base64,' + myProfile.photo">
-          </app-profile-pic-select>
-        </div>
-      </form>
     </div>
-    <div class="col-md-4 col-lg-4 col-sm-6 hidden-xs mentor-select mentors">
-      <div class="mentor mentor-preview">
-        <img src="data:image/png;base64,{{myProfile.photo}}">
-        <div class="mentor-info">
-          <p class="mentor-name ng-binding"> {{myProfile.mentorship.name}}
-            <!--TODO: replace with {{myProfile.name}}-->
-          </p>
-          <p class="mentor-curriculum ng-binding">{{myProfile.curriculum}}</p>
-          <div [innerHTML]="myProfile.text"></div>
-          <a (click)="toggleGif(openGifs.indexOf(myProfile.id) > -1)" class="mentor-quote"><em
-            class="ng-binding">Lemmik GIF +</em></a>
-          <img *ngIf="showGif" src="{{myProfile.gif}}">
-          <p class="mentor-quote"><em class="ng-binding">{{myProfile.quote}}</em></p>
-          <a class="btn btn-primary btn-block disabled mt-2">Vali</a>
-        </div>
-      </div>
-    </div>
-  </div>
 </ng-container>

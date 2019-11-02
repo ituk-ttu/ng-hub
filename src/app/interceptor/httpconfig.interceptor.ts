@@ -6,11 +6,11 @@ import { CookieService } from 'ngx-cookie';
 
 @Injectable()
 export class NoopInterceptor implements HttpInterceptor {
-  constructor(private cookeiService: CookieService) {
+  constructor(private cookieService: CookieService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token: string = this.cookeiService.get('token');
+    const token: string = this.cookieService.get('token');
     if (token) {
       request = request.clone({ headers: request.headers.set('Authorization', token) });
     }

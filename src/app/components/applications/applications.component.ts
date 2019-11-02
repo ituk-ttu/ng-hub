@@ -1,20 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApplicationHttpService } from '../../services/application.http-service';
-import { ApplicationModel } from '../../models/application.model';
 
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html'
 })
-export class ApplicationsComponent implements OnInit {
-  public showSpinner: false;
-  public applications: ApplicationModel[];
+export class ApplicationsComponent {
 
-  constructor(private applicationHttpService: ApplicationHttpService) {
-  }
+  applications = this.applicationHttpService.getAllApplications();
 
-  ngOnInit() {
-    this.applicationHttpService.getAllApplications().subscribe((result) => this.applications = result);
+  constructor(public applicationHttpService: ApplicationHttpService) {
   }
 
 }

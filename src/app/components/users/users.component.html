@@ -1,8 +1,8 @@
 <ng-container *ngIf="users; else spinner">
-    <div ui-view="" class="container content ng-scope">
-        <h1 class="ng-scope">Kasutajad
+    <div class="container content">
+        <h1>Kasutajad
         </h1>
-        <div class="table-responsive ng-scope">
+        <div class="table-responsive">
             <table class="table table-striped table-hover table-list">
                 <thead>
                 <tr>
@@ -19,7 +19,7 @@
                 <tr>
                     <th></th>
                     <td><input type="search" placeholder="Otsi nime, meili, telegrami..." [(ngModel)]="searchString"
-                               class="input-sm form-control ng-pristine ng-valid ng-touched"></td>
+                               class="input-sm form-control"></td>
                     <th></th>
                     <th></th>
                     <th></th>

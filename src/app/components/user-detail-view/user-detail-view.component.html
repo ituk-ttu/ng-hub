@@ -1,24 +1,24 @@
 <ng-container *ngIf="user">
-    <div class="container content ng-scope">
-        <span class="ng-scope">
+    <div class="container content">
+        <span>
             <h1>{{user.name}}</h1>
             <div class="card card-body">
-                <p class="ng-binding">
+                <p>
                     <strong>E-mail: </strong>{{user.email}}
                 </p>
-                <p class="ng-binding">
+                <p>
                     <strong>Telegram: </strong>{{user.telegram}}
                 </p>
                 <p><strong>Admin: </strong>
-                    <span *ngIf="user.admin; else elseBlock" class="badge badge-dark">admin</span>
+                    <span *ngIf="user.admin; else falseBadge" class="badge badge-dark">true</span>
                 </p>
                 <p><strong>Mentor: </strong>
-                    <span *ngIf="user.canBeMentor; else elseBlock" class="badge badge-success">mentor</span>
+                    <span *ngIf="user.canBeMentor; else falseBadge" class="badge badge-success">mentor</span>
                 </p>
                 <p><strong>Arhiveeritud: </strong>
-                    <span *ngIf="user.archived; else elseBlock" class="badge badge-danger">arhiveeritud</span>
-                    <ng-template #elseBlock><span class="badge badge-secondary">false</span></ng-template>
+                    <span *ngIf="user.archived; else falseBadge" class="badge badge-danger">arhiveeritud</span>
                 </p>
+                <ng-template #falseBadge><span class="badge badge-secondary">false</span></ng-template>
             </div>
         </span>
     </div>

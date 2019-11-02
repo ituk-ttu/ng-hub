@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { CookieService } from 'ngx-cookie';
+import { AuthContext } from '../services/authContext';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private cookeiService: CookieService) {
+  constructor(private router: Router, private authContext: AuthContext) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.cookeiService.get('token')) {
-      // logged in so return true
+    if (this.authContext.isLoggedIn) {
       return true;
     }
-
-    // not logged in so redirect to login page with the return url
-    this.router.navigate(['hub/auth']);
-    return false;
+    return this.authContext.isLoggedInSubject
+      .pipe(map(value => {
+        return value;
+      }));
   }
 }

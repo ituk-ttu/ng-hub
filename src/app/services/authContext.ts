@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 import { environment } from '../../environments/environment';
 import { TokenModel } from '../models/token.model';
@@ -12,11 +12,13 @@ import { CookieService } from 'ngx-cookie';
 export class AuthContext {
 
   public user: User;
+  public isLoggedIn = false;
+  public isLoggedInSubject = new Subject<boolean>();
 
   constructor(private http: HttpClient,
               private router: Router,
               private cookieService: CookieService) {
-    this.getSessionUser().subscribe((response) => this.user = response);
+    this.refreshSession();
   }
 
   public getSessionUser(): Observable<User> {
@@ -25,18 +27,12 @@ export class AuthContext {
   }
 
   public refreshSession() {
-    this.getSessionUser().subscribe((response) => this.user = response);
-  }
-
-  public getUserId() {
-    return this.user.id;
-  }
-
-  public getName() {
-    if (this.user) {
-      return this.user.name;
-    }
-    return 'Undefined';
+    this.getSessionUser().subscribe((response) => {
+        this.isLoggedInSubject.next(true);
+        this.isLoggedIn = true;
+        this.user = response;
+      }
+    );
   }
 
   public logout(): void {
