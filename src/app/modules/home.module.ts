@@ -20,6 +20,7 @@ import { ProfilePicSelectComponent } from './components/profile-pic-select/profi
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { BsDropdownModule } from "ngx-bootstrap";
 import { BooleanSelectorComponent } from './components/boolean-selector/boolean-selector.component';
+import { GeneralMeetingsComponent } from "./pages/general-meetings/general-meetings.component";
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { BooleanSelectorComponent } from './components/boolean-selector/boolean-
     BsDropdownModule,
   ],
   declarations: [
+    GeneralMeetingsComponent,
     AppComponent,
     ContainerComponent,
     ProfilePicSelectComponent,

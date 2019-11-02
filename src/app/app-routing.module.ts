@@ -12,6 +12,7 @@ import { RecoverPasswordComponent } from './modules/pages/recover-password/recov
 import { DoorPermissionsComponent } from './modules/pages/door-permissions/door-permissions.component';
 import { UserDetailViewComponent } from './modules/pages/user-detail-view/user-detail-view.component';
 import { ContainerComponent } from './modules/components/authenticated-container/container.component';
+import { GeneralMeetingsComponent } from "./modules/pages/general-meetings/general-meetings.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: 'hub/settings/mentor', component: MentorProfileComponent },
       { path: 'hub/applications', component: ApplicationsComponent},
       { path: 'hub/door-permissions', component: DoorPermissionsComponent},
+      { path: 'hub/general-meetings', component: GeneralMeetingsComponent},
       { path: 'hub/**', redirectTo: 'hub', pathMatch: 'full' }
     ]
   },
