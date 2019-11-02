@@ -8,8 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./container.component.sass']
 })
 export class ContainerComponent {
+  navbarOpen = false;
 
   constructor(public authContext: AuthContext,
               public router: Router) {
   }
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
 }

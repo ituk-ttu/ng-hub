@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://api.hub.ituk.ee',
-
+  API_URL: 'https://dev.hub.ituk.ee',
 };
 
 /*

@@ -1,9 +1,10 @@
 <ng-container *ngIf="router.url !== '/hub/auth' && router.url !== '/hub/recover' ">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" routerLink="/hub">
+        <a class="navbar-brand" (click)="toggleNavbar()">
             Hub | ITÜK
         </a>
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse"
+             [ngClass]="{ 'show': navbarOpen }">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/hub">Ressursid</a>

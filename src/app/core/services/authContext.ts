@@ -42,7 +42,7 @@ export class AuthContext {
   }
 
   public login(details: LoginDetails): Observable<TokenModel> {
-    const url = `${environment.API_URL}/authenticate/password`;
+    const url = `${environment.API_URL}/login`;
     return this.http.post<TokenModel>(url, details);
   }
 
