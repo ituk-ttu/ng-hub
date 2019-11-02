@@ -1,0 +1,15 @@
+<div>
+  <label>{{label}}</label>
+  <br/>
+  <button
+      value="true"
+      [ngClass]="{'btn': true, 'btn-success': isTrue}"
+      (click)="this.setValue.emit(true)"
+  >True</button>
+
+  <button
+      value="false"
+      [ngClass]="{'btn': true, 'btn-success': !isTrue}"
+      (click)="this.setValue.emit(false)"
+  >False</button>
+</div>

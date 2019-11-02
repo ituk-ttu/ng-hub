@@ -1,25 +1,41 @@
 <ng-container *ngIf="user">
-    <div class="container content">
+  <div class="container content">
         <span>
             <h1>{{user.name}}</h1>
             <div class="card card-body">
-                <p>
-                    <strong>E-mail: </strong>{{user.email}}
-                </p>
-                <p>
-                    <strong>Telegram: </strong>{{user.telegram}}
-                </p>
-                <p><strong>Admin: </strong>
-                    <span *ngIf="user.admin; else falseBadge" class="badge badge-dark">true</span>
-                </p>
-                <p><strong>Mentor: </strong>
-                    <span *ngIf="user.canBeMentor; else falseBadge" class="badge badge-success">mentor</span>
-                </p>
-                <p><strong>Arhiveeritud: </strong>
-                    <span *ngIf="user.archived; else falseBadge" class="badge badge-danger">arhiveeritud</span>
-                </p>
-                <ng-template #falseBadge><span class="badge badge-secondary">false</span></ng-template>
+              <div class="md-form">
+                <label>E-mail</label>
+                <input type="text" class="form-control" [(ngModel)]="user.email">
+              </div>
+
+              <div class="md-form">
+                <label>Telegram</label>
+                <input type="text" class="form-control"  [(ngModel)]="user.telegram">
+              </div>
+
+              <app-boolean-selector
+                  [label]="'Admin'"
+                  [isTrue]="user.isAdmin"
+                  (setValue)="user.isAdmin = $event"
+              ></app-boolean-selector>
+
+               <app-boolean-selector
+                   [label]="'Mentor'"
+                   [isTrue]="user.isMentor"
+                   (setValue)="user.isMentor = $event"
+               ></app-boolean-selector>
+
+               <app-boolean-selector
+                   [label]="'Arhiveeritud'"
+                   [isTrue]="user.isArchived"
+                   (setValue)="user.isArchived = $event"
+               ></app-boolean-selector>
+
+              <div>
+                <button class="btn btn-outline-primary" (click)="navigateBack()">Cancel</button>
+                <button class="btn btn-primary" (click)="updateUser()">Save</button>
+              </div>
             </div>
         </span>
-    </div>
+  </div>
 </ng-container>
