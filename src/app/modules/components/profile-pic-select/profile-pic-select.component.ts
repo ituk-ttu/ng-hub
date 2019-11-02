@@ -9,7 +9,7 @@ import { MyDetailsHttpService } from '../../../core/services/my-details.http-ser
   styleUrls: ['./profile-pic-select.component.sass']
 })
 export class ProfilePicSelectComponent {
-  @ViewChild('template')
+  @ViewChild('template', { static: true })
   picSelectTemplate: TemplateRef<any>;
   public modalRef: BsModalRef;
   @Input()

@@ -6,7 +6,6 @@ import { environment } from '../../../environments/environment';
 import { TokenModel } from '../../shared/models/token.model';
 import { LoginDetails } from '../../shared/models/login-details.model';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie';
 
 @Injectable()
 export class AuthContext {
@@ -16,8 +15,7 @@ export class AuthContext {
   public isLoggedInSubject = new Subject<boolean>();
 
   constructor(private http: HttpClient,
-              private router: Router,
-              private cookieService: CookieService) {
+              private router: Router) {
     this.refreshSession();
   }
 
@@ -36,7 +34,7 @@ export class AuthContext {
   }
 
   public logout(): void {
-    this.cookieService.remove('token');
+    localStorage.removeItem('token');
     const url = `${environment.API_URL}/authenticate/invalidate`;
     this.http.post(url, null).subscribe(
       () => this.router.navigate(['hub/auth']),
