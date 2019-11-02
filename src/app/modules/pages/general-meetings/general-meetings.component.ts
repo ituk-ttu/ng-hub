@@ -62,7 +62,11 @@ export class GeneralMeetingsComponent implements OnInit {
   }
 
   chooseGeneralMeetingToEdit(meeting: GeneralMeeting) {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth'
+    });
     this.isNewMeetingFormActive = false;
     this.selectedGeneralMeeting = meeting.id;
     this.newMeetingForm = new FormGroup({
