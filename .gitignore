@@ -45,3 +45,5 @@ Thumbs.db
 .editorconfig
 
 ng-hub.iml
+
+package-lock.json

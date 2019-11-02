@@ -15,8 +15,8 @@
                 <p class="mentor-quote">
                     <em>{{mentor.quote}}</em>
                 </p>
-                <a class="btn btn-primary btn-block disabled mt-2">
-                    Vali
+                <a [routerLink]="'profile/' + mentor.mentorshipId" class="btn btn-primary btn-block mt-2" >
+                    Muuda
                 </a>
             </div>
         </div>

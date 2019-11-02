@@ -58,6 +58,7 @@
                     <button (click)="save()" class="btn btn-success mr-2">Salvesta</button>
                     <button (click)="getProfile()" class="btn btn-danger mr-2">Taasta</button>
                     <app-profile-pic-select
+                            [userId]="authContext.user.id"
                             [imageChangedEvent]="'data:image/png;base64,' + myProfile.photo">
                     </app-profile-pic-select>
                 </div>

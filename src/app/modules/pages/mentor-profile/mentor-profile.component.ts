@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { MyDetailsHttpService } from '../../../core/services/my-details.http-service';
-import { MentorProfileModel } from '../../../shared/models/mentor-profile.model';
+import {Component} from '@angular/core';
+import {MyDetailsHttpService} from '../../../core/services/my-details.http-service';
+import {MentorProfileModel} from '../../../shared/models/mentor-profile.model';
+import {AuthContext} from '../../../core/services/authContext';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-my-mentor-profile',
-  templateUrl: './my-mentor-profile.component.html',
-  styleUrls: ['./my-mentor-profile.component.sass']
+  templateUrl: './mentor-profile.component.html',
+  styleUrls: ['./mentor-profile.component.sass']
 })
-export class MyMentorProfileComponent {
+export class MentorProfileComponent {
 
   public myProfile: MentorProfileModel;
   public openGifs: number[] = [];
   public showGif = false;
 
-  constructor(private mentorHttpService: MyDetailsHttpService) {
+  constructor(private mentorHttpService: MyDetailsHttpService,
+              private authContext: AuthContext,
+              private route: ActivatedRoute) {
     this.getProfile();
   }
 
@@ -43,7 +47,9 @@ export class MyMentorProfileComponent {
   }
 
   public getProfile() {
-    this.mentorHttpService.getMyMentorProfile().subscribe(
+    const id = parseInt(this.route.snapshot.paramMap.get('id'), 10) || this.authContext.user.id;
+
+    this.mentorHttpService.getMentorProfile(id).subscribe(
       (response) => this.myProfile = response,
       () => console.log('error getting my mentor profile')
     );

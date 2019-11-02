@@ -14,6 +14,8 @@ export class ProfilePicSelectComponent {
   public modalRef: BsModalRef;
   @Input()
   public imageChangedEvent: any = '';
+  @Input()
+  public userId: number;
   public croppedImage: any = '';
   public showCropper;
   public showRestore = false;
@@ -65,9 +67,8 @@ export class ProfilePicSelectComponent {
 
   public restore(): void {
     this.showRestore = false;
-    this.mentorHttpService.getMyMentorProfile()
+    this.mentorHttpService.getMentorProfile(this.userId)
       .subscribe((response) => this.imageChangedEvent = 'data:image/png;base64,' + response.photo);
-
   }
 
 

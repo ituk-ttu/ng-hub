@@ -4,7 +4,7 @@ import { LandingPageComponent } from './pages/landingpage/landing-page.component
 import { MentorsComponent } from './pages/mentors/mentors.component';
 import { UsersComponent } from './pages/users/users.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { MyMentorProfileComponent } from './pages/my-mentor-profile/my-mentor-profile.component';
+import { MentorProfileComponent } from './pages/mentor-profile/mentor-profile.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { ApplicationsComponent } from './pages/applications/applications.component';
 import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
@@ -38,7 +38,7 @@ import { BooleanSelectorComponent } from './components/boolean-selector/boolean-
     SpinnerComponent,
     UsersComponent,
     SettingsComponent,
-    MyMentorProfileComponent,
+    MentorProfileComponent,
     AuthComponent,
     ApplicationsComponent,
     RecoverPasswordComponent,
