@@ -2,12 +2,12 @@
   <label>{{label}}</label>
   <br/>
   <button
-      [ngClass]="{'btn': true, 'btn-success': isTrue}"
+      [ngClass]="{'btn': true, 'primary': isTrue}"
       (click)="this.setValue.emit(true)"
   >True</button>
 
   <button
-      [ngClass]="{'btn': true, 'btn-success': !isTrue}"
+      [ngClass]="{'btn': true, 'primary': !isTrue}"
       (click)="this.setValue.emit(false)"
   >False</button>
 </div>

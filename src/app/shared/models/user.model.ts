@@ -13,7 +13,7 @@ export class User {
   cardNumber: number;
 
   role: string;
-    archived: boolean;
+  archived: boolean;
 
   status: Status;
   updatedAt: Date;

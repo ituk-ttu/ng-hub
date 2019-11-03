@@ -5,33 +5,37 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
-  templateUrl: './users.component.html'
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.sass']
 })
 
 export class UsersComponent implements OnInit {
 
-  public users: any[];
-  public searchString = '';
+  public users: User[];
+  public usersToDisplay: User[];
 
   constructor(private router: Router, private userService: UserHttpService) {
-    this.userService.getAllUsers().subscribe(
-      (response) => this.users = response,
-      () => console.log('i dont know how to handle this error :) We will have some monkeys fix this error soon.'));
+
   }
 
   ngOnInit() {
-  }
-
-  showUser(user: User) {
-    if (user.firstName.toLowerCase().indexOf(this.searchString.toLowerCase()) >= 0
-      || user.email.toLowerCase().indexOf(this.searchString.toLowerCase()) >= 0
-      || this.searchString === '') {
-      return true;
-    }
+    this.userService.getAllUsers().subscribe(
+      (response) => {
+        this.users = response;
+        this.usersToDisplay = response;
+      },
+      () => console.log('i dont know how to handle this error :) We will have some monkeys fix this error soon.'));
   }
 
   goToUser(userId: number) {
     this.router.navigate([`hub/users/${userId}`]);
   }
 
+  updateUserList(searchString: string) {
+    this.usersToDisplay = this.users.filter(user => {
+      return user.firstName.toLowerCase().includes(searchString.toLowerCase())
+        || user.email.toLowerCase().includes(searchString.toLowerCase())
+        || searchString === '';
+    });
+  }
 }

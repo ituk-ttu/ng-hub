@@ -15,7 +15,7 @@
                     <input [(ngModel)]="resource.url" name="url"
                            readonly class="form-control" #input>
                     <div class="btn-group input-group-btn">
-                        <button (click)="copyInputMessage(input)" class="btn btn-primary">Kopeeri</button>
+                        <button (click)="copyInputMessage(input)" class="btn primary">Kopeeri</button>
                         <button *ngIf="auth.user?.admin && activeId != resource.id" (click)="setEditActive(resource)"
                                 class="btn btn-dark">Muuda
                         </button>
