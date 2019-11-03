@@ -1,0 +1,85 @@
+<ng-container>
+    <div *ngIf="isNewMeetingFormActive || selectedGeneralMeeting" class="form-block--meeting">
+        <ng-container *ngTemplateOutlet="form"></ng-container>
+    </div>
+    <button *ngIf="!isNewMeetingFormActive && !selectedGeneralMeeting"   class="btn btn-dark mt-3 mb-3" (click)="toggleNewMeetingForm()">Uus koosolek</button>
+
+    <ng-container *ngIf="generalMeetings | async as generalMeetingsResult; else spinner">
+        <section class="container content">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-list">
+                    <thead>
+                    <tr>
+                        <th>Loodud</th>
+                        <th>Toimumise kuupäev</th>
+                        <th>Valimised</th>
+                        <th>Nimi</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <ng-container *ngFor="let application of generalMeetingsResult; let i = index;">
+                        <tr>
+                            <td>{{application.createdAt | date}}</td>
+                            <td>{{application.date | date}}</td>
+                            <td>{{application.election ? 'Jah' : ''}}</td>
+                            <td>{{application.name}}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-dark"
+                                            (click)="copyProtocolUrlToClipboard(application.protocolUrl)">Kopeeri
+                                        protokolli URL
+                                    </button>
+                                    <button class="btn btn-danger" (click)="chooseGeneralMeetingToEdit(application)">
+                                        Muuda
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </ng-container>
+    <ng-template #spinner>
+        <app-spinner></app-spinner>
+    </ng-template>
+</ng-container>
+
+<ng-template #form>
+    <form [formGroup]="newMeetingForm">
+        <div class="form-group">
+            <label class="control-label parent-width">
+                Koosoleku tomimumise kuupäev
+                <input class="form-control" type="date" formControlName="date">
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-label parent-width">
+                Valimised
+                <input class="checkbox" type="checkbox" formControlName="election">
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-label parent-width">
+                Koosoleku nimi
+                <input class="form-control" formControlName="name">
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-label parent-width">
+                Protokolli url
+                <input class="form-control" formControlName="protocolUrl">
+            </label>
+        </div>
+        <div class="form-group">
+            <button type="submit"
+                    class="btn btn-success"
+                    (click)="onSubmit()">
+                Salvesta
+            </button>
+        </div>
+        <button (click)="hideFrom()">Tühista</button>
+    </form>
+</ng-template>

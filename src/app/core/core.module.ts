@@ -7,7 +7,7 @@ import { UserHttpService } from './services/user.http-service';
 import { AuthContext } from './services/authContext';
 import { AuthGuard } from './config/auth-guard';
 import { httpInterceptorProviders } from './interceptor';
-import {LoadingService} from './services/loading-service';
+import { GeneralMeetingsHttpService } from "./services/general-meetings.http-service";
 
 @NgModule({
   providers: [
@@ -18,6 +18,7 @@ import {LoadingService} from './services/loading-service';
     MentorProfilesHttpService,
     httpInterceptorProviders,
     ApplicationHttpService,
+    GeneralMeetingsHttpService,
     AuthContext],
 })
 export class CoreModule {
