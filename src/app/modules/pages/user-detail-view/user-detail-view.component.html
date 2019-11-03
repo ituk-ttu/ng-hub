@@ -1,71 +1,60 @@
 <ng-container *ngIf="user">
   <div class="container content">
         <span>
-          <h2>Kasutaja info muutmine</h2>
+          <div class="row justify-content-between mx-1 mb-2">
+            <h2>Kasutaja info muutmine</h2>
+
+            <button *ngIf="user.archived" class="btn primary" (click)="user.archived = false">Aktiveeri</button>
+            <button *ngIf="!user.archived" class="btn btn-outline-primary" (click)="user.archived = true">Arhiveeri</button>
+          </div>
+
             <div class="card card-body">
               <div class="row">
                 <div class="col">
-                  <div class="md-form">
-                    <label>Eesnimi</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.firstName">
-                  </div>
+                    <label class="font-weight-bold parent-width">Eesnimi
+                      <input type="text" class="form-control" [(ngModel)]="user.firstName">
+                    </label>
 
-                  <div class="md-form">
-                    <label>ID kood</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.idCode">
-                  </div>
+                    <label class="mt-2 font-weight-bold parent-width">ID kood
+                      <input type="text" class="form-control" [(ngModel)]="user.idCode">
+                    </label>
 
-                   <div class="md-form">
-                    <label>Õppekava</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.curriculum">
-                  </div>
+                    <label class="mt-2 font-weight-bold parent-width">Õppekava
+                      <input type="text" class="form-control" [(ngModel)]="user.curriculum">
+                    </label>
 
-                   <div class="md-form">
-                    <label>IBAN</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.iban">
-                  </div>
+                    <label class="mt-2 font-weight-bold parent-width">IBAN
+                      <input type="text" class="form-control" [(ngModel)]="user.iban">
+                    </label>
+
+                    <label class="mt-2 font-weight-bold parent-width">Roll
+                      <input type="text" class="form-control" [(ngModel)]="user.role">
+                    </label>
                 </div>
-
-
 
                 <div class="col">
-                  <div class="md-form">
-                      <label>Perekonnanimi</label>
+                    <label class="font-weight-bold parent-width">Perekonnanimi
                       <input type="text" class="form-control" [(ngModel)]="user.lastName">
-                    </div>
+                    </label>
 
-                  <div class="md-form">
-                    <label>E-mail</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.email">
-                  </div>
+                    <label class="mt-2 font-weight-bold parent-width">E-mail
+                      <input type="text"
+                             class="form-control" [(ngModel)]="user.email">
+                    </label>
 
-                   <div class="md-form">
-                    <label>Tudengikood</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.studentCode">
-                  </div>
+                    <label class="mt-2 font-weight-bold parent-width">Tudengikood
+                      <input type="text" class="form-control" [(ngModel)]="user.studentCode">
+                    </label>
 
-                   <div class="md-form">
-                    <label>Uksekaardi number</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.cardNumber">
-                  </div>
+                    <label class="mt-2 font-weight-bold parent-width">Uksekaardi number
+                      <input type="text" class="form-control" [(ngModel)]="user.cardNumber">
+                    </label>
+
+                    <label class="mt-2 font-weight-bold parent-width">Staatus
+                      <input type="text" class="form-control" [(ngModel)]="user.status.statusName">
+                    </label>
                 </div>
               </div>
-
-              <div class="md-form">
-                    <label>Uksekaardi number</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.cardNumber">
-              </div>
-
-              <div class="md-form">
-                    <label>Uksekaardi number</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.cardNumber">
-              </div>
-
-               <app-boolean-selector
-                   [label]="'Arhiveeritud'"
-                   [isTrue]="user.archived"
-                   (setValue)="user.archived = $event"
-               ></app-boolean-selector>
 
               <div class="footer">
 
@@ -75,7 +64,7 @@
                >Mentorluse profiil</button>
 
               <div class="button-group">
-                <button class="btn btn-outline-primary" (click)="navigateBack()">Cancel</button>
+                <button class="btn btn-outline-primary mr-2" (click)="navigateBack()">Cancel</button>
                 <button class="btn primary" (click)="updateUser()">Save</button>
               </div>
               </div>
