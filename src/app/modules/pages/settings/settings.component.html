@@ -79,7 +79,7 @@
             <tr *ngFor="let session of (sessions | async)">
                 <td>{{session.id}}</td>
                 <td>{{session.agent}}</td>
-                <td>{{session.createdAt | date}}</td>
+                <td>{{session.createdAt | date:'dd-MM-yyyy'}}</td>
                 <td>
                     <div class="btn btn-danger">Kustuta</div>
                 </td>

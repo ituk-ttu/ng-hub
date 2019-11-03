@@ -34,7 +34,7 @@
                     <td>
                         <ng-container *ngIf="application.mentor">{{application.mentor.name}}</ng-container>
                     </td>
-                    <td>{{application.createdAt | date}}</td>
+                    <td>{{application.createdAt | date:'dd-MM-yyyy'}}</td>
                     <td><span class="badge badge-dark">{{application.status}}</span></td>
                 </tr>
                 </tbody>

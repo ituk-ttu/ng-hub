@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthContext } from '../../../core/services/authContext';
 import { Router } from '@angular/router';
-import { Subscription } from "rxjs";
-import { RequestInFlightService } from "../../../core/services/request-in-flight.service";
+import { Subscription } from 'rxjs';
+import { RequestInFlightService } from '../../../core/services/request-in-flight.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +11,13 @@ import { RequestInFlightService } from "../../../core/services/request-in-flight
 })
 export class ContainerComponent implements OnInit, OnDestroy {
   public navbarOpen = false;
-  public showSpinner = false;
+  public showSpinner;
   private showSpinnerSubject: Subscription;
 
   constructor(public authContext: AuthContext,
               public router: Router,
-              private requestInFlightService: RequestInFlightService) {
+              private requestInFlightService: RequestInFlightService,
+              private cdRef: ChangeDetectorRef) {
   }
 
   toggleNavbar() {
@@ -26,8 +27,8 @@ export class ContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.showSpinnerSubject = this.requestInFlightService.getSubject()
       .subscribe(e => {
-        console.log(e);
-        this.showSpinner = e !== 0;
+        this.showSpinner = e;
+        this.cdRef.detectChanges();
       });
   }
 

@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class RequestInFlightService {
 
-  isAnyRequestInFlight = new BehaviorSubject(0);
+  isAnyRequestInFlight = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
-  setNewState(state: number) {
-    this.isAnyRequestInFlight.next(this.isAnyRequestInFlight.getValue() + state);
+  setNewState(state: boolean) {
+    this.isAnyRequestInFlight.next(state);
   }
 
   getSubject() {
-   return this.isAnyRequestInFlight;
+    return this.isAnyRequestInFlight;
   }
-
 }

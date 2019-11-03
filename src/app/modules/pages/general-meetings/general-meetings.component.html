@@ -2,8 +2,11 @@
     <div *ngIf="isNewMeetingFormActive || selectedGeneralMeeting" class="form-block--meeting">
         <ng-container *ngTemplateOutlet="form"></ng-container>
     </div>
-    <button *ngIf="!isNewMeetingFormActive && !selectedGeneralMeeting"   class="btn btn-dark mt-3 mb-3" (click)="toggleNewMeetingForm()">Uus koosolek</button>
-
+    <div class="ml-3">
+        <button *ngIf="!isNewMeetingFormActive && !selectedGeneralMeeting" class="btn btn-dark mt-3 mb-3"
+                (click)="toggleNewMeetingForm()">Uus koosolek
+        </button>
+    </div>
     <ng-container *ngIf="generalMeetings | async as generalMeetingsResult">
         <section class="container content">
             <div class="table-responsive">
@@ -20,8 +23,8 @@
                     <tbody>
                     <ng-container *ngFor="let application of generalMeetingsResult; let i = index;">
                         <tr>
-                            <td>{{application.createdAt | date}}</td>
-                            <td>{{application.date | date}}</td>
+                            <td class="no-br">{{application.createdAt | date:'dd-MM-yyyy'}}</td>
+                            <td class="no-br">{{application.date | date:'dd-MM-yyyy'}}</td>
                             <td>{{application.election ? 'Jah' : ''}}</td>
                             <td>{{application.name}}</td>
                             <td>
@@ -45,7 +48,7 @@
 </ng-container>
 
 <ng-template #form>
-    <form [formGroup]="newMeetingForm">
+    <form [formGroup]="newMeetingForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label class="control-label parent-width">
                 Koosoleku tomimumise kuupäev
@@ -70,13 +73,9 @@
                 <input class="form-control" formControlName="protocolUrl">
             </label>
         </div>
-        <div class="form-group">
-            <button type="submit"
-                    class="btn btn-success"
-                    (click)="onSubmit()">
-                Salvesta
-            </button>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="submit" class="btn btn-success">Salvesta</button>
+            <button type="button" class="btn btn-dark" (click)="hideFrom()">Tühista</button>
         </div>
-        <button (click)="hideFrom()">Tühista</button>
     </form>
 </ng-template>
