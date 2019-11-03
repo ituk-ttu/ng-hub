@@ -29,6 +29,8 @@ export class AuthContext {
         this.isLoggedInSubject.next(true);
         this.isLoggedIn = true;
         this.user = response;
+      }, () => {
+        this.isLoggedInSubject.next(false);
       }
     );
   }

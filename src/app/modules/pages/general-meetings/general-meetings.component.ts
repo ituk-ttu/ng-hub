@@ -22,25 +22,23 @@ export class GeneralMeetingsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.selectedGeneralMeeting) {
+    this.selectedGeneralMeeting ?
       this.generalMeetingHttpService.updateMeeting(this.newMeetingForm.value, this.selectedGeneralMeeting)
         .subscribe(() => {
           this.resetFrom();
-        });
-    } else {
+        }) :
       this.generalMeetingHttpService.createMeeting(this.newMeetingForm.value)
         .subscribe(() => {
           this.resetFrom();
         });
-    }
   }
 
-  createFormGroup() {
+  createFormGroup(meeting?: GeneralMeeting) {
     return new FormGroup({
-      date: new FormControl(),
-      election: new FormControl(),
-      name: new FormControl(),
-      protocolUrl: new FormControl()
+      date: new FormControl(meeting ? meeting.date : null),
+      election: new FormControl(meeting ? meeting.election : null),
+      name: new FormControl(meeting ? meeting.name : null),
+      protocolUrl: new FormControl(meeting ? meeting.protocolUrl : null)
     });
   }
 
@@ -51,39 +49,28 @@ export class GeneralMeetingsComponent implements OnInit {
     this.generalMeetings = this.generalMeetingHttpService.getAllMeetings();
   }
 
-  toggleNewMeetingForm() {
-    this.isNewMeetingFormActive = !this.isNewMeetingFormActive;
-    delete this.selectedGeneralMeeting;
-  }
-
   hideFrom() {
     this.isNewMeetingFormActive = false;
     this.newMeetingForm.reset();
     delete this.selectedGeneralMeeting;
   }
 
+  toggleNewMeetingForm() {
+    this.isNewMeetingFormActive = !this.isNewMeetingFormActive;
+    delete this.selectedGeneralMeeting;
+  }
+
   chooseGeneralMeetingToEdit(meeting: GeneralMeeting) {
-    window.scrollTo({
-      left: 0,
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
     this.isNewMeetingFormActive = false;
     this.selectedGeneralMeeting = meeting.id;
-    this.newMeetingForm = new FormGroup({
-      id: new FormControl(meeting.id),
-      date: new FormControl(meeting.date),
-      election: new FormControl(meeting.election),
-      name: new FormControl(meeting.name),
-      protocolUrl: new FormControl(meeting.protocolUrl)
-    });
+    this.newMeetingForm = this.createFormGroup(meeting);
+    this.newMeetingForm.addControl('id', new FormControl(meeting.id));
   }
 
   copyProtocolUrlToClipboard(protocolLink: string) {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
     selBox.style.opacity = '0';
     selBox.value = protocolLink;
     document.body.appendChild(selBox);

@@ -7,13 +7,15 @@ import { UserHttpService } from './services/user.http-service';
 import { AuthContext } from './services/authContext';
 import { AuthGuard } from './config/auth-guard';
 import { httpInterceptorProviders } from './interceptor';
-import { GeneralMeetingsHttpService } from "./services/general-meetings.http-service";
+import { GeneralMeetingsHttpService } from './services/general-meetings.http-service';
+import { RequestInFlightService } from './services/request-in-flight.service';
 
 @NgModule({
   providers: [
     AuthGuard,
     UserHttpService,
     MyDetailsHttpService,
+    RequestInFlightService,
     ResourcesHttpService,
     MentorProfilesHttpService,
     httpInterceptorProviders,

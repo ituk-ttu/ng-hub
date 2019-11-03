@@ -20,11 +20,11 @@ export class AuthComponent {
   login() {
     this.authContext.login(this.loginDetails)
       .subscribe((token) => {
-        this.authContext.refreshSession();
-        localStorage.setItem('token', token.token);
-        this.router.navigate(['hub']);
-      },
-      () => alert('Wrong password'));
+          localStorage.setItem('token', token.token);
+          this.authContext.refreshSession();
+          this.router.navigate(['hub']);
+        },
+        () => alert('Wrong password'));
   }
 
 }

@@ -15,6 +15,11 @@ export class AuthGuard implements CanActivate {
     }
     return this.authContext.isLoggedInSubject
       .pipe(map(value => {
+        if (!value) {
+          localStorage.removeItem('token');
+          this.router.navigate(['hub/auth']);
+          return value;
+        }
         return value;
       }));
   }

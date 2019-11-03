@@ -51,4 +51,8 @@
         <router-outlet class="container-fluid container">
         </router-outlet>
     </div>
+
+    <ng-container *ngIf="showSpinner">
+        <app-spinner></app-spinner>
+    </ng-container>
 </ng-container>
