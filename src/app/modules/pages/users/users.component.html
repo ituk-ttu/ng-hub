@@ -17,8 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr
-                    *ngFor="let user of usersToDisplay" (click)="goToUser(user.id)" class="clickable">
+                <tr *ngFor="let user of usersToDisplay" (click)="goToUser(user.id)" class="clickable">
                         <td>{{user.id}}</td>
                         <td>{{user.firstName + ' ' + user.lastName}}</td>
                         <td>{{user.email}}</td>

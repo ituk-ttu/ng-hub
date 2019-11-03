@@ -1,3 +1,5 @@
+@import 'variables'
+
 *
   box-sizing: border-box           /*  make padding be included in the set width  */
 
@@ -12,19 +14,25 @@
   white-space: nowrap
 
 
-.btn.primary
-  background-color: #870042
+.primary
+  background-color: $primary
   color: white
 
-.btn.primary:focus
-  box-shadow: 0 0 0 0.2rem rgba(135, 0, 66, 0.25) !important
-  border-color: #870042 !important
+.primary:hover
+  background-color: $primary
+  color: beige
+
+.primary:focus
+  box-shadow: 0 0 0 0.2rem rgba(135, 0, 66, 0.25)
+  border-color: $primary
 
 .color-primary
-  color: #870042 !important
+  color: $primary
 
+.btn-outline-primary
+  color: $primary
+  border-color: $primary
 
-.form-control:focus
-  box-shadow: 0 0 0 0.2rem rgba(135, 0, 66, 0.25) !important
-  border-color: #870042 !important
-
+  &:hover
+    border-color: $primary
+    background-color: #c90665
