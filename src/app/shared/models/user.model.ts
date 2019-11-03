@@ -1,11 +1,28 @@
 export class User {
   id: number;
-  name: string;
+
+  firstName: string;
+  lastName: string;
+  idCode: string;
   email: string;
-  telegram: string;
-  isAdmin: boolean;
-  isArchived: boolean;
-  isMentor: boolean;
-  createdAt: string;
-  updatedAt: string;
+
+  curriculum: string;
+  studentCode: string;
+
+  iban: string;
+  cardNumber: number;
+
+  role: string;
+    archived: boolean;
+
+  status: Status;
+  updatedAt: Date;
+  createdAt: Date;
+
+}
+
+export class Status {
+  id: number;
+  statusName: string;
+  description: string;
 }

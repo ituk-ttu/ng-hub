@@ -7,6 +7,7 @@ import { UserHttpService } from './services/user.http-service';
 import { AuthContext } from './services/authContext';
 import { AuthGuard } from './config/auth-guard';
 import { httpInterceptorProviders } from './interceptor';
+import {LoadingService} from './services/loading-service';
 
 @NgModule({
   providers: [
