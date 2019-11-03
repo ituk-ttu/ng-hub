@@ -18,9 +18,10 @@ import { AppComponent } from '../app.component';
 import { ContainerComponent } from './components/authenticated-container/container.component';
 import { ProfilePicSelectComponent } from './components/profile-pic-select/profile-pic-select.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { BsDropdownModule } from "ngx-bootstrap";
+import { BsDropdownModule } from 'ngx-bootstrap';
 import { BooleanSelectorComponent } from './components/boolean-selector/boolean-selector.component';
-import { GeneralMeetingsComponent } from "./pages/general-meetings/general-meetings.component";
+import { GeneralMeetingsComponent } from './pages/general-meetings/general-meetings.component';
+import { ProjectSummaryComponent } from './pages/project-summary/project-summary.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { GeneralMeetingsComponent } from "./pages/general-meetings/general-meeti
     RecoverPasswordComponent,
     DoorPermissionsComponent,
     UserDetailViewComponent,
-    BooleanSelectorComponent
+    BooleanSelectorComponent,
+    ProjectSummaryComponent
   ]
 
 })
