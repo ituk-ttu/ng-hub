@@ -1,4 +1,4 @@
-<ng-container *ngIf="mentorProfiles; else spinner">
+<ng-container *ngIf="mentorProfiles">
     <div class="grid">
         <div class="mentor" *ngFor="let mentor of mentorProfiles">
             <img src="data:image/png;base64,{{mentor.photo}}" alt="Profile pic">
@@ -22,7 +22,3 @@
         </div>
     </div>
 </ng-container>
-
-<ng-template #spinner>
-    <app-spinner></app-spinner>
-</ng-template>

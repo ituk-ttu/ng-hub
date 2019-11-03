@@ -1,4 +1,4 @@
-<ng-container *ngIf="users; else spinner">
+<ng-container *ngIf="users">
     <div class="container content">
         <h1>Kasutajad
         </h1>
@@ -42,6 +42,3 @@
         </div>
     </div>
 </ng-container>
-<ng-template #spinner>
-    <app-spinner></app-spinner>
-</ng-template>

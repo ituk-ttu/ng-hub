@@ -4,7 +4,7 @@
     </div>
     <button *ngIf="!isNewMeetingFormActive && !selectedGeneralMeeting"   class="btn btn-dark mt-3 mb-3" (click)="toggleNewMeetingForm()">Uus koosolek</button>
 
-    <ng-container *ngIf="generalMeetings | async as generalMeetingsResult; else spinner">
+    <ng-container *ngIf="generalMeetings | async as generalMeetingsResult">
         <section class="container content">
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-list">
@@ -42,9 +42,6 @@
             </div>
         </section>
     </ng-container>
-    <ng-template #spinner>
-        <app-spinner></app-spinner>
-    </ng-template>
 </ng-container>
 
 <ng-template #form>

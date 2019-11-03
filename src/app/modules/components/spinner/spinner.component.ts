@@ -17,6 +17,6 @@ export class SpinnerComponent implements OnInit {
     setTimeout(() => {
       this.spinner.hide();
       this.showing = false;
-    }, 5000);
+    }, 20000);
   }
 }
