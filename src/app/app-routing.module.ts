@@ -12,7 +12,7 @@ import { RecoverPasswordComponent } from './modules/pages/recover-password/recov
 import { DoorPermissionsComponent } from './modules/pages/door-permissions/door-permissions.component';
 import { UserDetailViewComponent } from './modules/pages/user-detail-view/user-detail-view.component';
 import { ContainerComponent } from './modules/components/authenticated-container/container.component';
-import { GeneralMeetingsComponent } from "./modules/pages/general-meetings/general-meetings.component";
+import { GeneralMeetingsComponent } from './modules/pages/general-meetings/general-meetings.component';
 
 const routes: Routes = [
   {

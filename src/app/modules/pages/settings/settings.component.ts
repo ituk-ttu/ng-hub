@@ -6,11 +6,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
-  templateUrl: './settings.component.html'
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.sass']
 })
 
 export class SettingsComponent implements OnInit {
 
+  public passwordChangeSuccessful = true;
   public user: User = {} as User;
   public newPasswordForm = new FormGroup({
       oldPassword: new FormControl('', Validators.required),
@@ -24,9 +26,12 @@ export class SettingsComponent implements OnInit {
   constructor(public authContext: AuthContext, public myDetailsHttpService: MyDetailsHttpService) {
   }
 
-  passwordMatchValidator(frm: FormGroup) {
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.newPasswordForm.controls;
+  }
 
-    console.log(frm.controls.newPassword.value === frm.controls.newPasswordConfirmation.value)
+  passwordMatchValidator(frm: FormGroup) {
     return frm.controls.newPassword.value === frm.controls.newPasswordConfirmation.value ? null : { mismatch: true };
   }
 
@@ -44,6 +49,12 @@ export class SettingsComponent implements OnInit {
 
   submitNewPassword() {
     console.log(this.newPasswordForm.value);
-    // TODO submit newPasswordForm.value
+    this.myDetailsHttpService.updatePassword(this.authContext.user.id, this.newPasswordForm.value)
+      .subscribe(() => {
+        this.passwordChangeSuccessful = true;
+      }, () => {
+        this.passwordChangeSuccessful = false;
+        setTimeout(() => this.passwordChangeSuccessful = true, 3000);
+      });
   }
 }

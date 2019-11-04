@@ -13,25 +13,12 @@ import {User} from '../../../shared/models/user.model';
 export class UserDetailViewComponent implements OnInit {
 
   public user: User;
-
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private userService: UserHttpService) {
+  public userId: string;
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    const userId = this.route.snapshot.paramMap.get('id');
-    this.userService.getUserById(userId).subscribe((result) => {
-      this.user = result;
-    });
+    this.userId = this.route.snapshot.paramMap.get('id');
   }
 
-  updateUser() {
-    this.userService.putUser(this.user).subscribe(() => this.navigateBack());
-
-  }
-
-  navigateBack() {
-    this.router.navigate(['/hub/users']);
-  }
 }

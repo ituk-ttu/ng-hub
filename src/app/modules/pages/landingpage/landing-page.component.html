@@ -3,7 +3,7 @@
     <ng-container *ngIf="auth.user?.admin && newItemFormActive">
         <ng-container *ngTemplateOutlet="form"></ng-container>
     </ng-container>
-    <div class="btn primary mb-3" *ngIf="!newItemFormActive" (click)="toggleNewLinkForm()">Add new</div>
+    <div class="btn primary mb-3" *ngIf="!newItemFormActive && auth.user?.admin" (click)="toggleNewLinkForm()">Add new</div>
     <ng-container *ngFor="let resource of resources | async; trackBy: trackByFn">
         <div>
             <h3>{{resource.name}}</h3>
