@@ -1,16 +1,16 @@
 <section>
-    <h1>Ressursid</h1>
-    <ng-container *ngIf="auth.user?.admin && newItemFormActive">
+    <div class="mx-0 row justify-content-between">
+        <h1>Ressursid</h1>
+        <div class="btn primary mb-3" *ngIf="!newItemFormActive && auth.user?.admin" (click)="toggleNewLinkForm()">Lisa uus link</div>
+    </div>
+    <!--    <ng-container *ngIf="auth.user?.admin && newItemFormActive">-->
+    <ng-container *ngIf="newItemFormActive || activeId">
         <ng-container *ngTemplateOutlet="form"></ng-container>
     </ng-container>
-    <div class="btn primary mb-3" *ngIf="!newItemFormActive && auth.user?.admin" (click)="toggleNewLinkForm()">Add new</div>
-    <ng-container *ngFor="let resource of resources | async; trackBy: trackByFn">
-        <div>
+    <div class="mt-4 mb-5">
+        <div *ngFor="let resource of resources | async; trackBy: trackByFn">
             <h3>{{resource.name}}</h3>
-            <p>
-                <small>{{resource.comment}}</small>
-            </p>
-            <div class="form-group">
+            <div class="form-group mb-0">
                 <div class="input-group">
                     <input [(ngModel)]="resource.url" name="url"
                            readonly class="form-control" #input>
@@ -22,38 +22,46 @@
                         <button *ngIf="auth.user?.admin && activeId == resource.id" (click)="activeId = null"
                                 class="btn btn-dark">Tühista
                         </button>
-                        <button *ngIf="auth.user?.admin" (click)="activeId = null" class="btn btn-danger">Kustuta
+                        <button *ngIf="auth.user?.admin" (click)="deleteResource()" class="btn btn-danger">Kustuta
                         </button>
                     </div>
                 </div>
             </div>
+            <p>
+                <small>{{resource.comment}}</small>
+            </p>
+            <ng-container *ngIf="auth.user?.admin && activeId == resource.id">
+                <ng-container *ngTemplateOutlet="form"></ng-container>
+            </ng-container>
         </div>
-        <ng-container *ngIf="auth.user?.admin && activeId == resource.id">
-            <ng-container *ngTemplateOutlet="form"></ng-container>
-        </ng-container>
-    </ng-container>
+    </div>
 </section>
 
 <ng-template #form>
-    <form [formGroup]="resourceFrom" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label class="control-labe parent-width">
-                <input class="form-control" formControlName="name">
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="control-labe parent-width">
-                <input class="form-control" formControlName="comment">
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="control-label parent-width">
-                <input class="form-control" formControlName="url">
-            </label>
-        </div>
-        <div class="from-group">
-            <button type="submit" class="btn btn-success mb-3">Salvesta</button>
-            <button class="btn btn-dark  ml-2 mb-3" (click)="hideInputForm()">Tühista</button>
-        </div>
-    </form>
+    <div class="card card-body">
+        <form [formGroup]="resourceFrom" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="control-labe parent-width">
+                    Ressursi nimi
+                    <input class="form-control" formControlName="name">
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-labe parent-width">
+                    Ressursi kommentaar
+                    <input class="form-control" formControlName="comment">
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label parent-width">
+                    Ressursi URL
+                    <input class="form-control" formControlName="url">
+                </label>
+            </div>
+            <div class="from-group">
+                <button type="submit" class="btn btn-success mb-3">Salvesta</button>
+                <button class="btn btn-dark  ml-2 mb-3" (click)="hideInputForm()">Tühista</button>
+            </div>
+        </form>
+    </div>
 </ng-template>

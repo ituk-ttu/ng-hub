@@ -27,7 +27,6 @@ export class LandingPageComponent {
 
   createFormGroup() {
     return new FormGroup({
-      id: new FormControl(),
       name: new FormControl(),
       comment: new FormControl(),
       url: new FormControl()
@@ -37,20 +36,24 @@ export class LandingPageComponent {
   setEditActive(resource: ResourcesContentModel) {
     this.newItemFormActive = false;
     this.activeId = resource.id;
+    this.resourceFrom.addControl('id', new FormControl());
     this.resourceFrom.setValue({
       id: resource.id,
       name: resource.name,
       comment: resource.comment,
       url: resource.url
     });
+    window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
   }
 
   onSubmit() {
     this.newItemFormActive = false;
-    this.resourcesService.saveResource(this.resourceFrom.value).subscribe(() => {
-      this.resources = this.resourcesService.getResources();
-      delete this.activeId;
-    });
+    // TODO remove stupid shit (sending authorId from FE)
+    this.resourcesService.saveResource({ ...this.resourceFrom.value, authorId: this.auth.user.id })
+      .subscribe(() => {
+        this.resources = this.resourcesService.getResources();
+        delete this.activeId;
+      });
   }
 
   trackByFn(index, item) {
@@ -66,6 +69,10 @@ export class LandingPageComponent {
   hideInputForm() {
     this.newItemFormActive = false;
     delete this.activeId;
+  }
+
+  deleteResource() {
+    // this.resourcesService.delete()
   }
 }
 
