@@ -17,8 +17,12 @@ export class ResourcesHttpService {
 
   public saveResource(reseource: ResourcesContentModel): Observable<ResourcesContentModel[]> {
     if (reseource.id) {
-      return this.http.put<ResourcesContentModel[]>(`${environment.API_URL}/resource/${reseource.id}`, reseource);
+      return this.http.put<ResourcesContentModel[]>(`${environment.API_URL}/resource`, reseource);
     }
     return this.http.post<ResourcesContentModel[]>(`${environment.API_URL}/resource`, reseource);
+  }
+
+  public deleteResource(id: number): Observable<void> {
+    return this.http.delete<void>(`${environment.API_URL}/resource/${id}`);
   }
 }

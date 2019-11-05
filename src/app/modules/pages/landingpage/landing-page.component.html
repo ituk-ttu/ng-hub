@@ -1,9 +1,8 @@
 <section>
     <div class="mx-0 row justify-content-between">
         <h1>Ressursid</h1>
-        <div class="btn primary mb-3" *ngIf="!newItemFormActive && auth.user?.admin" (click)="toggleNewLinkForm()">Lisa uus link</div>
+        <div class="btn primary mb-3" *ngIf="!newItemFormActive" (click)="toggleNewLinkForm()">Lisa uus link</div>
     </div>
-    <!--    <ng-container *ngIf="auth.user?.admin && newItemFormActive">-->
     <ng-container *ngIf="newItemFormActive || activeId">
         <ng-container *ngTemplateOutlet="form"></ng-container>
     </ng-container>
@@ -16,13 +15,13 @@
                            readonly class="form-control" #input>
                     <div class="btn-group input-group-btn">
                         <button (click)="copyInputMessage(input)" class="btn primary">Kopeeri</button>
-                        <button *ngIf="auth.user?.admin && activeId != resource.id" (click)="setEditActive(resource)"
+                        <button *ngIf="activeId != resource.id" (click)="setEditActive(resource)"
                                 class="btn btn-dark">Muuda
                         </button>
-                        <button *ngIf="auth.user?.admin && activeId == resource.id" (click)="activeId = null"
+                        <button *ngIf="activeId == resource.id" (click)="activeId = null"
                                 class="btn btn-dark">Tühista
                         </button>
-                        <button *ngIf="auth.user?.admin" (click)="deleteResource()" class="btn btn-danger">Kustuta
+                        <button  (click)="deleteResource(resource.id)" class="btn btn-danger">Kustuta
                         </button>
                     </div>
                 </div>
@@ -58,9 +57,9 @@
                     <input class="form-control" formControlName="url">
                 </label>
             </div>
-            <div class="from-group">
-                <button type="submit" class="btn btn-success mb-3">Salvesta</button>
-                <button class="btn btn-dark  ml-2 mb-3" (click)="hideInputForm()">Tühista</button>
+            <div class="from-group float-right mb-3">
+                <button class="btn btn-outline-primary" (click)="hideInputForm()">Tühista</button>
+                <button type="submit" class="btn primary ml-2">Salvesta</button>
             </div>
         </form>
     </div>

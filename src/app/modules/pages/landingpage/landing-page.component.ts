@@ -48,8 +48,7 @@ export class LandingPageComponent {
 
   onSubmit() {
     this.newItemFormActive = false;
-    // TODO remove stupid shit (sending authorId from FE)
-    this.resourcesService.saveResource({ ...this.resourceFrom.value, authorId: this.auth.user.id })
+    this.resourcesService.saveResource(this.resourceFrom.value)
       .subscribe(() => {
         this.resources = this.resourcesService.getResources();
         delete this.activeId;
@@ -71,8 +70,12 @@ export class LandingPageComponent {
     delete this.activeId;
   }
 
-  deleteResource() {
-    // this.resourcesService.delete()
+  deleteResource(id: number) {
+    this.resourcesService.deleteResource(id).subscribe(
+      () => {
+        this.resources = this.resourcesService.getResources();
+      }
+    );
   }
 }
 
