@@ -1,7 +1,7 @@
 <section>
     <div class="mx-0 row justify-content-between">
         <h1>Ressursid</h1>
-        <div class="btn primary mb-3" *ngIf="!newItemFormActive" (click)="toggleNewLinkForm()">Lisa uus link</div>
+        <div class="btn primary mb-3" *ngIf="!newItemFormActive && (auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')" (click)="toggleNewLinkForm()">Lisa uus link</div>
     </div>
     <ng-container *ngIf="newItemFormActive || activeId">
         <ng-container *ngTemplateOutlet="form"></ng-container>
@@ -14,14 +14,22 @@
                     <input [(ngModel)]="resource.url" name="url"
                            readonly class="form-control" #input>
                     <div class="btn-group input-group-btn">
-                        <button (click)="copyInputMessage(input)" class="btn primary">Kopeeri</button>
-                        <button *ngIf="activeId != resource.id" (click)="setEditActive(resource)"
-                                class="btn btn-dark">Muuda
+                        <button (click)="copyInputMessage(input)"
+                                class="btn"
+                                [ngClass]="{'primary': activeId !== resource.id, 'btn-outline-primary': activeId === resource.id}"
+                        >Kopeeri</button>
+                        <button [ngClass]="{'primary': activeId === resource.id, 'btn-outline-primary': activeId !== resource.id}"
+                                *ngIf="activeId != resource.id && (auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
+                                (click)="setEditActive(resource)"
+                                class="btn btn-outline-primary">Muuda
                         </button>
                         <button *ngIf="activeId == resource.id" (click)="activeId = null"
-                                class="btn btn-dark">Tühista
+                                class="btn primary">Tühista
                         </button>
-                        <button  (click)="deleteResource(resource.id)" class="btn btn-danger">Kustuta
+                        <button  *ngIf="(auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
+                                 [ngClass]="{'primary': activeId !== resource.id, 'btn-outline-primary': activeId === resource.id}"
+                                 (click)="deleteResource(resource.id)"
+                                 class="btn">Kustuta
                         </button>
                     </div>
                 </div>
@@ -29,15 +37,12 @@
             <p>
                 <small>{{resource.comment}}</small>
             </p>
-            <ng-container *ngIf="auth.user?.admin && activeId == resource.id">
-                <ng-container *ngTemplateOutlet="form"></ng-container>
-            </ng-container>
         </div>
     </div>
 </section>
 
 <ng-template #form>
-    <div class="card card-body">
+    <div class="card card-body fade-in">
         <form [formGroup]="resourceFrom" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label class="control-labe parent-width">

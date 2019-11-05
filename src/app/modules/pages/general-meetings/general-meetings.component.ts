@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GeneralMeetingsHttpService } from '../../../core/services/general-meetings.http-service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { GeneralMeeting } from '../../../shared/models/general-meeting.model';
+import { AuthContext } from '../../../core/services/authContext';
 
 @Component({
   templateUrl: './general-meetings.component.html',
@@ -14,7 +15,7 @@ export class GeneralMeetingsComponent implements OnInit {
   private isNewMeetingFormActive = false;
   private selectedGeneralMeeting: string;
 
-  constructor(public generalMeetingHttpService: GeneralMeetingsHttpService) {
+  constructor(public generalMeetingHttpService: GeneralMeetingsHttpService, public auth: AuthContext) {
   }
 
   ngOnInit(): void {

@@ -13,6 +13,7 @@ import { DoorPermissionsComponent } from './modules/pages/door-permissions/door-
 import { UserDetailViewComponent } from './modules/pages/user-detail-view/user-detail-view.component';
 import { ContainerComponent } from './modules/components/authenticated-container/container.component';
 import { GeneralMeetingsComponent } from './modules/pages/general-meetings/general-meetings.component';
+import { CheckEmailComponent } from './modules/pages/check-email/check-email.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
   },
   { path: 'hub/auth', component: AuthComponent },
   { path: 'hub/recover', component: RecoverPasswordComponent },
+  { path: 'hub/check-email', component: CheckEmailComponent },
   { path: '**', redirectTo: 'hub/auth', pathMatch: 'full' },
 
 ];

@@ -29,8 +29,9 @@ export class UserSettingsBlockComponent implements OnInit {
   }
 
   updateUser() {
-    this.userService.putUser(this.user).subscribe(() => this.navigateBack());
-
+    if (!this.selfEditing) {
+      this.userService.putUser(this.user).subscribe(() => this.navigateBack());
+    }
   }
 
   navigateBack() {

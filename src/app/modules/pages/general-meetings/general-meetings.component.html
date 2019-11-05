@@ -1,9 +1,10 @@
 <ng-container>
-    <div *ngIf="isNewMeetingFormActive || selectedGeneralMeeting" class="form-block--meeting">
+    <div *ngIf="isNewMeetingFormActive || selectedGeneralMeeting" class="card card-body">
         <ng-container *ngTemplateOutlet="form"></ng-container>
     </div>
     <div class="ml-3">
-        <button *ngIf="!isNewMeetingFormActive && !selectedGeneralMeeting" class="btn btn-dark mt-3 mb-3"
+        <button *ngIf="!isNewMeetingFormActive && !selectedGeneralMeeting && (auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
+                class="btn primary mt-3 mb-3"
                 (click)="toggleNewMeetingForm()">Uus koosolek
         </button>
     </div>
@@ -13,27 +14,28 @@
                 <table class="table table-striped table-hover table-list">
                     <thead>
                     <tr>
-                        <th>Loodud</th>
-                        <th>Toimumise kuupäev</th>
-                        <th>Valimised</th>
                         <th>Nimi</th>
+                        <th>Toimumise kuupäev</th>
+                        <th>Loodud</th>
+                        <th>Valimised</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <ng-container *ngFor="let application of generalMeetingsResult; let i = index;">
                         <tr>
-                            <td class="no-br">{{application.createdAt | date:'dd-MM-yyyy'}}</td>
-                            <td class="no-br">{{application.date | date:'dd-MM-yyyy'}}</td>
-                            <td>{{application.election ? 'Jah' : ''}}</td>
                             <td>{{application.name}}</td>
+                            <td class="no-br">{{application.date | date:'dd-MM-yyyy'}}</td>
+                            <td class="no-br">{{application.createdAt | date:'dd-MM-yyyy'}}</td>
+                            <td>{{application.election ? 'Jah' : ''}}</td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-dark"
+                                <div class="btn-group float-right" role="group">
+                                    <button class="btn primary"
                                             (click)="copyProtocolUrlToClipboard(application.protocolUrl)">Kopeeri
                                         protokolli URL
                                     </button>
-                                    <button class="btn btn-danger" (click)="chooseGeneralMeetingToEdit(application)">
+                                    <button *ngIf="auth.user.role === 'ADMIN' || auth.user.role === 'BOARD'"
+                                            class="btn btn-outline-primary" (click)="chooseGeneralMeetingToEdit(application)">
                                         Muuda
                                     </button>
                                 </div>
@@ -73,9 +75,9 @@
                 <input class="form-control" formControlName="protocolUrl">
             </label>
         </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="submit" class="btn btn-success">Salvesta</button>
-            <button type="button" class="btn btn-dark" (click)="hideFrom()">Tühista</button>
+        <div class="btn-group float-right" role="group" aria-label="Basic example">
+            <button type="submit" class="btn primary">Salvesta</button>
+            <button type="button" class="btn btn-outline-primary" (click)="hideFrom()">Tühista</button>
         </div>
     </form>
 </ng-template>

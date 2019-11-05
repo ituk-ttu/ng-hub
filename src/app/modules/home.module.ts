@@ -22,7 +22,8 @@ import { BsDropdownModule } from 'ngx-bootstrap';
 import { BooleanSelectorComponent } from './components/boolean-selector/boolean-selector.component';
 import { GeneralMeetingsComponent } from './pages/general-meetings/general-meetings.component';
 import { ProjectSummaryComponent } from './pages/project-summary/project-summary.component';
-import { UserSettingsBlockComponent } from "./components/user-settings-block/user-settings-block.component";
+import { UserSettingsBlockComponent } from './components/user-settings-block/user-settings-block.component';
+import { CheckEmailComponent } from './pages/check-email/check-email.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { UserSettingsBlockComponent } from "./components/user-settings-block/use
   ],
   declarations: [
     GeneralMeetingsComponent,
+    CheckEmailComponent,
     AppComponent,
     ContainerComponent,
     ProfilePicSelectComponent,

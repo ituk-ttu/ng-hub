@@ -31,7 +31,12 @@ export class UserHttpService {
   }
 
   public putUser(user: User): Observable<User> {
-    const url = environment.API_URL + `/user/${user.id}`;
+    const url = environment.API_URL + `/user`;
     return this.http.put<User>(url, user).pipe(catchError(UserHttpService.handleError));
+  }
+
+  public sendNewPasswordToEmail(email: string): Observable<User> {
+    const url = `${environment.API_URL}/user/recovery/${email}`;
+    return this.http.get<User>(url);
   }
 }
