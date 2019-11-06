@@ -24,6 +24,7 @@ import { GeneralMeetingsComponent } from './pages/general-meetings/general-meeti
 import { ProjectSummaryComponent } from './pages/project-summary/project-summary.component';
 import { UserSettingsBlockComponent } from './components/user-settings-block/user-settings-block.component';
 import { CheckEmailComponent } from './pages/check-email/check-email.component';
+import { MentorCardComponent } from './components/mentor-card/mentor-card.component';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { CheckEmailComponent } from './pages/check-email/check-email.component';
     DoorPermissionsComponent,
     UserDetailViewComponent,
     BooleanSelectorComponent,
-    ProjectSummaryComponent
+    ProjectSummaryComponent,
+    MentorCardComponent
   ]
 
 })

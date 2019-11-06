@@ -1,6 +1,5 @@
 <div>
-  <button type="button" (click)="openModal()" class="btn btn-dark">Vaheta profiilipilti</button>
-
+  <button type="button" (click)="openModal()" class="btn primary btn-change-profile">Vaheta profiilipilti</button>
   <ng-template #template>
     <div class="modal-header">
       <h4 class="modal-title pr-3">Valige uus profiilipilt</h4>
@@ -22,36 +21,34 @@
         (imageLoaded)="imageLoaded()"
         (loadImageFailed)="loadImageFailed()">
       </image-cropper>
-
     </div>
     <!-- Modal footer -->
     <div class="modal-footer">
-      <div class="text-center">
-
+      <div class="text-center btn-group">
         <button *ngIf="showRestore"
                 (click)="restore()"
                 type="button"
-                class="btn btn-danger btn-mobile-big mr-1 pull-left"
+                class="btn primary btn-mobile-big mr-1 pull-left"
                 data-dismiss="modal">
           Taasta
         </button>
         <button *ngIf="!showRestore"
                 (click)="preview()"
                 type="button"
-                class="btn btn-success btn-mobile-big mr-1 pull-left"
+                class="btn primary btn-mobile-big mr-1 pull-left"
                 data-dismiss="modal">
           Eelvaade
         </button>
 
         <button (click)="closeModal()"
                 type="button"
-                class="btn btn-danger btn-mobile-big mr-1"
+                class="btn btn-outline-primary btn-mobile-big mr-1"
                 data-dismiss="modal">
           Tühista
         </button>
         <button (click)="save()"
                 type="button"
-                class="btn btn-success btn-mobile-big m-0"
+                class="btn primary btn-mobile-big m-0"
                 data-dismiss="modal">
           Salvesta
         </button>

@@ -15,7 +15,7 @@ export class UserSettingsBlockComponent implements OnInit {
   private userId: string;
   @Input()
   private selfEditing: boolean;
-
+  roleChanged: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -31,6 +31,9 @@ export class UserSettingsBlockComponent implements OnInit {
   updateUser() {
     if (!this.selfEditing) {
       this.userService.putUser(this.user).subscribe(() => this.navigateBack());
+    }
+    if (this.roleChanged) {
+      this.userService.changeRole(this.user.role, this.user.id).subscribe();
     }
   }
 

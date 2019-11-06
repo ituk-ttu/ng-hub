@@ -8,11 +8,14 @@ import { MentorProfileModel } from '../../../shared/models/mentor-profile.model'
   styleUrls: ['./mentors.component.sass']
 })
 
-export class MentorsComponent {
+export class MentorsComponent implements OnInit {
   public mentorProfiles: MentorProfileModel[];
 
-  constructor(private httpservice: MentorProfilesHttpService) {
-    httpservice.getMentorProfiles().subscribe(
+  constructor(private httpService: MentorProfilesHttpService) {
+  }
+
+  ngOnInit(): void {
+    this.httpService.getMentorProfiles().subscribe(
       (response) => this.mentorProfiles = response,
       () => console.log('Error getting mentor profiles')
     );

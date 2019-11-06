@@ -35,6 +35,11 @@ export class UserHttpService {
     return this.http.put<User>(url, user).pipe(catchError(UserHttpService.handleError));
   }
 
+  public changeRole(role: string, userId: number): Observable<void> {
+    const url = `${environment.API_URL}/user/${userId}/role?role=${role}`;
+    return this.http.put<void>(url, null);
+  }
+
   public sendNewPasswordToEmail(email: string): Observable<User> {
     const url = `${environment.API_URL}/user/recovery/${email}`;
     return this.http.get<User>(url);

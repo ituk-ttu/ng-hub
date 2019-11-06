@@ -12,13 +12,13 @@ export class MyDetailsHttpService {
   }
 
   public getMentorProfile(id: number): Observable<MentorProfileModel> {
-    const url = `${environment.API_URL}/mentor/user/${id}`;
+    const url = `${environment.API_URL}/mentor/${id}`;
     return this.http.get<MentorProfileModel>(url);
   }
 
   public saveMentorProfile(mentorProfile: MentorProfileModel): Observable<any> {
-    const url = `${environment.API_URL}/mentor/user/${mentorProfile.id}`;
-    return this.http.post<MentorProfileModel>(url, mentorProfile);
+    const url = `${environment.API_URL}/mentor`;
+    return this.http.put<MentorProfileModel>(url, { ...mentorProfile, user: { id: mentorProfile.user.id } });
   }
 
   public saveProfilePic(pic: any): Observable<any> {

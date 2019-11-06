@@ -1,24 +1,7 @@
 <ng-container *ngIf="mentorProfiles">
     <div class="grid">
-        <div class="mentor" *ngFor="let mentor of mentorProfiles">
-            <img src="data:image/png;base64,{{mentor.photo}}" alt="Profile pic">
-            <div>
-                <p class="mentor-name">
-                    {{mentor.mentorship.name}}
-                    <!--{{mentor.name}}-->
-                </p>
-                <p class="mentor-curriculum">{{mentor.curriculum}}</p>
-                <p class="mentor-description pb-2">{{mentor.text}}</p>
-                <a (click)="toggleGif(openGifs.indexOf(mentor.id) > -1)" class="mentor-quote"><em>Lemmik
-                    GIF +</em></a>
-                <img *ngIf="showGif" src="{{mentor.gif}}" alt="Mentors fav gif">
-                <p class="mentor-quote">
-                    <em>{{mentor.quote}}</em>
-                </p>
-                <a [routerLink]="'profile/' + mentor.mentorshipId" class="btn primary btn-block mt-2" >
-                    Muuda
-                </a>
-            </div>
-        </div>
+        <app-mentor-card class="mentor" *ngFor="let mentor of mentorProfiles"
+                         [mentor]="mentor">
+        </app-mentor-card>
     </div>
 </ng-container>

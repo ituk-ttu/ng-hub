@@ -1,71 +1,85 @@
 <ng-container *ngIf="user">
     <div class="container content">
-          <div class="row justify-content-between mx-0 mb-2">
+        <div class="row justify-content-between mx-0 mb-2">
             <h2>Kasutaja info muutmine</h2>
-            <button *ngIf="user.archived && !selfEditing" class="btn primary" (click)="user.archived = false">Aktiveeri</button>
-            <button *ngIf="!user.archived && !selfEditing" class="btn btn-outline-primary" (click)="user.archived = true">Arhiveeri</button>
-          </div>
-            <div class="card card-body">
-              <div class="row">
+            <button *ngIf="user.archived && !selfEditing" class="btn primary" (click)="user.archived = false">
+                Aktiveeri
+            </button>
+            <button *ngIf="!user.archived && !selfEditing" class="btn btn-outline-primary"
+                    (click)="user.archived = true">Arhiveeri
+            </button>
+        </div>
+        <div class="card card-body">
+            <div class="row">
                 <div class="col">
                     <label class="font-weight-bold parent-width">Eesnimi
-                      <input type="text" class="form-control" [(ngModel)]="user.firstName">
+                        <input type="text" class="form-control" [(ngModel)]="user.firstName">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">ID kood
-                      <input type="text" class="form-control" [(ngModel)]="user.idCode">
+                        <input type="text" class="form-control" [(ngModel)]="user.idCode">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">Õppekava
-                      <input type="text" class="form-control" [(ngModel)]="user.curriculum">
+                        <input type="text" class="form-control" [(ngModel)]="user.curriculum">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">IBAN
-                      <input type="text" class="form-control" [(ngModel)]="user.iban">
+                        <input type="text" class="form-control" [(ngModel)]="user.iban">
                     </label>
 
-                    <label class="mt-2 font-weight-bold parent-width">Roll
-                      <input [disabled]="selfEditing" type="text" class="form-control" [(ngModel)]="user.role">
-                    </label>
+                    <div class="mt-2 input-group">
+                        <label class="font-weight-bold parent-width">Roll
+                            <select  [disabled]="selfEditing" (ngModelChange)="roleChanged = true" class="custom-select" [(ngModel)]="user.role">
+                                <option value="ADMIN">ADMIN</option>
+                                <option value="BOARD">BOARD</option>
+                                <option value="MEMBER">MEMBER</option>
+                                <option value="MENTOR">MENTOR</option>
+                            </select>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="col">
                     <label class="font-weight-bold parent-width">Perekonnanimi
-                      <input type="text" class="form-control" [(ngModel)]="user.lastName">
+                        <input type="text" class="form-control" [(ngModel)]="user.lastName">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">E-mail
-                      <input type="text"
-                             class="form-control" [(ngModel)]="user.email">
+                        <input type="text"
+                               class="form-control" [(ngModel)]="user.email">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">Tudengikood
-                      <input type="text" class="form-control" [(ngModel)]="user.studentCode">
+                        <input type="text" class="form-control" [(ngModel)]="user.studentCode">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">Uksekaardi number
-                      <input type="text" class="form-control" [(ngModel)]="user.cardNumber">
+                        <input type="text" class="form-control" [(ngModel)]="user.cardNumber">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">Staatus
-                      <input [disabled]="selfEditing" type="text" class="form-control" [(ngModel)]="user.status.statusName">
+                        <input [disabled]="selfEditing" type="text" class="form-control"
+                               [(ngModel)]="user.status.statusName">
                     </label>
                 </div>
-              </div>
-
-              <div class="footer">
-
-               <button
-                       class="btn primary"
-                       (click)="router.navigate(['/hub/mentors/profile/' + user.id])"
-               >Mentorluse profiil</button>
-<!--                  TODO add ngIf mentor-->
-
-              <div class="button-group">
-                <button class="btn btn-outline-primary mr-2" *ngIf="!selfEditing" (click)="navigateBack()">Tühista</button>
-                <button class="btn primary" (click)="updateUser()">Salvesta</button>
-              </div>
-              </div>
             </div>
+
+            <div class="footer">
+
+                <button
+                        class="btn primary"
+                        (click)="router.navigate(['/hub/mentors/profile/' + user.id])"
+                >Mentorluse profiil
+                </button>
+                <!--                  TODO add ngIf mentor-->
+
+                <div class="button-group">
+                    <button class="btn btn-outline-primary mr-2" *ngIf="!selfEditing" (click)="navigateBack()">Tühista
+                    </button>
+                    <button class="btn primary" (click)="updateUser()">Salvesta</button>
+                </div>
+            </div>
+        </div>
     </div>
 </ng-container>
