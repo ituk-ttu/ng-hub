@@ -1,0 +1,17 @@
+<div class="mentor" >
+    <img src="{{mentor.pictureName}}" alt="Profile pic">
+    <div class="mentor-content">
+        <p class="mentor-name mb-0">
+            {{mentor.user.firstName }} {{mentor.user.lastName }}
+            <!--{{mentor.name}}-->
+        </p>
+        <p class="mentor-curriculum my-1">{{mentor.user.curriculum}}</p>
+        <p class="mentor-description mb-0" [innerHTML]="mentor.text"></p>
+        <a (click)="toggleGif()" class="mentor-gif"><em>Lemmik GIF +</em></a>
+        <img  *ngIf="showGif" src="{{mentor.gif}}" alt="Mentors fav gif">
+        <p class="mentor-quote">
+            <em>{{mentor.quote}}</em>
+        </p>
+        <a [routerLink]="'profile/' + mentor.user.id" class="btn primary btn-block mt-2" >Vali</a>
+    </div>
+</div>
