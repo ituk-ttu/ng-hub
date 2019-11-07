@@ -66,7 +66,7 @@ export class ProfilePicSelectComponent {
   public restore(): void {
     this.showRestore = false;
     this.mentorHttpService.getMentorProfile(this.userId)
-      .subscribe((response) => this.imageChangedEvent = response.pictureName);
+      .subscribe((response) => this.imageChangedEvent = response.picture);
   }
 
   public imageLoaded(): void {

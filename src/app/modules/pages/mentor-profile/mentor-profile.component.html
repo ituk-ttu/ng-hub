@@ -46,7 +46,7 @@
                         <button (click)="getProfile()" class="btn btn-outline-primary">Taasta</button>
                         <app-profile-pic-select
                                 [userId]="authContext.user.id"
-                                [imageChangedEvent]="myProfile.pictureName"
+                                [imageChangedEvent]="myProfile.picture"
                                 (imageSaved)="savePicture($event)">
                         </app-profile-pic-select>
                     </div>

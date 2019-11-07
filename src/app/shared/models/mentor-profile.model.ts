@@ -5,7 +5,7 @@ export class MentorProfileModel {
   enabled: boolean;
   gif: string;
   id: number;
-  pictureName: string;
+  picture: string;
   photo: string;
   quote: string;
   text: string;

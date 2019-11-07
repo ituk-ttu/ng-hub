@@ -43,7 +43,7 @@ export class MentorProfileComponent implements OnInit {
   }
 
   savePicture($event: string) {
-    this.myProfile.pictureName = $event;
+    this.myProfile.picture = $event;
     this.mentorHttpService.saveMentorProfile(this.myProfile).subscribe(
       () => console.log('nice'),
       () => console.log('not nice'));
