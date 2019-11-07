@@ -26,6 +26,7 @@ import { UserSettingsBlockComponent } from './components/user-settings-block/use
 import { CheckEmailComponent } from './pages/check-email/check-email.component';
 import { MentorCardComponent } from './components/mentor-card/mentor-card.component';
 import { SharedModule } from '../shared/shared.module';
+import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.component';
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { SharedModule } from '../shared/shared.module';
     BooleanSelectorComponent,
     ProjectSummaryComponent,
     MentorCardComponent,
+    DoorBulkAddComponent,
   ]
 })
 export class HomeModule {

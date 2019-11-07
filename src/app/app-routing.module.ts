@@ -14,6 +14,7 @@ import { UserDetailViewComponent } from './modules/pages/user-detail-view/user-d
 import { ContainerComponent } from './modules/components/authenticated-container/container.component';
 import { GeneralMeetingsComponent } from './modules/pages/general-meetings/general-meetings.component';
 import { CheckEmailComponent } from './modules/pages/check-email/check-email.component';
+import { DoorBulkAddComponent } from "./modules/pages/door-bulk-add/door-bulk-add.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'hub/settings/mentor', component: MentorProfileComponent },
       { path: 'hub/applications', component: ApplicationsComponent},
       { path: 'hub/door-permissions', component: DoorPermissionsComponent},
+      { path: 'hub/door-bulk-add', component: DoorBulkAddComponent},
       { path: 'hub/general-meetings', component: GeneralMeetingsComponent},
       { path: 'hub/**', redirectTo: 'hub', pathMatch: 'full' }
     ]
