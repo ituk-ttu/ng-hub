@@ -1,27 +1,37 @@
 <ng-container>
     <div class="container content">
+        <h1>Eemalda või lisa ukseõigusi</h1>
         <div class="card card-body">
             <div class="row">
                 <div class="col">
-                    <input type="search" placeholder="Otsi nime või meili järgi" class="input-sm form-control">
+                    <input type="search" (change)="searchUsers($event.target.value)"
+                           placeholder="Otsi nime või meili järgi" class="input-sm form-control">
                 </div>
                 <div class="col">
-                    <input type="search" placeholder="Otsi uksekoodi järgi" class="input-sm form-control">
+                    <input type="search" (change)="searchRoomsvalue($event.target.value)"
+                           placeholder="Otsi uksekoodi järgi" class="input-sm form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <ul class="list-group mb-3">
-<!--                        TODO LIST OF MAX 5 PPL-->
-                        <li class="list-group-item text">Nils-Emil Lille <button class="btn btn-outline-primary float-right btn-add">&#10004;</button></li>
+                        <!--                        TODO LIST OF MAX 5 PPL-->
+                        <li class="list-group-item text" *ngFor="let user of usersSearchResult">
+                            {{user.firstName}} {{user.lastName}}
+                            <button class="btn btn-outline-primary float-right btn-add"
+                                    (click)="addUserToSelection(user)">&#10004;
+                            </button>
+                        </li>
                     </ul>
                 </div>
                 <div class="col">
                     <ul class="list-group">
-                        <!--                        TODO LIST OF MAX 5 PPL-->
-                        <li class="list-group-item text">ICT-315 <button class="btn btn-outline-primary float-right btn-add">&#10004;</button></li>
-                        <li class="list-group-item text">ICT-316 <button class="btn btn-outline-primary float-right btn-add">&#10004;</button></li>
-                        <li class="list-group-item text">ICT-317 <button class="btn btn-outline-primary float-right btn-add">&#10004;</button></li>
+                        <li class="list-group-item text" *ngFor="let room of roomsSearchResult">
+                            {{room}}
+                            <button class="btn btn-outline-primary float-right btn-add"
+                                    (click)="addRoomToSelection(room)">&#10004;
+                            </button>
+                        </li>
 
                     </ul>
                 </div>
@@ -29,23 +39,34 @@
             <div class="row mt-3">
                 <div class="col">
                     <h2>Kasutajad:</h2>
+                    <p *ngIf="selectedUsers && selectedUsers.length === 0"> Ühtegi kasutajat pole valitud</p>
                     <ul class="list-group">
-                        <li class="list-group-item">Nils-Emil Lille <button class="btn btn-outline-primary float-right btn-remove">X</button></li>
-                        <li class="list-group-item">Kaspar Kivistik <button class="btn btn-outline-primary float-right btn-remove">X</button></li>
-                        <li class="list-group-item">Grõõt Krete Känd <button class="btn btn-outline-primary float-right btn-remove">X</button></li>
+                        <li class="list-group-item"
+                            *ngFor="let user of selectedUsers">{{user.firstName}} {{user.lastName}}
+                            <button class="btn btn-outline-primary float-right btn-remove"
+                                    (click)="removeUserFromSelection(user)">X
+                            </button>
+                        </li>
                     </ul>
                 </div>
                 <div class="col">
                     <h2>Ruumid:</h2>
+                    <p *ngIf="selectedRooms && selectedRooms.length === 0"> Ühtegi ruumi pole valitud</p>
                     <ul class="list-group">
-                        <li class="list-group-item">ICT-515 <button class="btn btn-outline-primary float-right btn-remove">X</button></li>
+                        <li class="list-group-item" *ngFor="let room of selectedRooms">{{room}}
+                            <button class="btn btn-outline-primary float-right btn-remove"
+                                    (click)="removeRoomFromSelection(room)">X
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="footer">
                 <div class="from-group float-right mt-3">
-                    <button type="submit" class="btn btn-outline-primary ml-2">Eemalda ukseõigused</button>
-                    <button type="submit" class="btn primary ml-2">Lisa ukseõigused</button>
+                    <button type="submit" class="btn btn-outline-primary ml-2" (click)="removeRoomAccess()">
+                        Eemalda ukseõigused
+                    </button>
+                    <button type="submit" class="btn primary ml-2" (click)="addRoomAccess()">Lisa ukseõigused</button>
                 </div>
             </div>
         </div>
