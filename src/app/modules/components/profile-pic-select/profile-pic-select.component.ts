@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { MyDetailsHttpService } from '../../../core/services/my-details.http-service';
+import { MyDetailsHttpService } from "../../../core/http-services/my-details.http-service";
 
 @Component({
   selector: 'app-profile-pic-select',

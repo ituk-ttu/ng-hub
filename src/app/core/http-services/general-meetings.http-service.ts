@@ -21,7 +21,7 @@ export class GeneralMeetingsHttpService {
   }
 
   public updateMeeting(generalMeeting: GeneralMeeting, meetingId: string) {
-    const url = `${environment.API_URL}/meeting/${meetingId}` ;
+    const url = `${environment.API_URL}/meeting/${meetingId}`;
     return this.http.put<TokenModel>(url, generalMeeting);
   }
 

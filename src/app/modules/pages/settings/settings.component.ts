@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../shared/models/user.model';
 import { AuthContext } from '../../../core/services/authContext';
-import { MyDetailsHttpService } from '../../../core/services/my-details.http-service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MyDetailsHttpService } from "../../../core/http-services/my-details.http-service";
 
 @Component({
   selector: 'app-settings',

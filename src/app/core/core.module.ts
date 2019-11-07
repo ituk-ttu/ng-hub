@@ -1,14 +1,14 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ApplicationHttpService } from './services/application.http-service';
-import { MentorProfilesHttpService } from './services/mentor-profiles.http-service';
-import { ResourcesHttpService } from './services/resources.http-service';
-import { MyDetailsHttpService } from './services/my-details.http-service';
-import { UserHttpService } from './services/user.http-service';
 import { AuthContext } from './services/authContext';
-import { AuthGuard } from './config/auth-guard';
-import { httpInterceptorProviders } from './interceptor';
-import { GeneralMeetingsHttpService } from './services/general-meetings.http-service';
+import { AuthGuard } from './guards/auth-guard';
+import { httpInterceptorProviders } from './interceptors';
 import { RequestInFlightService } from './services/request-in-flight.service';
+import { UserHttpService } from './http-services/user.http-service';
+import { MyDetailsHttpService } from './http-services/my-details.http-service';
+import { ResourcesHttpService } from './http-services/resources.http-service';
+import { MentorProfilesHttpService } from './http-services/mentor-profiles.http-service';
+import { GeneralMeetingsHttpService } from './http-services/general-meetings.http-service';
+import { ApplicationHttpService } from './http-services/application.http-service';
 
 @NgModule({
   providers: [

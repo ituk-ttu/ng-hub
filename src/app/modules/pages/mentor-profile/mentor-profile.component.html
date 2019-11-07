@@ -1,4 +1,4 @@
-<ng-container *ngIf="myProfile">
+<ng-container *ngIf="mentorProfile">
     <div class="row">
         <div class="card card-body col-md-8 col-sm-6 col-lg-8 col-xs-12">
             <form>
@@ -7,12 +7,12 @@
                         <input type="text" class="form-control" id="name"
                                disabled
                                name="curriculum"
-                               [(ngModel)]="myProfile.user.curriculum"/>
+                               [(ngModel)]="mentorProfile.user.curriculum"/>
                     </label>
                 </div>
                 <div class="form-group">
                     <label class="control-label parent-width">Sinust
-                        <textarea [(ngModel)]="myProfile.text" rows="8" name="text"
+                        <textarea [(ngModel)]="mentorProfile.text" rows="8" name="text"
                                   class="form-control">
                       </textarea>
                     </label>
@@ -21,7 +21,7 @@
                     <label class="control-label parent-width">Lemmik GIF
                         <small class="text-muted"> (URL)
                         </small>
-                        <input [(ngModel)]="myProfile.gif"
+                        <input [(ngModel)]="mentorProfile.gif"
                                name="gif"
                                class="form-control">
                     </label>
@@ -29,14 +29,14 @@
                 <div class="form-group">
                     <label class="control-label parent-width">
                         Tsitaat
-                        <input [(ngModel)]="myProfile.quote"
+                        <input [(ngModel)]="mentorProfile.quote"
                                name="quote"
                                class="form-control">
                     </label>
                 </div>
                 <div class="form-group">
                     <app-boolean-selector label="Avalik"
-                                          [isTrue]="this.myProfile.enabled"
+                                          [isTrue]="this.mentorProfile.enabled"
                                           (setValue)="setProfileEnabledStatus($event)">
                     </app-boolean-selector>
                 </div>
@@ -45,8 +45,8 @@
                         <button (click)="save()" class="btn primary">Salvesta</button>
                         <button (click)="getProfile()" class="btn btn-outline-primary">Taasta</button>
                         <app-profile-pic-select
-                                [userId]="authContext.user.id"
-                                [imageChangedEvent]="myProfile.picture"
+                                [userId]="mentorProfile.user.id"
+                                [imageChangedEvent]="mentorProfile.picture"
                                 (imageSaved)="savePicture($event)">
                         </app-profile-pic-select>
                     </div>
@@ -54,7 +54,7 @@
             </form>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-6">
-            <app-mentor-card [mentor]="myProfile">
+            <app-mentor-card [mentor]="mentorProfile">
             </app-mentor-card>
         </div>
     </div>

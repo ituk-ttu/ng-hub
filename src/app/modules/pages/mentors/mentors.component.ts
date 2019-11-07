@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MentorProfilesHttpService } from '../../../core/services/mentor-profiles.http-service';
 import { MentorProfileModel } from '../../../shared/models/mentor-profile.model';
+import { MentorProfilesHttpService } from "../../../core/http-services/mentor-profiles.http-service";
 
 @Component({
   selector: 'app-mentors',

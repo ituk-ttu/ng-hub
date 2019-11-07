@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { UserHttpService } from "../../../core/services/user.http-service";
 import { Router } from "@angular/router";
+import { UserHttpService } from "../../../core/http-services/user.http-service";
 
 @Component({
   selector: 'app-recover-password',

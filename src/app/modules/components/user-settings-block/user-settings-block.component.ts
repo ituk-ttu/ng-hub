@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../../shared/models/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserHttpService } from '../../../core/services/user.http-service';
+import { UserHttpService } from "../../../core/http-services/user.http-service";
 
 @Component({
   selector: 'app-user-settings-block',

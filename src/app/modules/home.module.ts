@@ -25,6 +25,7 @@ import { ProjectSummaryComponent } from './pages/project-summary/project-summary
 import { UserSettingsBlockComponent } from './components/user-settings-block/user-settings-block.component';
 import { CheckEmailComponent } from './pages/check-email/check-email.component';
 import { MentorCardComponent } from './components/mentor-card/mentor-card.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { MentorCardComponent } from './components/mentor-card/mentor-card.compon
     ReactiveFormsModule,
     NgxSpinnerModule,
     ImageCropperModule,
+    SharedModule,
     BsDropdownModule,
   ],
   declarations: [
@@ -56,9 +58,8 @@ import { MentorCardComponent } from './components/mentor-card/mentor-card.compon
     UserDetailViewComponent,
     BooleanSelectorComponent,
     ProjectSummaryComponent,
-    MentorCardComponent
+    MentorCardComponent,
   ]
-
 })
 export class HomeModule {
 }

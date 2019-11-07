@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GeneralMeetingsHttpService } from '../../../core/services/general-meetings.http-service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { GeneralMeeting } from '../../../shared/models/general-meeting.model';
 import { AuthContext } from '../../../core/services/authContext';
+import { GeneralMeetingsHttpService } from "../../../core/http-services/general-meetings.http-service";
 
 @Component({
   templateUrl: './general-meetings.component.html',

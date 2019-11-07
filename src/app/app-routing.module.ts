@@ -6,7 +6,7 @@ import { SettingsComponent } from './modules/pages/settings/settings.component';
 import { UsersComponent } from './modules/pages/users/users.component';
 import { MentorProfileComponent } from './modules/pages/mentor-profile/mentor-profile.component';
 import { AuthComponent } from './modules/pages/auth/auth.component';
-import { AuthGuard } from './core/config/auth-guard';
+import { AuthGuard } from './core/guards/auth-guard';
 import { ApplicationsComponent } from './modules/pages/applications/applications.component';
 import { RecoverPasswordComponent } from './modules/pages/recover-password/recover-password.component';
 import { DoorPermissionsComponent } from './modules/pages/door-permissions/door-permissions.component';

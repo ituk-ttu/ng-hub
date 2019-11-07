@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectHttpService } from '../../../core/services/project.http-service';
+import { ProjectHttpService } from "../../../core/http-services/project.http-service";
 
 
 @Component({

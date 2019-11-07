@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserHttpService } from '../../../core/services/user.http-service';
 import { User } from '../../../shared/models/user.model';
 import { Router } from '@angular/router';
+import { UserHttpService } from "../../../core/http-services/user.http-service";
 
 @Component({
   selector: 'app-users',

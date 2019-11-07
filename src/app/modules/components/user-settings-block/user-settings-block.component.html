@@ -30,11 +30,11 @@
 
                     <div class="mt-2 input-group">
                         <label class="font-weight-bold parent-width">Roll
-                            <select  [disabled]="selfEditing" (ngModelChange)="roleChanged = true" class="custom-select" [(ngModel)]="user.role">
-                                <option value="ADMIN">ADMIN</option>
-                                <option value="BOARD">BOARD</option>
-                                <option value="MEMBER">MEMBER</option>
-                                <option value="MENTOR">MENTOR</option>
+                            <select  [disabled]="selfEditing" (ngModelChange)="roleChanged = true" class="custom-select form-control" [(ngModel)]="user.role">
+                                <option value="ADMIN">Administraator</option>
+                                <option value="BOARD">Juhatuse liige</option>
+                                <option value="MEMBER">Liige</option>
+                                <option value="MENTOR">Mentor</option>
                             </select>
                         </label>
                     </div>
@@ -59,8 +59,13 @@
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">Staatus
-                        <input [disabled]="selfEditing" type="text" class="form-control"
-                               [(ngModel)]="user.status.statusName">
+                        <select  [disabled]="selfEditing" class="custom-select form-control" [(ngModel)]="user.status.id">
+                            <option value="1">Täisliige</option>
+                            <option value="2">Noorliige</option>
+                            <option value="3">Uusliige</option>
+                            <option value="4">Vilistlane</option>
+                            <option value="5">Juhatus</option>
+                        </select>
                     </label>
                 </div>
             </div>

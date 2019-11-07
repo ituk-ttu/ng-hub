@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ResourcesHttpService } from '../../../core/services/resources.http-service';
 import { AuthContext } from '../../../core/services/authContext';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ResourcesContentModel } from '../../../shared/models/resources-content.model';
+import { ResourcesHttpService } from "../../../core/http-services/resources.http-service";
 
 @Component({
   templateUrl: './landing-page.component.html'
