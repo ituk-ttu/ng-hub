@@ -29,14 +29,14 @@ export class DoorBulkAddComponent implements OnInit {
 
 
   searchRoomsvalue(value: any) {
-    this.roomsSearchResult = [...this.rooms].filter(e => {
+    this.roomsSearchResult = this.rooms.filter(e => {
       return (e.includes(value)) && !this.selectedRooms.includes(e);
     });
   }
 
 
   searchUsers(value: any) {
-    this.usersSearchResult = [...this.users].filter(e => {
+    this.usersSearchResult = this.users.filter(e => {
       return (e.firstName.includes(value) || e.lastName.includes(value)) && !this.selectedUsers.includes(e);
     });
   }

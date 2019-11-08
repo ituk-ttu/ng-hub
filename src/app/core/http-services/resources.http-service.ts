@@ -15,11 +15,11 @@ export class ResourcesHttpService {
     return this.http.get<ResourcesContentModel[]>(url);
   }
 
-  public saveResource(reseource: ResourcesContentModel): Observable<ResourcesContentModel[]> {
-    if (reseource.id) {
-      return this.http.put<ResourcesContentModel[]>(`${environment.API_URL}/resource`, reseource);
+  public saveResource(resource: ResourcesContentModel): Observable<ResourcesContentModel[]> {
+    if (resource.id) {
+      return this.http.put<ResourcesContentModel[]>(`${environment.API_URL}/resource`, resource);
     }
-    return this.http.post<ResourcesContentModel[]>(`${environment.API_URL}/resource`, reseource);
+    return this.http.post<ResourcesContentModel[]>(`${environment.API_URL}/resource`, resource);
   }
 
   public deleteResource(id: number): Observable<void> {

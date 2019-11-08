@@ -4,7 +4,6 @@
             <table class="table table-striped table-hover table-list">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nimi</th>
                     <th>Isikukood</th>
                     <th>E-mail</th>
@@ -25,16 +24,15 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr *ngFor="let application of applicationsResult; let i = index;">
-                    <td class="">{{i + 1}}</td>
-                    <td>{{application.name}}</td>
+                <tr *ngFor="let application of applicationsResult; let i = index;" (click)="navigateToApplication(application)">
+                    <td>{{application.firstName}} {{application.lastName}}</td>
                     <td>{{application.personalCode}}</td>
                     <td>{{application.email}}</td>
                     <td>{{application.studentCode}}</td>
                     <td>
-                        <ng-container *ngIf="application.mentor">{{application.mentor.name}}</ng-container>
+                        <ng-container *ngIf="application.mentor">{{application.mentor.firstName}} {{application.mentor.lastName}}</ng-container>
                     </td>
-                    <td>{{application.createdAt | date:'dd-MM-yyyy'}}</td>
+                    <td class="no-br">{{application.createdAt | date:'dd-MM-yyyy'}}</td>
                     <td><span class="badge badge-dark">{{application.status}}</span></td>
                 </tr>
                 </tbody>

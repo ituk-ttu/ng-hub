@@ -27,6 +27,7 @@ import { CheckEmailComponent } from './pages/check-email/check-email.component';
 import { MentorCardComponent } from './components/mentor-card/mentor-card.component';
 import { SharedModule } from '../shared/shared.module';
 import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.component';
+import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 
 @NgModule({
   imports: [
@@ -61,6 +62,7 @@ import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.compon
     ProjectSummaryComponent,
     MentorCardComponent,
     DoorBulkAddComponent,
+    ApplicationDetailComponent,
   ]
 })
 export class HomeModule {

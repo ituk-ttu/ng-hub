@@ -1,4 +1,4 @@
-<div class="mentor" >
+<div class="mentor"  [ngClass]="{'disabled': !mentor.enabled}" >
     <img src="{{mentor.picture}}" alt="Profile pic">
     <div class="mentor-content">
         <p class="mentor-name mb-0">

@@ -1,0 +1,20 @@
+<section *ngIf="application">
+    <h1>{{application.firstName}} {{application.lastName}}</h1>
+    <div class="card card-body fade-in">
+        <p class="ng-binding"><strong>E-mail:</strong> {{application.email}}</p>
+        <p class="ng-binding"><strong>Tudengikood:</strong> {{application.curriculum}}</p>
+        <p><strong>Staatus:</strong>
+            <span class="label ng-binding label-primary"> Waiting</span>
+        </p>
+        <p><strong>Mentor:</strong>
+            <ng-container
+                    *ngIf="application.mentor"> {{application.mentor.firstName}} {{application.mentor.lastName}}</ng-container>
+            <ng-container *ngIf="!application.mentor"> Mentor valimata</ng-container>
+        </p>
+        <div class="btn-group">
+            <button class="btn primary" (click)="acceptApplication(application.id)">Võta vastu</button>
+            <button class="btn btn-outline-primary" (click)="refuseApplication(application.id)">Lükka tagasi</button>
+        </div>
+        <div class="panel"></div>
+    </div>
+</section>

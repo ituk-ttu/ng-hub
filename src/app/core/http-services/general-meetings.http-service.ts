@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { TokenModel } from '../../shared/models/token.model';
 import { GeneralMeeting } from '../../shared/models/general-meeting.model';
+import { Observable } from "rxjs";
 
 @Injectable()
 export class GeneralMeetingsHttpService {
@@ -10,19 +10,19 @@ export class GeneralMeetingsHttpService {
   constructor(private http: HttpClient) {
   }
 
-  public getAllMeetings() {
+  public getAllMeetings(): Observable<GeneralMeeting[]> {
     const url = environment.API_URL + '/meeting';
-    return this.http.get(url);
+    return this.http.get<GeneralMeeting[]>(url);
   }
 
-  public createMeeting(generalMeeting: GeneralMeeting) {
+  public createMeeting(generalMeeting: GeneralMeeting): Observable<GeneralMeeting> {
     const url = environment.API_URL + '/meeting';
-    return this.http.post<TokenModel>(url, generalMeeting);
+    return this.http.post<GeneralMeeting>(url, generalMeeting);
   }
 
-  public updateMeeting(generalMeeting: GeneralMeeting, meetingId: string) {
+  public updateMeeting(generalMeeting: GeneralMeeting, meetingId: string): Observable<GeneralMeeting> {
     const url = `${environment.API_URL}/meeting/${meetingId}`;
-    return this.http.put<TokenModel>(url, generalMeeting);
+    return this.http.put<GeneralMeeting>(url, generalMeeting);
   }
 
 }
