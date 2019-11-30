@@ -1,0 +1,65 @@
+<ng-container>
+    <div>
+        <div *ngIf="isEditFormViewActive || selectedProject" class="card card-body">
+            <ng-container *ngTemplateOutlet="form"></ng-container>
+        </div>
+        <button
+                class="btn btn-outline-primary"
+                *ngIf="!isEditFormViewActive && !selectedProject && (auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
+                (click)="toggleEditProjectForm()"
+        >
+            Uus projekt
+        </button>
+        <div class="project-list" *ngIf="!isEditFormViewActive">
+            <div class="bottom-margin-medium top-margin-medium">
+                <h2 class="bottom-margin-small">Viimane nädal</h2>
+                <div class="flex-row">
+                    <app-project-card *ngFor="let project of projectDateMap.thisWeek" [project]="project"></app-project-card>
+                </div>
+            </div>
+
+            <div class="bottom-margin-medium">
+                <h2 class="bottom-margin-small">Käesolev kuu</h2>
+                <div class="flex-row">
+                    <app-project-card *ngFor="let project of projectDateMap.thisMonth" [project]="project"></app-project-card>
+                </div>
+            </div>
+
+            <div class="bottom-margin-medium">
+                <h2 class="bottom-margin-small">Vanemad projektid</h2>
+                <div class="flex-row">
+                    <app-project-card *ngFor="let project of projectDateMap.other" [project]="project"></app-project-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #form>
+    <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Projekti nimi</label>
+            <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="">
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="dateStart">Alguskuupäev</label>
+                <input type="date" class="form-control" id="dateStart" placeholder="Alguskuupäev">
+            </div>
+            <div class="col">
+                <label for="dateEnd">Lõppkuupäev</label>
+                <input type="date" class="form-control" id="dateEnd" aria-describedby="dateEndHelp" placeholder="Alguskuupäev">
+                <small id="dateEndHelp" class="form-text text-muted">Kui üritus kestab ainult ühe päeva, siis jäta see tühjaks</small>
+            </div>
+        </div>
+
+        <app-user-select [form]="editProjectForm">
+
+        </app-user-select>
+
+        <div class="btn-group float-right" role="group" aria-label="Basic example">
+            <button type="submit" class="btn primary">Salvesta</button>
+            <button type="button" class="btn btn-outline-primary" (click)="hideFrom()">Tühista</button>
+        </div>
+    </form>
+</ng-template>

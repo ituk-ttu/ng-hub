@@ -1,0 +1,12 @@
+<div [formGroup]="form">
+    <mat-form-field>
+        <input matInput placeholder="Vali kasutaja"
+               [matAutocomplete]="autoSelectUser"
+               formControlName="userControl">
+    </mat-form-field>
+
+    <mat-autocomplete #autoSelectUser="matAutocomplete"
+                      [displayWith]="displayUser()">
+        <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{ user | fullname }}</mat-option>
+    </mat-autocomplete>
+</div>

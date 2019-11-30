@@ -16,6 +16,7 @@ import { GeneralMeetingsComponent } from './modules/pages/general-meetings/gener
 import { CheckEmailComponent } from './modules/pages/check-email/check-email.component';
 import { DoorBulkAddComponent } from './modules/pages/door-bulk-add/door-bulk-add.component';
 import { ApplicationDetailComponent } from './modules/pages/application-detail/application-detail.component';
+import {ProjectsComponent} from "./modules/pages/projects/projects.component";
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'hub/door-permissions', component: DoorPermissionsComponent},
       { path: 'hub/door-bulk-add', component: DoorBulkAddComponent},
       { path: 'hub/general-meetings', component: GeneralMeetingsComponent},
+      { path: 'hub/projects', component: ProjectsComponent},
       { path: 'hub/**', redirectTo: 'hub', pathMatch: 'full' }
     ]
   },
