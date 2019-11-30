@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserHttpService } from '../../../core/http-services/user.http-service';
 import { User } from '../../../shared/models/user.model';
+import {AddDoorModel} from "../../../shared/models/add-door.model";
+import {DoorModel} from "../../../shared/models/door.model";
+import {DoorHttpService} from "../../../core/http-services/door.https-service";
 
 @Component({
   selector: 'app-door-bulk-add',
@@ -11,11 +14,11 @@ export class DoorBulkAddComponent implements OnInit {
   private users: User[];
   public usersSearchResult: User[];
   public selectedUsers: User[] = [];
-  private rooms: string[];
+  private rooms: string[] = [];
   public roomsSearchResult: string[];
   public selectedRooms: string[] = [];
-
-  constructor(private userHttpService: UserHttpService) {
+  private addDoorModel: AddDoorModel;
+  constructor(private userHttpService: UserHttpService, private doorHttpsService: DoorHttpService) {
   }
 
   ngOnInit() {
@@ -23,8 +26,13 @@ export class DoorBulkAddComponent implements OnInit {
       this.users = e;
       this.usersSearchResult = e;
     });
-    this.rooms = ['ICT-315', 'ICT-316', 'ICT-362', 'ICT-515'];
-    this.roomsSearchResult = [...this.rooms];
+
+    this.doorHttpsService.getAllDoors().subscribe(doors => {
+      console.log(doors.map(door => door.code));
+      this.rooms = doors.map(door => door.code);
+      this.roomsSearchResult = [...this.rooms];
+
+    });
   }
 
 
@@ -62,10 +70,28 @@ export class DoorBulkAddComponent implements OnInit {
   }
 
   addRoomAccess() {
-    alert('Not implemented!');
+    this.addDoorModel = new AddDoorModel();
+    let doorModel = [];
+    this.selectedRooms.forEach(function(room) {
+      let temp = new DoorModel();
+      temp.code = room;
+      doorModel.push(temp);
+    });
+
+    let userIds: number[] = [];
+    this.selectedUsers.forEach(function(user) {
+      userIds.push(user.id);
+    });
+
+    this.addDoorModel.door = doorModel;
+    this.addDoorModel.userIds = userIds;
+    console.log(this.addDoorModel);
+    this.doorHttpsService.addBulkUserDoorServices(this.addDoorModel);
+
   }
 
   removeRoomAccess() {
+
     alert('Not implemented!');
   }
 }
