@@ -3,6 +3,9 @@ import { User } from '../../../shared/models/user.model';
 import { AuthContext } from '../../../core/services/authContext';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MyDetailsHttpService } from "../../../core/http-services/my-details.http-service";
+import {DoorHttpService} from "../../../core/http-services/door.http-service";
+import {Observable} from "rxjs";
+import {DoorPermissionModel} from "../../../shared/models/door-permission.model";
 
 @Component({
   selector: 'app-settings',
@@ -22,8 +25,12 @@ export class SettingsComponent implements OnInit {
     this.passwordMatchValidator
   );
   public sessions = this.myDetailsHttpService.getSessions();
+  userPermissions: Observable<DoorPermissionModel[]>;
 
-  constructor(public authContext: AuthContext, public myDetailsHttpService: MyDetailsHttpService) {
+  constructor(public authContext: AuthContext,
+              public myDetailsHttpService: MyDetailsHttpService,
+              private doorService: DoorHttpService
+  ) {
   }
 
   // convenience getter for easy access to form fields
@@ -37,6 +44,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = { ...this.authContext.user };
+    this.userPermissions = this.doorService.getUserDoorServices(this.user.id);
   }
 
   resetUser() {
