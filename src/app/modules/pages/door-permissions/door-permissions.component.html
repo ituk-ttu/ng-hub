@@ -19,7 +19,7 @@
                     <td>{{user.id}}</td>
                     <td>{{user.firstName + ' ' + user.lastName}}</td>
                     <td>{{user.cardNumber}}</td>
-                    <td *ngFor="let door of user.doors">{{door.code}}</td>
+                    <td> {{ getJoinedRooms(user.doors)}}</td>
                 </tr>
                 </tbody>
             </table>

@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {DoorPermissionModel} from '../../../shared/models/door-permission.model';
 import {DoorHttpService} from '../../../core/http-services/door.http-service';
 import {Router} from '@angular/router';
+import {DoorModel} from "../../../shared/models/door.model";
 
 @Component({
     selector: 'app-door-permissions',
@@ -32,14 +33,18 @@ export class DoorPermissionsComponent implements OnInit {
         }, 10000);
     }
 
-  goToUser(userId: number) {
-    this.router.navigate([`hub/users/${userId}`]);
-  }
+    goToUser(userId: number) {
+        this.router.navigate([`hub/users/${userId}`]);
+    }
 
     updateUserList(searchString: string) {
         this.usersToDisplay = this.users.filter(user => {
             return user.firstName.toLowerCase().includes(searchString.toLowerCase())
                 || searchString === '';
         });
+    }
+
+    getJoinedRooms(doors: DoorModel[]): string {
+        return doors.map(door => door.code).join(', ');
     }
 }
