@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { MentorProfileModel } from '../../shared/models/mentor-profile.model';
-import { environment } from '../../../environments/environment';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {MentorProfileModel} from '../../shared/models/mentor-profile.model';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class MentorProfilesHttpService {
@@ -10,9 +10,35 @@ export class MentorProfilesHttpService {
   constructor(private http: HttpClient) {
   }
 
-  public getMentorProfiles(): Observable<MentorProfileModel[]> {
+  public getAllMentorProfiles(): Observable<MentorProfileModel[]> {
     const url = environment.API_URL + '/mentor';
     return this.http.get<MentorProfileModel[]>(url);
   }
 
+  public updateMentorProfile(mentorProfile: MentorProfileModel): Observable<any> {
+    const url = `${environment.API_URL}/mentor`;
+    return this.http.put<MentorProfileModel>(url, {...mentorProfile, user: {id: mentorProfile.user.id}});
+  }
+
+  public findMentorByUserId(id: number): Observable<MentorProfileModel> {
+    const url = `${environment.API_URL}/mentor/${id}`;
+    return this.http.get<MentorProfileModel>(url);
+  }
+
+  public getMentorProfilePictureByUserId(id: number): Observable<any> {
+    const url = `${environment.API_URL}/mentor/${id}/picture`;
+    return this.http.get<MentorProfileModel>(url);
+  }
+
+  public saveProfilePic(mentorId: number, formDataContainingImage: FormData): Observable<any> {
+    // TODO make this work
+    const requestHeaders = new HttpHeaders({'Content-Type': 'multipart/form-data'});
+    const url = `${environment.API_URL}/mentor/${mentorId}/picture/`;
+    return this.http.put<MentorProfileModel>(url, formDataContainingImage, {headers: requestHeaders});
+  }
+
+  public saveProfilePicBase64(mentorId: number, pic: string): Observable<any> {
+    const url = `${environment.API_URL}/mentor/${mentorId}/picture/base64`;
+    return this.http.put<MentorProfileModel>(url, pic);
+  }
 }

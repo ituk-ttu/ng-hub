@@ -1,5 +1,5 @@
 <div class="mentor"  [ngClass]="{'disabled': !mentor.enabled}" >
-    <img src="{{mentor.picture}}" alt="Profile pic">
+    <img src="{{mentor.picture || 'https://www.productionhouse.ee/wp-content/uploads/2017/10/placeholder.jpg'}}" alt="Profile pic">
     <div class="mentor-content">
         <p class="mentor-name mb-0">
             {{mentor.user.firstName }} {{mentor.user.lastName }}
