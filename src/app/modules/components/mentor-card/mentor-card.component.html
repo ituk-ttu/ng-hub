@@ -7,7 +7,7 @@
         </p>
         <p class="mentor-curriculum my-1">{{mentor.user.curriculum}}</p>
         <p class="mentor-description mb-0" [innerHTML]="mentor.text"></p>
-        <a (click)="toggleGif()" class="mentor-gif"><em>Lemmik GIF +</em></a>
+        <a *ngIf="mentor.gif" (click)="toggleGif()" class="mentor-gif"><em>Lemmik GIF +</em></a>
         <img  *ngIf="showGif" src="{{mentor.gif}}" alt="Mentors fav gif">
         <p class="mentor-quote">
             <em>{{mentor.quote}}</em>

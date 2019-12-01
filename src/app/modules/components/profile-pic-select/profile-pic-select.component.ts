@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, Output, TemplateRef, ViewChild} from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import {MentorProfilesHttpService} from '../../../core/http-services/mentor-profiles.http-service';
@@ -54,7 +54,10 @@ export class ProfilePicSelectComponent {
 
   public save(): void {
     this.imageChangedEvent = this.croppedImage;
-    this.closeModal();
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
+    this.modalRef = undefined;
     this.imageSaved.emit(this.croppedImage);
   }
 
