@@ -1,7 +1,9 @@
-import {DoorModel} from "./door.model";
+import {DoorModel} from './door.model';
 
 export class DoorPermissionModel {
     id: number;
-    userId: number;
-    door: DoorModel[];
+    doors: DoorModel[];
+    firstName: string;
+    lastName: string;
+    cardNumber: string;
 }
