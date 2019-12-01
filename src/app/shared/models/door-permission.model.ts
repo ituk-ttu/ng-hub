@@ -2,7 +2,7 @@ import {DoorModel} from './door.model';
 
 export class DoorPermissionModel {
     id: number;
-    doors: DoorModel[];
+    door: DoorModel;
     firstName: string;
     lastName: string;
     cardNumber: string;

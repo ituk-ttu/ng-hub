@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserHttpService} from '../../../core/http-services/user.http-service';
 import {User} from '../../../shared/models/user.model';
-import {DoorHttpService} from '../../../core/http-services/door.https-service';
+import {DoorHttpService} from '../../../core/http-services/door.http-service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -70,15 +70,15 @@ export class DoorBulkAddComponent implements OnInit {
   }
 
   addRoomAccess() {
-    const doors = [];
+    const doorList = [];
     const users: number[] = [];
     this.selectedRooms.forEach(room => {
-      doors.push({code: room});
+        doorList.push({code: room});
     });
     this.selectedUsers.forEach(user => {
       users.push(user.id);
     });
-    this.doorHttpsService.addBulkUserDoorServices({door: doors, userIds: users})
+    this.doorHttpsService.addBulkUserDoorServices({doors: doorList, userIds: users})
         .subscribe(() => {
           this.router.navigate(['hub/door-permissions']);
         });

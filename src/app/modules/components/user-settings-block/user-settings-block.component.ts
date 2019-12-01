@@ -12,7 +12,7 @@ export class UserSettingsBlockComponent implements OnInit {
   public user: User;
 
   @Input()
-  private userId: string;
+  private userId: number;
   @Input()
   private selfEditing: boolean;
   roleChanged: boolean;

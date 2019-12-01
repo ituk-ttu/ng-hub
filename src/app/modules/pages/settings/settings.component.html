@@ -1,62 +1,10 @@
 <div>
-    <app-user-settings-block [userId]="authContext.user.id"
+    <app-user-settings-block [userId]="user.id"
                              [selfEditing]="true">
     </app-user-settings-block>
-    <div class="row justify-content-between mx-3 mb-2 mt-5">
-        <h2>Parooli muutmine</h2>
-    </div>
-    <div class="container content mb-5">
-        <div class="card card-body">
-            <div class="row mx-0">
-                <form class="parent-width" [formGroup]="newPasswordForm" (ngSubmit)="submitNewPassword()">
-                    <label class="font-weight-bold parent-width ">
-                        Uus parool
-                        <input type="password" class="form-control" formControlName="newPassword">
-                        <span *ngIf="newPasswordForm.touched && f.newPassword.invalid" class="error-text">
-                            <span *ngIf="f.newPassword.errors.required">Kohustuslik väli</span>
-                        </span>
-                    </label>
-                    <label class="font-weight-bold mt-2 parent-width ">
-                        Uue parooli kinnitus
-                        <input type="password" class="form-control" formControlName="newPasswordConfirmation">
-                        <span *ngIf="f.newPasswordConfirmation.errors" class="error-text">
-                            <span *ngIf="f.newPasswordConfirmation.errors.mismatch">Parooli kinnitus ei klapi parooliga</span>
-                        </span>
-                    </label>
-                    <p class="error-text" *ngIf="newPasswordForm.errors"> Parooli kinnitus ei klapi parooliga</p>
-                    <label class="font-weight-bold mt-2 parent-width ">
-                        Vana parool
-                        <input type="password" class="form-control" formControlName="oldPassword">
-                        <span *ngIf="newPasswordForm.touched && f.oldPassword.invalid" class="error-text">
-                            <span *ngIf="f.oldPassword.errors.required">Kohustuslik väli</span>
-                        </span>
-                    </label>
-                    <div class="setting-footer mt-4">
-                        <span>
-                             <p *ngIf="!passwordChangeSuccessful" class="error-text">
-                            Parooli muutmine ebaõnnestus
-                            </p>
-                        </span>
-                        <button type="submit" class="btn primary">Salvesta</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="row justify-content-between mx-3 mb-2 mt-5">
-        <h2>Kasutajale antud ruumiõigused</h2>
-    </div>
-    <div class="container content mb-5">
-        <div class="card card-body">
-            <div class="row mx-0">
-                <div class="col">
-                    <h2>Ruumid:</h2>
-                    <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let room of userPermissions | async">{{room}}
-                        </li>
-                    </ul>
-            </div>
-        </div>
-    </div>
+    <app-user-passowrd-change-block [userId]="user.id">
 
+    </app-user-passowrd-change-block>
+    <app-user-door-permissions-block [userId]="user.id">
+    </app-user-door-permissions-block>
 </div>

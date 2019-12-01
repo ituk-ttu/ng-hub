@@ -1,0 +1,25 @@
+<div class="row justify-content-between mx-3 mb-2 mt-5">
+    <h2>Kasutajale antud ruumiõigused</h2>
+</div>
+<div class="container content mb-5">
+    <div class="card card-body">
+        <div class="row mx-0">
+            <div class="col">
+                <ul class="list-group">
+                    <ng-container *ngIf="userPermissions | async as userPermissionResults">
+                        <li class="list-group-item" *ngFor="let room of userPermissionResults">
+                            {{room.door.code}}
+                            <button class="btn btn-outline-primary float-right btn-remove"
+                                    (click)="removeDoorPermission(room.door.code)">X
+                            </button>
+                        </li>
+                        <p *ngIf="userPermissionResults.length === 0">
+                            Kasutaja pole määratud ruumiõigused
+                        </p>
+                    </ng-container>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

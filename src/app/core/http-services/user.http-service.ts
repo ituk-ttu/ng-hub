@@ -25,7 +25,7 @@ export class UserHttpService {
     return this.http.get<User[]>(url);
   }
 
-  public getUserById(userId: string): Observable<User> {
+  public getUserById(userId: number): Observable<User> {
     const url = environment.API_URL + `/user/${userId}`;
     return this.http.get<User>(url);
   }

@@ -1,6 +1,6 @@
-import {DoorModel} from "./door.model";
+import {DoorModel} from './door.model';
 
 export class AddDoorModel {
-    door: DoorModel[];
+    doors: DoorModel[];
     userIds: number[];
 }
