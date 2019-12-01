@@ -1,6 +1,6 @@
 import {DoorModel} from './door.model';
 
-export class DoorPermissionModel {
+export class UserDoorPermissionModel {
     id: number;
     doors: DoorModel[];
     firstName: string;
