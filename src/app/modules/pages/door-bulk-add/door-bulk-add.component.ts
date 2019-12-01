@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { UserHttpService } from '../../../core/http-services/user.http-service';
-import { User } from '../../../shared/models/user.model';
-import {AddDoorModel} from "../../../shared/models/add-door.model";
-import {DoorModel} from "../../../shared/models/door.model";
-import {DoorHttpService} from "../../../core/http-services/door.https-service";
+import {Component, OnInit} from '@angular/core';
+import {UserHttpService} from '../../../core/http-services/user.http-service';
+import {User} from '../../../shared/models/user.model';
+import {DoorHttpService} from '../../../core/http-services/door.https-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-door-bulk-add',
@@ -17,8 +16,10 @@ export class DoorBulkAddComponent implements OnInit {
   private rooms: string[] = [];
   public roomsSearchResult: string[];
   public selectedRooms: string[] = [];
-  private addDoorModel: AddDoorModel;
-  constructor(private userHttpService: UserHttpService, private doorHttpsService: DoorHttpService) {
+
+  constructor(private userHttpService: UserHttpService,
+              private doorHttpsService: DoorHttpService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -28,7 +29,6 @@ export class DoorBulkAddComponent implements OnInit {
     });
 
     this.doorHttpsService.getAllDoors().subscribe(doors => {
-      console.log(doors.map(door => door.code));
       this.rooms = doors.map(door => door.code);
       this.roomsSearchResult = [...this.rooms];
 
@@ -70,28 +70,21 @@ export class DoorBulkAddComponent implements OnInit {
   }
 
   addRoomAccess() {
-    this.addDoorModel = new AddDoorModel();
-    let doorModel = [];
-    this.selectedRooms.forEach(function(room) {
-      let temp = new DoorModel();
-      temp.code = room;
-      doorModel.push(temp);
+    const doors = [];
+    const users: number[] = [];
+    this.selectedRooms.forEach(room => {
+      doors.push({code: room});
     });
-
-    let userIds: number[] = [];
-    this.selectedUsers.forEach(function(user) {
-      userIds.push(user.id);
+    this.selectedUsers.forEach(user => {
+      users.push(user.id);
     });
-
-    this.addDoorModel.door = doorModel;
-    this.addDoorModel.userIds = userIds;
-    console.log(this.addDoorModel);
-    this.doorHttpsService.addBulkUserDoorServices(this.addDoorModel);
-
+    this.doorHttpsService.addBulkUserDoorServices({door: doors, userIds: users})
+        .subscribe(() => {
+          this.router.navigate(['hub/door-permissions']);
+        });
   }
 
   removeRoomAccess() {
-
     alert('Not implemented!');
   }
 }
