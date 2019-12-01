@@ -20,4 +20,5 @@ export class ApplicationHttpService {
     return this.http.get<ApplicationModel>(url);
   }
 
+
 }
