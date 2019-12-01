@@ -7,7 +7,6 @@ import {Router} from '@angular/router';
 import {DoorModel} from "../../../shared/models/door.model";
 
 @Component({
-    selector: 'app-door-permissions',
     templateUrl: './door-permissions.component.html'
 })
 export class DoorPermissionsComponent implements OnInit {
@@ -15,22 +14,14 @@ export class DoorPermissionsComponent implements OnInit {
     public users: DoorPermissionModel[];
     public usersToDisplay: DoorPermissionModel[];
 
-    constructor(private spinner: NgxSpinnerService,
-                private router: Router,
+    constructor(private router: Router,
                 private doorService: DoorHttpService) {
     }
-
-    allUserPermissions: Observable<DoorPermissionModel[]>;
-
     ngOnInit() {
         this.doorService.getAllUserDoorsServices().subscribe((response) => {
             this.users = response;
             this.usersToDisplay = response;
-        }, () => console.log('i dont know how to handle this error :) We will have some monkeys fix this error soon.')),
-            this.spinner.show();
-        setTimeout(() => {
-            this.spinner.hide();
-        }, 10000);
+        }, () => console.log('i dont know how to handle this error :) We will have some monkeys fix this error soon.'));
     }
 
     goToUser(userId: number) {
