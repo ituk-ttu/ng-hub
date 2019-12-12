@@ -17,4 +17,4 @@ before_script: # commands to run before the build step
 script: # the build step
   - ng build --prod
 after_success:
-  - rsync -chavzP --rsh="sshpass -p $FTP_PASSWORD ssh -o StrictHostKeyChecking=no -l $FTP_USER" dist/angular-hub/* $FTP_USER@ituk.ee:/var/newHub/dev/front
+  - rsync -chavzP --rsh="sshpass -p $FTP_PASSWORD ssh -o StrictHostKeyChecking=no -l $FTP_USER" dist/* $FTP_USER@ituk.ee:/var/newHub/dev/front
