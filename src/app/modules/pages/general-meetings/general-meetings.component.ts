@@ -12,8 +12,8 @@ export class GeneralMeetingsComponent implements OnInit {
 
   generalMeetings = this.generalMeetingHttpService.getAllMeetings();
   newMeetingForm: FormGroup;
-  private isNewMeetingFormActive = false;
-  private selectedGeneralMeeting: string;
+  isNewMeetingFormActive = false;
+  selectedGeneralMeeting: string;
 
   constructor(public generalMeetingHttpService: GeneralMeetingsHttpService, public auth: AuthContext) {
   }

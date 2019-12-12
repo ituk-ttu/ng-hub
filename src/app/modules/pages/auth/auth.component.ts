@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 export class AuthComponent {
 
-  private loginDetails: LoginDetails = {} as LoginDetails;
+  loginDetails: LoginDetails = {} as LoginDetails;
 
   constructor(private authContext: AuthContext,
               private router: Router) {
