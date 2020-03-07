@@ -16,6 +16,7 @@ import { GeneralMeetingsComponent } from './modules/pages/general-meetings/gener
 import { CheckEmailComponent } from './modules/pages/check-email/check-email.component';
 import { DoorBulkAddComponent } from './modules/pages/door-bulk-add/door-bulk-add.component';
 import { ApplicationDetailComponent } from './modules/pages/application-detail/application-detail.component';
+import {CanAccessMentorGuard} from "./core/guards/can-access-mentor.guard";
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
       { path: 'hub', component: LandingPageComponent },
       { path: 'hub/users', component: UsersComponent },
       { path: 'hub/users/:id', component: UserDetailViewComponent },
-      { path: 'hub/mentors', component: MentorsComponent },
+      { path: 'hub/mentors', component: MentorsComponent, canActivate: [CanAccessMentorGuard] },
       { path: 'hub/mentors/profile/:id', component: MentorProfileComponent },
       { path: 'hub/settings', component: SettingsComponent },
       { path: 'hub/settings/mentor', component: MentorProfileComponent },

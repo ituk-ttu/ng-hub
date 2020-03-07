@@ -20,9 +20,6 @@ export class ContainerComponent implements OnInit, OnDestroy {
               private cdRef: ChangeDetectorRef) {
   }
 
-  toggleNavbar() {
-    this.navbarOpen = !this.navbarOpen;
-  }
 
   ngOnInit(): void {
     this.showSpinnerSubject = this.requestInFlightService.getSubject()
@@ -30,6 +27,10 @@ export class ContainerComponent implements OnInit, OnDestroy {
         this.showSpinner = e;
         this.cdRef.detectChanges();
       });
+  }
+
+  public toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
 
   ngOnDestroy(): void {

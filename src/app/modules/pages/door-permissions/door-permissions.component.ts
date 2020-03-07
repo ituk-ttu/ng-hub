@@ -17,6 +17,7 @@ export class DoorPermissionsComponent implements OnInit {
     constructor(private router: Router,
                 private doorService: DoorHttpService) {
     }
+
     ngOnInit() {
         this.doorService.getAllUserDoorsServices().subscribe((response) => {
             this.users = response;
@@ -24,18 +25,18 @@ export class DoorPermissionsComponent implements OnInit {
         }, () => console.log('i dont know how to handle this error :) We will have some monkeys fix this error soon.'));
     }
 
-    goToUser(userId: number) {
+    public goToUser(userId: number) {
         this.router.navigate([`hub/users/${userId}`]);
     }
 
-    updateUserList(searchString: string) {
+    public updateUserList(searchString: string) {
         this.usersToDisplay = this.users.filter(user => {
             return user.firstName.toLowerCase().includes(searchString.toLowerCase())
                 || searchString === '';
         });
     }
 
-    getJoinedRooms(doors: DoorModel[]): string {
+    public getJoinedRooms(doors: DoorModel[]): string {
         return doors.map(door => door.code).join(', ');
     }
 }

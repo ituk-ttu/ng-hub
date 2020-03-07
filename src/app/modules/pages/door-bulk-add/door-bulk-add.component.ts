@@ -36,40 +36,40 @@ export class DoorBulkAddComponent implements OnInit {
   }
 
 
-  searchRoomsvalue(value: any) {
+  public searchRoomsvalue(value: any) {
     this.roomsSearchResult = this.rooms.filter(e => {
       return (e.includes(value)) && !this.selectedRooms.includes(e);
     });
   }
 
 
-  searchUsers(value: any) {
+  public searchUsers(value: any) {
     this.usersSearchResult = this.users.filter(e => {
       return (e.firstName.includes(value) || e.lastName.includes(value)) && !this.selectedUsers.includes(e);
     });
   }
 
-  removeUserFromSelection(user: User) {
+ public removeUserFromSelection(user: User) {
     this.usersSearchResult.push(user);
     this.selectedUsers = this.selectedUsers.filter(e =>  e !== user);
   }
 
-  addUserToSelection(user: User) {
+  public addUserToSelection(user: User) {
     this.usersSearchResult = this.usersSearchResult.filter(e =>  e !== user);
     this.selectedUsers.push(user);
   }
 
-  removeRoomFromSelection(room: string) {
+  public removeRoomFromSelection(room: string) {
     this.roomsSearchResult.push(room);
     this.selectedRooms = this.selectedRooms.filter(e =>  e !== room);
   }
 
-  addRoomToSelection(room: string) {
+  public addRoomToSelection(room: string) {
     this.roomsSearchResult = this.roomsSearchResult.filter(e =>  e !== room);
     this.selectedRooms.push(room);
   }
 
-  addRoomAccess() {
+  public addRoomAccess() {
     const doorList = [];
     const users: number[] = [];
     this.selectedRooms.forEach(room => {
@@ -84,7 +84,7 @@ export class DoorBulkAddComponent implements OnInit {
         });
   }
 
-  removeRoomAccess() {
+  public removeRoomAccess() {
     alert('Not implemented!');
   }
 }

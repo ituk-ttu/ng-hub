@@ -14,6 +14,7 @@ export class User {
 
   role: string;
   archived: boolean;
+  isMentor: boolean;
 
   status: Status;
   updatedAt: Date;
