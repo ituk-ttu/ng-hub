@@ -32,9 +32,16 @@ export class UsersComponent implements OnInit {
     }
 
     updateUserList(searchString: string) {
+        const lowerCaseSearchString: string = searchString.toLowerCase();
+
         this.usersToDisplay = this.users.filter(user => {
-            return user.firstName.toLowerCase().includes(searchString.toLowerCase())
-                || user.email.toLowerCase().includes(searchString.toLowerCase())
+            const name: string = user.firstName + ' ' + user.lastName;
+
+            return name.toLowerCase().includes(lowerCaseSearchString)
+                || user.email.toLowerCase().includes(lowerCaseSearchString)
+                || user.studentCode.toLowerCase().includes(lowerCaseSearchString)
+                || user.status.statusName.toLowerCase().includes(lowerCaseSearchString)
+                || user.role.toLowerCase().includes(lowerCaseSearchString)
                 || searchString === '';
         });
     }
