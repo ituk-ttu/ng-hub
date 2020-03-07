@@ -1,0 +1,22 @@
+<div class="content-row" *ngIf="events | async as eventsResult">
+    <h2 class="text-center content-row-title mt-5">Tulevased üritused</h2>
+    <div class="mt-5 event card" *ngFor="let event of eventsResult.items; let i = index;">
+        <div class="mt-4 card-content">
+            <div class="event-inner">
+                <div class="event-date">
+                    <p class="event-day">{{ event.start.dateTime | date:'dd'}}
+                    </p>
+                    <p class="event-month">{{ event.start.dateTime | date:'MMM'}}</p></div>
+                <div class="event-content">
+                    <p class="event-time">
+                        <span>
+                            {{ event.start.dateTime | eventDuration: event.end.dateTime }}
+                        </span>
+                    </p>
+                    <p class="event-title">{{ event.summary }}</p>
+                    <p class="event-location">{{ event.location }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

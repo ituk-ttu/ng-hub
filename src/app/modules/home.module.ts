@@ -29,7 +29,10 @@ import { SharedModule } from '../shared/shared.module';
 import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.component';
 import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 import { UserDoorPermissionsBlockComponent } from './components/user-door-permissions-block/user-door-permissions-block.component';
-import {UserPasswordChangeBlockComponent} from './components/user-password-change-block/user-password-change-block.component';
+import { UserPasswordChangeBlockComponent } from './components/user-password-change-block/user-password-change-block.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import {EventDurationPipe} from "../core/pipes/event-duration.pipe";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   imports: [
@@ -40,7 +43,7 @@ import {UserPasswordChangeBlockComponent} from './components/user-password-chang
     NgxSpinnerModule,
     ImageCropperModule,
     SharedModule,
-    BsDropdownModule,
+    BsDropdownModule
   ],
   declarations: [
     GeneralMeetingsComponent,
@@ -48,6 +51,7 @@ import {UserPasswordChangeBlockComponent} from './components/user-password-chang
     AppComponent,
     ContainerComponent,
     ProfilePicSelectComponent,
+    EventDurationPipe,
     LandingPageComponent,
     MentorsComponent,
     SpinnerComponent,
@@ -67,7 +71,9 @@ import {UserPasswordChangeBlockComponent} from './components/user-password-chang
     ApplicationDetailComponent,
     UserDoorPermissionsBlockComponent,
     UserPasswordChangeBlockComponent,
-  ]
+    HomepageComponent,
+  ],
+  providers: [DatePipe]
 })
 export class HomeModule {
 }
