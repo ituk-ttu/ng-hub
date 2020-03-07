@@ -1,0 +1,24 @@
+<ng-container>
+    <div class="container content">
+        <button type="submit" class="btn primary mb-3" (click)="goBack()">Tagasi</button>
+        <h1>{{meeting?.date | date:'dd.MM.yyyy'}}</h1>
+            <div class="row">
+                <div class="col">
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item text" *ngFor="let participation of participations">
+                            {{participation.user.firstName}} {{participation.user.lastName}}
+                            <button class="btn btn-outline-primary float-right btn-add"
+                                    [ngClass]="{'active': participation.participated}"
+                                    (click)="toggleParticipation(participation)">&#10003;
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="from-group float-right mt-3">
+                    <button type="submit" class="btn primary ml-2" (click)="updateParticipants()">Salvesta</button>
+                </div>
+            </div>
+        </div>
+</ng-container>

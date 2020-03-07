@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { GeneralMeeting } from '../../../shared/models/general-meeting.model';
 import { AuthContext } from '../../../core/services/authContext';
 import { GeneralMeetingsHttpService } from "../../../core/http-services/general-meetings.http-service";
+import {DoorPermissionModel} from "../../../shared/models/door-permission.model";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: './general-meetings.component.html',
@@ -16,6 +18,7 @@ export class GeneralMeetingsComponent implements OnInit {
   selectedGeneralMeeting: string;
 
   constructor(public generalMeetingHttpService: GeneralMeetingsHttpService,
+              private router: Router,
               public auth: AuthContext) {
   }
 
@@ -61,6 +64,10 @@ export class GeneralMeetingsComponent implements OnInit {
     this.isNewMeetingFormActive = !this.isNewMeetingFormActive;
     delete this.selectedGeneralMeeting;
   }
+
+    public addParticipants(meeting: GeneralMeeting) {
+        this.router.navigate([`hub/general-meetings/${meeting.id}/participation`]);
+    }
 
  public chooseGeneralMeetingToEdit(meeting: GeneralMeeting) {
     window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });

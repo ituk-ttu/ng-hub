@@ -30,6 +30,7 @@ import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.compon
 import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 import { UserDoorPermissionsBlockComponent } from './components/user-door-permissions-block/user-door-permissions-block.component';
 import {UserPasswordChangeBlockComponent} from './components/user-password-change-block/user-password-change-block.component';
+import {GeneralMeetingParticipationComponent} from "./pages/general-meetings/participation-bulk-add/general-meeting-participation.component";
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import {UserPasswordChangeBlockComponent} from './components/user-password-chang
   ],
   declarations: [
     GeneralMeetingsComponent,
+    GeneralMeetingParticipationComponent,
     CheckEmailComponent,
     AppComponent,
     ContainerComponent,
