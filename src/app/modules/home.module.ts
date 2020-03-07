@@ -29,7 +29,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.component';
 import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 import { UserDoorPermissionsBlockComponent } from './components/user-door-permissions-block/user-door-permissions-block.component';
-import {UserPasswordChangeBlockComponent} from './components/user-password-change-block/user-password-change-block.component';
+import { UserPasswordChangeBlockComponent } from './components/user-password-change-block/user-password-change-block.component';
 
 @NgModule({
   imports: [

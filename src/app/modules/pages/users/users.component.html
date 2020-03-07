@@ -2,6 +2,7 @@
     <div class="container content">
       <div class="header">
         <h1>Kasutajad</h1>
+        <button (click)="generateExcel()" class="btn btn-outline-primary ml-2">Generate Excel</button>
         <input type="search" placeholder="Otsi nime, meili või õppekava järgi" (change)="updateUserList($event.target['value'])" class="input-sm form-control">
       </div>
         <div class="table-responsive">
