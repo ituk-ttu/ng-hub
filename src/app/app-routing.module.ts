@@ -18,7 +18,6 @@ import { DoorBulkAddComponent } from './modules/pages/door-bulk-add/door-bulk-ad
 import { ApplicationDetailComponent } from './modules/pages/application-detail/application-detail.component';
 import { CanAccessMentorGuard } from './core/guards/can-access-mentor.guard';
 import { IsBoardMemberGuard } from './core/guards/is-board-member.guard';
-import {HomepageComponent} from './modules/pages/homepage/homepage.component';
 
 const routes: Routes = [
   {
@@ -26,7 +25,6 @@ const routes: Routes = [
     component: ContainerComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: HomepageComponent },
       { path: 'hub', component: LandingPageComponent },
       { path: 'hub/users', component: UsersComponent },
       { path: 'hub/users/:id', component: UserDetailViewComponent },

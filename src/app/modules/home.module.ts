@@ -30,7 +30,6 @@ import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.compon
 import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 import { UserDoorPermissionsBlockComponent } from './components/user-door-permissions-block/user-door-permissions-block.component';
 import { UserPasswordChangeBlockComponent } from './components/user-password-change-block/user-password-change-block.component';
-import { HomepageComponent } from './pages/homepage/homepage.component';
 import {EventDurationPipe} from "../core/pipes/event-duration.pipe";
 import {DatePipe} from "@angular/common";
 
@@ -71,7 +70,6 @@ import {DatePipe} from "@angular/common";
     ApplicationDetailComponent,
     UserDoorPermissionsBlockComponent,
     UserPasswordChangeBlockComponent,
-    HomepageComponent,
   ],
   providers: [DatePipe]
 })
