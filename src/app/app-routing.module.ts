@@ -16,6 +16,8 @@ import { GeneralMeetingsComponent } from './modules/pages/general-meetings/gener
 import { CheckEmailComponent } from './modules/pages/check-email/check-email.component';
 import { DoorBulkAddComponent } from './modules/pages/door-bulk-add/door-bulk-add.component';
 import { ApplicationDetailComponent } from './modules/pages/application-detail/application-detail.component';
+import { CanAccessMentorGuard } from "./core/guards/can-access-mentor.guard";
+import { ProjectsComponent } from "./modules/pages/projects/projects.component";
 
 const routes: Routes = [
   {
