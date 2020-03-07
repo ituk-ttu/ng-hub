@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, Output, TemplateRef, ViewChild} from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { MyDetailsHttpService } from "../../../core/http-services/my-details.http-service";
+import {MentorProfilesHttpService} from '../../../core/http-services/mentor-profiles.http-service';
 
 @Component({
   selector: 'app-profile-pic-select',
@@ -16,14 +16,14 @@ export class ProfilePicSelectComponent {
   public imageChangedEvent: any = '';
   @Input()
   public userId: number;
-  public croppedImage: any = '';
+  public croppedImage: string;
   public showCropper;
   public showRestore = false;
   @Output() imageSaved = new EventEmitter<string>();
   @Output() close = new EventEmitter<void>();
 
   constructor(private modalService: BsModalService,
-              private mentorHttpService: MyDetailsHttpService) {
+              private mentorHttpService: MentorProfilesHttpService) {
   }
 
 
@@ -54,7 +54,10 @@ export class ProfilePicSelectComponent {
 
   public save(): void {
     this.imageChangedEvent = this.croppedImage;
-    this.closeModal();
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
+    this.modalRef = undefined;
     this.imageSaved.emit(this.croppedImage);
   }
 
@@ -65,7 +68,7 @@ export class ProfilePicSelectComponent {
 
   public restore(): void {
     this.showRestore = false;
-    this.mentorHttpService.getMentorProfile(this.userId)
+    this.mentorHttpService.findMentorByUserId(this.userId)
       .subscribe((response) => this.imageChangedEvent = response.picture);
   }
 

@@ -11,21 +11,6 @@ export class MyDetailsHttpService {
   constructor(private http: HttpClient) {
   }
 
-  public getMentorProfile(id: number): Observable<MentorProfileModel> {
-    const url = `${environment.API_URL}/mentor/${id}`;
-    return this.http.get<MentorProfileModel>(url);
-  }
-
-  public saveMentorProfile(mentorProfile: MentorProfileModel): Observable<any> {
-    const url = `${environment.API_URL}/mentor`;
-    return this.http.put<MentorProfileModel>(url, { ...mentorProfile, user: { id: mentorProfile.user.id } });
-  }
-
-  public saveProfilePic(pic: any): Observable<any> {
-    const url = `${environment.API_URL}/mentor/user/picture/`;
-    return this.http.post<MentorProfileModel>(url, pic);
-  }
-
   public updatePassword(id: number, password): Observable<MentorProfileModel> {
     const url = `${environment.API_URL}/user/${id}/new-password`;
     return this.http.put<MentorProfileModel>(url,

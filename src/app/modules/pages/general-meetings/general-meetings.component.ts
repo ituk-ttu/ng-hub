@@ -12,17 +12,18 @@ export class GeneralMeetingsComponent implements OnInit {
 
   generalMeetings = this.generalMeetingHttpService.getAllMeetings();
   newMeetingForm: FormGroup;
-  private isNewMeetingFormActive = false;
-  private selectedGeneralMeeting: string;
+  isNewMeetingFormActive = false;
+  selectedGeneralMeeting: string;
 
-  constructor(public generalMeetingHttpService: GeneralMeetingsHttpService, public auth: AuthContext) {
+  constructor(public generalMeetingHttpService: GeneralMeetingsHttpService,
+              public auth: AuthContext) {
   }
 
   ngOnInit(): void {
     this.newMeetingForm = this.createFormGroup();
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.selectedGeneralMeeting ?
       this.generalMeetingHttpService.updateMeeting(this.newMeetingForm.value, this.selectedGeneralMeeting)
         .subscribe(() => {
@@ -34,7 +35,7 @@ export class GeneralMeetingsComponent implements OnInit {
         });
   }
 
-  createFormGroup(meeting?: GeneralMeeting) {
+  private createFormGroup(meeting?: GeneralMeeting) {
     return new FormGroup({
       date: new FormControl(meeting ? meeting.date : null),
       election: new FormControl(meeting ? meeting.election : null),
@@ -50,18 +51,18 @@ export class GeneralMeetingsComponent implements OnInit {
     this.generalMeetings = this.generalMeetingHttpService.getAllMeetings();
   }
 
-  hideFrom() {
+  public hideFrom() {
     this.isNewMeetingFormActive = false;
     this.newMeetingForm.reset();
     delete this.selectedGeneralMeeting;
   }
 
-  toggleNewMeetingForm() {
+  public toggleNewMeetingForm() {
     this.isNewMeetingFormActive = !this.isNewMeetingFormActive;
     delete this.selectedGeneralMeeting;
   }
 
-  chooseGeneralMeetingToEdit(meeting: GeneralMeeting) {
+ public chooseGeneralMeetingToEdit(meeting: GeneralMeeting) {
     window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
     this.isNewMeetingFormActive = false;
     this.selectedGeneralMeeting = meeting.id;
@@ -69,7 +70,7 @@ export class GeneralMeetingsComponent implements OnInit {
     this.newMeetingForm.addControl('id', new FormControl(meeting.id));
   }
 
-  copyProtocolUrlToClipboard(protocolLink: string) {
+  public copyProtocolUrlToClipboard(protocolLink: string) {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.opacity = '0';

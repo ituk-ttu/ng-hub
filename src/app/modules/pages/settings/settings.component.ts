@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../../shared/models/user.model';
-import { AuthContext } from '../../../core/services/authContext';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MyDetailsHttpService } from "../../../core/http-services/my-details.http-service";
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../../shared/models/user.model';
+import {AuthContext} from '../../../core/services/authContext';
 
 @Component({
   selector: 'app-settings',
@@ -12,49 +10,14 @@ import { MyDetailsHttpService } from "../../../core/http-services/my-details.htt
 
 export class SettingsComponent implements OnInit {
 
-  public passwordChangeSuccessful = true;
   public user: User = {} as User;
-  public newPasswordForm = new FormGroup({
-      oldPassword: new FormControl('', Validators.required),
-      newPassword: new FormControl('', Validators.required),
-      newPasswordConfirmation: new FormControl('', Validators.required),
-    },
-    this.passwordMatchValidator
-  );
-  public sessions = this.myDetailsHttpService.getSessions();
 
-  constructor(public authContext: AuthContext, public myDetailsHttpService: MyDetailsHttpService) {
-  }
-
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.newPasswordForm.controls;
-  }
-
-  passwordMatchValidator(frm: FormGroup) {
-    return frm.controls.newPassword.value === frm.controls.newPasswordConfirmation.value ? null : { mismatch: true };
+  constructor(public authContext: AuthContext,
+  ) {
   }
 
   ngOnInit(): void {
     this.user = { ...this.authContext.user };
   }
 
-  resetUser() {
-    this.user = { ...this.authContext.user };
-  }
-
-  submitUser() {
-    // TODO
-  }
-
-  submitNewPassword() {
-    console.log(this.newPasswordForm.value);
-    this.myDetailsHttpService.updatePassword(this.authContext.user.id, this.newPasswordForm.value)
-      .subscribe(() => {
-        this.passwordChangeSuccessful = true;
-      }, () => {
-        this.passwordChangeSuccessful = false;
-        setTimeout(() => this.passwordChangeSuccessful = true, 3000);
-      });
-  }
 }

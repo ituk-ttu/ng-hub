@@ -9,7 +9,7 @@ import { ApplicationModel } from "../../../shared/models/application.model";
   styleUrls: ['./application-detail.component.sass']
 })
 export class ApplicationDetailComponent implements OnInit {
-  private application: ApplicationModel;
+  application: ApplicationModel;
 
   constructor(private route: ActivatedRoute, public applicationHttpService: ApplicationHttpService) {
   }

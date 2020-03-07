@@ -1,5 +1,5 @@
 <div class="mentor"  [ngClass]="{'disabled': !mentor.enabled}" >
-    <img src="{{mentor.picture}}" alt="Profile pic">
+    <img src="{{mentor.picture || 'https://www.productionhouse.ee/wp-content/uploads/2017/10/placeholder.jpg'}}" alt="Profile pic">
     <div class="mentor-content">
         <p class="mentor-name mb-0">
             {{mentor.user.firstName }} {{mentor.user.lastName }}
@@ -7,7 +7,7 @@
         </p>
         <p class="mentor-curriculum my-1">{{mentor.user.curriculum}}</p>
         <p class="mentor-description mb-0" [innerHTML]="mentor.text"></p>
-        <a (click)="toggleGif()" class="mentor-gif"><em>Lemmik GIF +</em></a>
+        <a *ngIf="mentor.gif" (click)="toggleGif()" class="mentor-gif"><em>Lemmik GIF +</em></a>
         <img  *ngIf="showGif" src="{{mentor.gif}}" alt="Mentors fav gif">
         <p class="mentor-quote">
             <em>{{mentor.quote}}</em>

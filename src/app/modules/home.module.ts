@@ -28,6 +28,8 @@ import { MentorCardComponent } from './components/mentor-card/mentor-card.compon
 import { SharedModule } from '../shared/shared.module';
 import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.component';
 import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
+import { UserDoorPermissionsBlockComponent } from './components/user-door-permissions-block/user-door-permissions-block.component';
+import {UserPasswordChangeBlockComponent} from './components/user-password-change-block/user-password-change-block.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { UserSelectComponent } from './components/user-select/user-select.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
@@ -73,6 +75,8 @@ import {MatInputModule} from "@angular/material/input";
     ApplicationDetailComponent,
     ProjectCardComponent,
     UserSelectComponent,
+    UserDoorPermissionsBlockComponent,
+    UserPasswordChangeBlockComponent,
   ]
 })
 export class HomeModule {
