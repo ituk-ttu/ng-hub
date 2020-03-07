@@ -1,5 +1,5 @@
 <div class="row">
-    <section class="col-6">
+    <section class="col-lg-5 col-md-12 order-1 order-lg-0">
         <div class="mx-0 row justify-content-between">
             <h1>Ressursid</h1>
             <div class="btn primary mb-3"
@@ -46,7 +46,7 @@
         </div>
     </section>
     <div class="col-1"></div>
-    <div class="col-5">
+    <div class="col-lg-5 col-md-12 order-0 order-lg-1">
         <div class="card">
             <h2 class="text-center content-row-title">Tulevased üritused</h2>
             <div class="card-body">
@@ -65,6 +65,16 @@
                                 <p class="event-location">{{ event.location }}</p>
                             </div>
                         </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="card" *ngIf="birthdays">
+            <h2 class="text-center content-row-title">Tänased sünnipäevad</h2>
+            <div class="card-body">
+                <ng-container *ngIf="birthdays | async as birthdaysResult">
+                    <div class="birthday" *ngFor="let birthday of birthdaysResult; let i = index;">
+                        <p class="birthday-name">{{ birthday }}</p>
                     </div>
                 </ng-container>
             </div>

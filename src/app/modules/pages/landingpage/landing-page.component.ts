@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { AuthContext } from '../../../core/services/authContext';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ResourcesContentModel } from '../../../shared/models/resources-content.model';
-import { ResourcesHttpService } from "../../../core/http-services/resources.http-service";
-import {EventsHttpService} from "../../../core/http-services/events.http-service";
+import { ResourcesHttpService } from '../../../core/http-services/resources.http-service';
+import { EventsHttpService } from '../../../core/http-services/events.http-service';
+import { BirthdaysHttpService } from '../../../core/http-services/birthdays.http-service';
 
 @Component({
   templateUrl: './landing-page.component.html'
@@ -17,10 +18,12 @@ export class LandingPageComponent {
   private CALENDAR_ID = 'g86lrthmecu19gh7arvcj76f08@group.calendar.google.com/';
   private GOOGLE_CALENDAR_API_KEY = 'AIzaSyATtCseJ8dZJaJ7XsLTIXfCbfpYOseGgHM';
   public events = this.eventsHttpService.getAllEvents(this.CALENDAR_ID, this.GOOGLE_CALENDAR_API_KEY);
+  public birthdays = this.birthdaysHttpService.getBirthdays();
 
   constructor(private resourcesService: ResourcesHttpService,
               public auth: AuthContext,
-              private eventsHttpService: EventsHttpService) {
+              private eventsHttpService: EventsHttpService,
+              private birthdaysHttpService: BirthdaysHttpService) {
     this.resourceFrom = this.createFormGroup();
   }
 

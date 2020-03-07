@@ -10,6 +10,7 @@ import { MentorProfilesHttpService } from './http-services/mentor-profiles.http-
 import { GeneralMeetingsHttpService } from './http-services/general-meetings.http-service';
 import { ApplicationHttpService } from './http-services/application.http-service';
 import {EventsHttpService} from './http-services/events.http-service';
+import {BirthdaysHttpService} from './http-services/birthdays.http-service';
 
 @NgModule({
   providers: [
@@ -20,6 +21,7 @@ import {EventsHttpService} from './http-services/events.http-service';
     ResourcesHttpService,
     MentorProfilesHttpService,
     EventsHttpService,
+    BirthdaysHttpService,
     httpInterceptorProviders,
     ApplicationHttpService,
     GeneralMeetingsHttpService,
