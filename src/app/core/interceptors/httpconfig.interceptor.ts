@@ -10,7 +10,7 @@ export class NoopInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token: string = localStorage.getItem('token');
-    if (token && !request.url.includes('/login')) {
+    if (token && !request.url.includes('/login') && !request.url.includes('googleapis')) {
       request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' +  token) });
     }
 

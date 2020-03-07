@@ -5,7 +5,6 @@ import {Observable} from 'rxjs';
 import {DoorPermissionModel} from '../../shared/models/door-permission.model';
 import {DoorModel} from '../../shared/models/door.model';
 import {AddDoorModel} from '../../shared/models/add-door.model';
-import {MentorProfileModel} from '../../shared/models/mentor-profile.model';
 
 @Injectable({
     providedIn: 'root'

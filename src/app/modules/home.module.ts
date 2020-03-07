@@ -30,6 +30,8 @@ import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.compon
 import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 import { UserDoorPermissionsBlockComponent } from './components/user-door-permissions-block/user-door-permissions-block.component';
 import { UserPasswordChangeBlockComponent } from './components/user-password-change-block/user-password-change-block.component';
+import {EventDurationPipe} from "../core/pipes/event-duration.pipe";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   imports: [
@@ -40,7 +42,7 @@ import { UserPasswordChangeBlockComponent } from './components/user-password-cha
     NgxSpinnerModule,
     ImageCropperModule,
     SharedModule,
-    BsDropdownModule,
+    BsDropdownModule
   ],
   declarations: [
     GeneralMeetingsComponent,
@@ -48,6 +50,7 @@ import { UserPasswordChangeBlockComponent } from './components/user-password-cha
     AppComponent,
     ContainerComponent,
     ProfilePicSelectComponent,
+    EventDurationPipe,
     LandingPageComponent,
     MentorsComponent,
     SpinnerComponent,
@@ -67,7 +70,8 @@ import { UserPasswordChangeBlockComponent } from './components/user-password-cha
     ApplicationDetailComponent,
     UserDoorPermissionsBlockComponent,
     UserPasswordChangeBlockComponent,
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class HomeModule {
 }
