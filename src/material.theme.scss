@@ -1,0 +1,81 @@
+@import '~@angular/material/theming';
+
+$mat-ituk: (
+        50 : #f1e0e8,
+        100 : #dbb3c6,
+        200 : #c380a1,
+        300 : #ab4d7b,
+        400 : #99265e,
+        500 : #870042,
+        600 : #7f003c,
+        700 : #740033,
+        800 : #6a002b,
+        900 : #57001d,
+        A100 : #ff89a5,
+        A200 : #ff567e,
+        A400 : #ff2358,
+        A700 : #ff0944,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #ffffff,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #ffffff,
+                A700 : #ffffff,
+        )
+);
+
+$mat-ituk-accent: (
+        50 : #f1e0f0,
+        100 : #dbb3da,
+        200 : #c380c2,
+        300 : #ab4daa,
+        400 : #992697,
+        500 : #870085,
+        600 : #7f007d,
+        700 : #740072,
+        800 : #6a0068,
+        900 : #570055,
+        A100 : #ff89fc,
+        A200 : #ff56fa,
+        A400 : #ff23f9,
+        A700 : #ff09f8,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #ffffff,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #ffffff,
+                A700 : #ffffff,
+        )
+);
+
+
+@include mat-core();
+
+$ituk-app-primary: mat-palette($mat-ituk);
+$ituk-app-accent:  mat-palette($mat-ituk-accent);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ituk-app-theme: mat-light-theme($ituk-app-primary, $ituk-app-accent);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ituk-app-theme);

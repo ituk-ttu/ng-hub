@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectHttpService} from "../../../core/http-services/project.http-service";
+import {ProjectHttpService} from '../../../core/http-services/project.http-service';
 import * as moment from 'moment';
-import {Project} from "../../../shared/models/project.model";
-import {FormControl, FormGroup} from "@angular/forms";
-import {AuthContext} from "../../../core/services/authContext";
+import {Project} from '../../../shared/models/project.model';
+import {FormControl, FormGroup, FormArray, FormBuilder, Validators} from '@angular/forms';
+import {AuthContext} from '../../../core/services/authContext';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class ProjectsComponent implements OnInit {
   private isEditFormViewActive = false;
   private selectedProject: string;
 
-  constructor(public projectHttpService: ProjectHttpService, public auth: AuthContext) {
+  constructor(public projectHttpService: ProjectHttpService, private fb: FormBuilder, public auth: AuthContext) {
   }
 
   ngOnInit() {
@@ -38,17 +38,53 @@ export class ProjectsComponent implements OnInit {
   }
 
   createFormGroup(project?: Project) {
-    return new FormGroup({
-      title: new FormControl(project ? project.title : null),
-      dateStart: new FormControl(project ? project.dateStart : null),
-      dateEnd: new FormControl(project ? project.dateEnd : null),
-      description: new FormControl(project ? project.description : null),
-      projectLead: new FormControl(project ? project.projectLead : null),
-      members: new FormControl(project ? project.members : null),
-      budget: new FormControl(project ? project.budget : null),
-      summary: new FormControl(project ? project.summary : null),
-      userControl: new FormControl()
+    return this.fb.group({
+      title: [project ? project.title : null, Validators.required],
+      multiDayEvent: [''],
+      projectLead: [project ? project.projectLead : null, Validators.required],
+      dateStart: [project ? project.dateStart : null, Validators.required],
+      dateEnd: [project ? project.dateEnd : null],
+      description: [project ? project.description : null, Validators.required],
+      positiveSummary: [project ? project.summary.positiveSummary : null],
+      negativeSummary: [project ? project.summary.negativeSummary : null],
+      members: this.fb.array([
+          this.fb.control(project ? project.members : null)
+      ]),
+      budgetRows: this.fb.array([
+        this.createBudgetRow()
+      ]),
     });
+  }
+
+  get members() {
+    return this.editProjectForm.get('members') as FormArray;
+  }
+
+  createMember(): FormGroup {
+    return this.fb.group({
+      user: null,
+      name: ''
+    });
+  }
+
+  addMember(): void {
+    this.members.push(this.createMember());
+  }
+
+  get budgetRows() {
+    return this.editProjectForm.get('budgetRows') as FormArray;
+  }
+
+  createBudgetRow(): FormGroup {
+    return this.fb.group({
+      description: '',
+      itukCost: '',
+      facultyCost: ''
+    });
+  }
+
+  addBudgetRow(): void {
+    this.budgetRows.push(this.createBudgetRow());
   }
 
   private resetFrom() {
@@ -68,22 +104,24 @@ export class ProjectsComponent implements OnInit {
     delete this.selectedProject;
   }
 
-
   private populateDateMap(projects: Project[]) {
     this.projectDateMap.thisWeek = projects.filter(project =>
-      moment(project.dateStart).isAfter(moment().subtract(7, "days"))
+      moment(project.dateStart).isAfter(moment().subtract(7, 'days'))
     );
 
     this.projectDateMap.thisMonth = projects.filter(project =>
       moment(project.dateStart).isBetween(
-        moment().subtract(1, "month"),
-        moment().subtract(7, "days")
+        moment().subtract(1, 'month'),
+        moment().subtract(7, 'days')
       )
     );
 
     this.projectDateMap.other = projects.filter(project =>
-      moment(project.dateStart).isBefore(moment().subtract(1, "month"))
+      moment(project.dateStart).isBefore(moment().subtract(1, 'month'))
     );
   }
+
+
+
 
 }

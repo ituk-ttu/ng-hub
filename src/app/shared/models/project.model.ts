@@ -1,6 +1,7 @@
 import {User} from './user.model';
 import {ProjectBudget} from './project-budget.model';
 import {ProjectSummary} from './project-summary.model';
+import {ProjectMember} from './project-member.model';
 
 export class Project {
     id: number;
@@ -9,7 +10,7 @@ export class Project {
     dateEnd: string; // Date
     description: string;
     projectLead: User;
-    members: User[];
+    members: ProjectMember[];
     budget: ProjectBudget;
     summary: ProjectSummary;
 }

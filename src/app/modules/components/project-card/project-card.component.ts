@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Project} from "../../../shared/models/project.model";
+import {Project} from '../../../shared/models/project.model';
 import * as moment from 'moment';
 import 'moment/locale/et';
 
