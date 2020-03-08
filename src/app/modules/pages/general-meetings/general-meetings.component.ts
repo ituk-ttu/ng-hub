@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { GeneralMeeting } from '../../../shared/models/general-meeting.model';
 import { AuthContext } from '../../../core/services/authContext';
 import { GeneralMeetingsHttpService } from '../../../core/http-services/general-meetings.http-service';
+import {DoorPermissionModel} from "../../../shared/models/door-permission.model";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: './general-meetings.component.html',
@@ -10,24 +12,26 @@ import { GeneralMeetingsHttpService } from '../../../core/http-services/general-
 })
 export class GeneralMeetingsComponent implements OnInit {
 
-  constructor(public generalMeetingHttpService: GeneralMeetingsHttpService,
-              public auth: AuthContext) {
-  }
-
   generalMeetings = this.generalMeetingHttpService.getAllMeetings();
   newMeetingForm: FormGroup;
   isNewMeetingFormActive = false;
   selectedGeneralMeeting: string;
 
-  private static createFormGroup(meeting?: GeneralMeeting) {
-    return new FormGroup({
-      date: new FormControl(meeting ? meeting.date : null),
-      election: new FormControl(meeting ? meeting.election : null),
-      name: new FormControl(meeting ? meeting.name : null),
-      protocolUrl: new FormControl(meeting ? meeting.protocolUrl : null),
-      urgent: new FormControl(meeting ? meeting.urgent : null)
-    });
+  constructor(public generalMeetingHttpService: GeneralMeetingsHttpService,
+              private router: Router,
+              public auth: AuthContext) {
+
   }
+
+    private static createFormGroup(meeting?: GeneralMeeting) {
+        return new FormGroup({
+            date: new FormControl(meeting ? meeting.date : null),
+            election: new FormControl(meeting ? meeting.election : null),
+            name: new FormControl(meeting ? meeting.name : null),
+            protocolUrl: new FormControl(meeting ? meeting.protocolUrl : null),
+            urgent: new FormControl(meeting ? meeting.urgent : null)
+        });
+    }
 
   ngOnInit(): void {
     this.newMeetingForm = GeneralMeetingsComponent.createFormGroup();
@@ -62,6 +66,10 @@ export class GeneralMeetingsComponent implements OnInit {
     this.isNewMeetingFormActive = !this.isNewMeetingFormActive;
     delete this.selectedGeneralMeeting;
   }
+
+    public addParticipants(meeting: GeneralMeeting) {
+        this.router.navigate([`hub/general-meetings/${meeting.id}/participation`]);
+    }
 
  public chooseGeneralMeetingToEdit(meeting: GeneralMeeting) {
     window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });

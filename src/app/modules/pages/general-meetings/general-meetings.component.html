@@ -24,15 +24,19 @@
                     <tbody>
                     <ng-container *ngFor="let meeting of generalMeetingsResult; let i = index;">
                         <tr>
-                            <td> {{getName(meeting)}} </td>
-                            <td class="no-br">{{meeting.date | date:'dd-MM-yyyy'}}</td>
-                            <td class="no-br">{{meeting.createdAt | date:'dd-MM-yyyy'}}</td>
+                            <td>{{getName(meeting)}}</td>
+                            <td class="no-br">{{meeting.date | date:'dd.MM.yyyy'}}</td>
+                            <td class="no-br">{{meeting.createdAt | date:'dd.MM.yyyy'}}</td>
                             <td>{{meeting.election ? 'Jah' : ''}}</td>
                             <td>
                                 <div class="btn-group float-right" role="group">
                                     <button class="btn primary"
                                             (click)="copyProtocolUrlToClipboard(meeting.protocolUrl)">Kopeeri
                                         protokolli URL
+                                    </button>
+                                    <button *ngIf="auth.user.role === 'ADMIN' || auth.user.role === 'BOARD'"
+                                            class="btn btn-outline-primary"
+                                            (click)="addParticipants(meeting)">Lisa osalejad
                                     </button>
                                     <button *ngIf="auth.user.role === 'ADMIN' || auth.user.role === 'BOARD'"
                                             class="btn btn-outline-primary" (click)="chooseGeneralMeetingToEdit(meeting)">

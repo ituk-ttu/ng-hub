@@ -32,6 +32,7 @@ import { UserDoorPermissionsBlockComponent } from './components/user-door-permis
 import { UserPasswordChangeBlockComponent } from './components/user-password-change-block/user-password-change-block.component';
 import {EventDurationPipe} from "../core/pipes/event-duration.pipe";
 import {DatePipe} from "@angular/common";
+import {GeneralMeetingParticipationComponent} from "./pages/general-meetings/participation-bulk-add/general-meeting-participation.component";
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import {DatePipe} from "@angular/common";
   ],
   declarations: [
     GeneralMeetingsComponent,
+    GeneralMeetingParticipationComponent,
     CheckEmailComponent,
     AppComponent,
     ContainerComponent,
