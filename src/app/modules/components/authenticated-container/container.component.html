@@ -11,7 +11,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                       *ngIf="authContext.user.isMentor || authContext.user.role === 'BOARD' || authContext.user.role === 'ADMIN'"
+                       *ngIf="authContext.user.mentor || authContext.user.role === 'BOARD' || authContext.user.role === 'ADMIN'"
                        routerLink="/hub/mentors">Mentorid</a>
                 </li>
                 <li class="nav-item">
@@ -20,7 +20,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link"
-                       *ngIf="authContext.user.role === 'ADMIN' || authContext.user.role === 'BOARD'  || authContext.user.isMentor"
+                       *ngIf="authContext.user.role === 'ADMIN' || authContext.user.role === 'BOARD'  || authContext.user.mentor"
                        routerLink="/hub/applications">Avaldused</a>
                 </li>
                 <li class="nav-item">

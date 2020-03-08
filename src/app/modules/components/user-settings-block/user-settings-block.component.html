@@ -37,7 +37,15 @@
                             </select>
                         </label>
                     </div>
+                    <label class="mt-2 font-weight-bold parent-width">
+                        <app-boolean-selector label="Mentor"
+                                              [isTrue]="user.mentor"
+                                              (setValue)="setIsMentor($event)">
+                        </app-boolean-selector>
+                    </label>
                 </div>
+
+
 
                 <div class="col">
                     <label class="font-weight-bold parent-width">Perekonnanimi

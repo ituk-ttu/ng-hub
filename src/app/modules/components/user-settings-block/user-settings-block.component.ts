@@ -44,4 +44,10 @@ export class UserSettingsBlockComponent implements OnInit {
   navigateBack() {
     this.router.navigate(['/hub/users']);
   }
+
+  public setIsMentor(status: boolean) {
+    if (this.user) {
+      this.user.mentor = status;
+    }
+  }
 }
