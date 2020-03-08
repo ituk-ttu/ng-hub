@@ -1,5 +1,7 @@
 import {User} from './user.model';
 import {Project} from './project.model';
+import {ProjectMember} from "./project-member.model";
+import {ProjectBudgetRow} from "./project-budget-row.model";
 
 export class ProjectSummary {
     id: number;
@@ -9,4 +11,6 @@ export class ProjectSummary {
     project: Project;
     createdBy: User;
     confirmedBy: User;
+    members: ProjectMember[];
+    budgetRows: ProjectBudgetRow[];
 }

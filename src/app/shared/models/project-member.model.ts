@@ -1,9 +1,9 @@
 import {User} from './user.model';
-import {Project} from './project.model';
+import {ProjectSummary} from "./project-summary.model";
 
 export class ProjectMember {
     id: number;
-    project: Project;
+    projectSummary: ProjectSummary;
     user: User;
     name: string;
 }

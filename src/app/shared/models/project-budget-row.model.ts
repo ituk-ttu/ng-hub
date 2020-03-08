@@ -1,8 +1,8 @@
-import {ProjectBudget} from './project-budget.model';
+import {ProjectSummary} from "./project-summary.model";
 
 export class ProjectBudgetRow {
     id: number;
-    projectBudget: ProjectBudget;
+    projectSummary: ProjectSummary;
     description: string;
     itukCost: number;
     facultyCost: number;
