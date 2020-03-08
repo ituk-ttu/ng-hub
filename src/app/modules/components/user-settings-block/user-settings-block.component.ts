@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../../shared/models/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserHttpService } from "../../../core/http-services/user.http-service";
+import { UserHttpService } from '../../../core/http-services/user.http-service';
 import { AuthContext } from '../../../core/services/authContext';
 
 @Component({
@@ -43,6 +43,18 @@ export class UserSettingsBlockComponent implements OnInit {
 
   navigateBack() {
     this.router.navigate(['/hub/users']);
+  }
+
+  canEdit(): boolean {
+    if (this.selfEditing) {
+      return true;
+    } else {
+      return this.authContext.user.role === 'ADMIN' || this.authContext.user.role === 'BOARD';
+    }
+  }
+
+  canChangeStatus(): boolean {
+      return this.authContext.user.role === 'ADMIN' || this.authContext.user.role === 'BOARD';
   }
 
   public setIsMentor(status: boolean) {

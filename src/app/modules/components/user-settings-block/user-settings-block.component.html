@@ -13,24 +13,24 @@
             <div class="row">
                 <div class="col">
                     <label class="font-weight-bold parent-width">Eesnimi
-                        <input type="text" class="form-control" [(ngModel)]="user.firstName">
+                        <input type="text" class="form-control" [(ngModel)]="user.firstName" [disabled]="!canEdit()">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">ID kood
-                        <input type="text" class="form-control" [(ngModel)]="user.personalCode">
+                        <input type="text" class="form-control" [(ngModel)]="user.personalCode" [disabled]="!canEdit()">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">Õppekava
-                        <input type="text" class="form-control" [(ngModel)]="user.curriculum">
+                        <input type="text" class="form-control" [(ngModel)]="user.curriculum" [disabled]="!canEdit()">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">IBAN
-                        <input type="text" class="form-control" [(ngModel)]="user.iban">
+                        <input type="text" class="form-control" [(ngModel)]="user.iban" [disabled]="!canEdit()">
                     </label>
 
                     <div class="mt-2 input-group">
                         <label class="font-weight-bold parent-width">Roll
-                            <select  [disabled]="selfEditing && !(authContext.user.role === 'ADMIN' || authContext.user.role === 'BOARD')" (ngModelChange)="roleChanged = true" class="custom-select form-control" [(ngModel)]="user.role">
+                            <select [disabled]="!canChangeStatus()" (ngModelChange)="roleChanged = true" class="custom-select form-control" [(ngModel)]="user.role">
                                 <option value="ADMIN">Administraator</option>
                                 <option value="BOARD">Juhatuse liige</option>
                                 <option value="MEMBER">Liige</option>
@@ -40,7 +40,8 @@
                     <label class="mt-2 font-weight-bold parent-width">
                         <app-boolean-selector label="Mentor"
                                               [isTrue]="user.mentor"
-                                              (setValue)="setIsMentor($event)">
+                                              (setValue)="setIsMentor($event)"
+                                              [disabled]="!canChangeStatus()">
                         </app-boolean-selector>
                     </label>
                 </div>
@@ -49,24 +50,24 @@
 
                 <div class="col">
                     <label class="font-weight-bold parent-width">Perekonnanimi
-                        <input type="text" class="form-control" [(ngModel)]="user.lastName">
+                        <input type="text" class="form-control" [(ngModel)]="user.lastName" [disabled]="!canEdit()">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">E-mail
                         <input type="text"
-                               class="form-control" [(ngModel)]="user.email">
+                               class="form-control" [(ngModel)]="user.email" [disabled]="!canEdit()">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">Tudengikood
-                        <input type="text" class="form-control" [(ngModel)]="user.studentCode">
+                        <input type="text" class="form-control" [(ngModel)]="user.studentCode" [disabled]="!canEdit()">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">Uksekaardi number
-                        <input type="text" class="form-control" [(ngModel)]="user.cardNumber">
+                        <input type="text" class="form-control" [(ngModel)]="user.cardNumber" [disabled]="!canEdit()">
                     </label>
 
                     <label class="mt-2 font-weight-bold parent-width">Staatus
-                        <select  [disabled]="selfEditing && !(authContext.user.role === 'ADMIN' || authContext.user.role === 'BOARD')"
+                        <select  [disabled]="!canChangeStatus()"
                                  class="custom-select form-control" [(ngModel)]="user.status.id">
                             <option value="1">Täisliige</option>
                             <option value="2">Noorliige</option>

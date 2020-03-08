@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class BooleanSelectorComponent implements OnInit {
   @Input() isTrue: boolean;
   @Input() label: string;
+  @Input() disabled = false;
   @Output() setValue: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
