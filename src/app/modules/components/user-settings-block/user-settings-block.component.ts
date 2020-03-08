@@ -17,6 +17,7 @@ export class UserSettingsBlockComponent implements OnInit {
   @Input()
   private selfEditing: boolean;
   roleChanged: boolean;
+  mentorName: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -27,6 +28,9 @@ export class UserSettingsBlockComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserById(this.userId).subscribe((result) => {
       this.user = result;
+    });
+    this.userService.getMentorName(this.userId).subscribe((result) => {
+      this.mentorName = result.name;
     });
   }
 

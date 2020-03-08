@@ -4,6 +4,7 @@ import {Observable, throwError} from 'rxjs';
 import { User } from '../../shared/models/user.model';
 import { environment } from '../../../environments/environment';
 import {catchError} from 'rxjs/operators';
+import { MentorName } from '../../shared/models/mentor-name.model';
 
 @Injectable()
 export class UserHttpService {
@@ -43,5 +44,10 @@ export class UserHttpService {
   public sendNewPasswordToEmail(email: string): Observable<User> {
     const url = `${environment.API_URL}/user/recovery/${email}`;
     return this.http.get<User>(url);
+  }
+
+  public getMentorName(userId: number): Observable<MentorName> {
+    const url = `${environment.API_URL}/user/${userId}/mentor-name`;
+    return this.http.get<MentorName>(url);
   }
 }
