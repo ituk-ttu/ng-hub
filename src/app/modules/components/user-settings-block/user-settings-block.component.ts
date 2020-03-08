@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../../shared/models/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserHttpService } from "../../../core/http-services/user.http-service";
+import { AuthContext } from '../../../core/services/authContext';
 
 @Component({
   selector: 'app-user-settings-block',
@@ -19,7 +20,8 @@ export class UserSettingsBlockComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private userService: UserHttpService) {
+              private userService: UserHttpService,
+              private authContext: AuthContext) {
   }
 
   ngOnInit() {
@@ -29,9 +31,7 @@ export class UserSettingsBlockComponent implements OnInit {
   }
 
   updateUser() {
-    if (!this.selfEditing) {
-      this.userService.putUser(this.user).subscribe(() => this.navigateBack());
-    }
+    this.userService.putUser(this.user).subscribe(() => this.navigateBack());
     if (this.roleChanged) {
       this.userService.changeRole(this.user.role, this.user.id).subscribe();
     }
