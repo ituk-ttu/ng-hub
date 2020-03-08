@@ -9,7 +9,6 @@ import { ResourcesHttpService } from './http-services/resources.http-service';
 import { MentorProfilesHttpService } from './http-services/mentor-profiles.http-service';
 import { GeneralMeetingsHttpService } from './http-services/general-meetings.http-service';
 import { ApplicationHttpService } from './http-services/application.http-service';
-import { ProjectHttpService } from './http-services/project.http-service';
 
 @NgModule({
   providers: [
@@ -19,6 +18,8 @@ import { ProjectHttpService } from './http-services/project.http-service';
     RequestInFlightService,
     ResourcesHttpService,
     MentorProfilesHttpService,
+    EventsHttpService,
+    BirthdaysHttpService,
     httpInterceptorProviders,
     ApplicationHttpService,
     GeneralMeetingsHttpService,

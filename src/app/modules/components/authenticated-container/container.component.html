@@ -11,7 +11,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                       *ngIf="authContext.user.isMentor || authContext.user.role === 'BOARD'"
+                       *ngIf="authContext.user.mentor || authContext.user.role === 'BOARD' || authContext.user.role === 'ADMIN'"
                        routerLink="/hub/mentors">Mentorid</a>
                 </li>
                 <li class="nav-item">
@@ -19,13 +19,19 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/hub/applications">Avaldused</a>
+                    <a class="nav-link"
+                       *ngIf="authContext.user.role === 'ADMIN' || authContext.user.role === 'BOARD'  || authContext.user.mentor"
+                       routerLink="/hub/applications">Avaldused</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/hub/door-permissions">Ukseõigused</a>
+                    <a class="nav-link"
+                       *ngIf="authContext.user.role === 'ADMIN' || authContext.user.role === 'BOARD'"
+                       routerLink="/hub/door-permissions">Ukseõigused</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/hub/door-bulk-add">Ukseõiguste lisamine</a>
+                    <a class="nav-link"
+                       *ngIf="authContext.user.role === 'ADMIN' || authContext.user.role === 'BOARD'"
+                       routerLink="/hub/door-bulk-add">Ukseõiguste lisamine</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/hub/general-meetings">Üldkoosolekud</a>

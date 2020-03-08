@@ -4,10 +4,12 @@
   <button
       [ngClass]="{'btn': true, 'primary': isTrue}"
       (click)="this.setValue.emit(true)"
+      [disabled]="disabled"
   >Jah</button>
 
   <button
       [ngClass]="{'btn': true, 'primary': !isTrue}"
       (click)="this.setValue.emit(false)"
+      [disabled]="disabled"
   >Ei</button>
 </div>

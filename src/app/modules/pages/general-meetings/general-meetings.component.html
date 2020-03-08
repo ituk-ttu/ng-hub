@@ -22,20 +22,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <ng-container *ngFor="let application of generalMeetingsResult; let i = index;">
+                    <ng-container *ngFor="let meeting of generalMeetingsResult; let i = index;">
                         <tr>
-                            <td>{{application.name}}</td>
-                            <td class="no-br">{{application.date | date:'dd-MM-yyyy'}}</td>
-                            <td class="no-br">{{application.createdAt | date:'dd-MM-yyyy'}}</td>
-                            <td>{{application.election ? 'Jah' : ''}}</td>
+                            <td>{{getName(meeting)}}</td>
+                            <td class="no-br">{{meeting.date | date:'dd.MM.yyyy'}}</td>
+                            <td class="no-br">{{meeting.createdAt | date:'dd.MM.yyyy'}}</td>
+                            <td>{{meeting.election ? 'Jah' : ''}}</td>
                             <td>
                                 <div class="btn-group float-right" role="group">
                                     <button class="btn primary"
-                                            (click)="copyProtocolUrlToClipboard(application.protocolUrl)">Kopeeri
+                                            (click)="copyProtocolUrlToClipboard(meeting.protocolUrl)">Kopeeri
                                         protokolli URL
                                     </button>
                                     <button *ngIf="auth.user.role === 'ADMIN' || auth.user.role === 'BOARD'"
-                                            class="btn btn-outline-primary" (click)="chooseGeneralMeetingToEdit(application)">
+                                            class="btn btn-outline-primary"
+                                            (click)="addParticipants(meeting)">Lisa osalejad
+                                    </button>
+                                    <button *ngIf="auth.user.role === 'ADMIN' || auth.user.role === 'BOARD'"
+                                            class="btn btn-outline-primary" (click)="chooseGeneralMeetingToEdit(meeting)">
                                         Muuda
                                     </button>
                                 </div>
@@ -61,6 +65,12 @@
             <label class="control-label parent-width">
                 Valimised
                 <input class="checkbox" type="checkbox" formControlName="election">
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-label parent-width">
+                Erakorraline
+                <input class="checkbox" type="checkbox" formControlName="urgent">
             </label>
         </div>
         <div class="form-group">

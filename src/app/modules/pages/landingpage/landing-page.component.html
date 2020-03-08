@@ -1,45 +1,87 @@
-<section>
-    <div class="mx-0 row justify-content-between">
-        <h1>Ressursid</h1>
-        <div class="btn primary mb-3" *ngIf="!newItemFormActive && (auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')" (click)="toggleNewLinkForm()">Lisa uus link</div>
-    </div>
-    <ng-container *ngIf="newItemFormActive || activeId">
-        <ng-container *ngTemplateOutlet="form"></ng-container>
-    </ng-container>
-    <div class="mt-4 mb-5">
-        <div *ngFor="let resource of resources | async; trackBy: trackByFn">
-            <h3>{{resource.name}}</h3>
-            <div class="form-group mb-0">
-                <div class="input-group">
-                    <input [(ngModel)]="resource.url" name="url"
-                           readonly class="form-control" #input>
-                    <div class="btn-group input-group-btn">
-                        <button (click)="copyInputMessage(input)"
-                                class="btn"
-                                [ngClass]="{'primary': activeId !== resource.id, 'btn-outline-primary': activeId === resource.id}"
-                        >Kopeeri</button>
-                        <button [ngClass]="{'primary': activeId === resource.id, 'btn-outline-primary': activeId !== resource.id}"
-                                *ngIf="activeId != resource.id && (auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
-                                (click)="setEditActive(resource)"
-                                class="btn btn-outline-primary">Muuda
-                        </button>
-                        <button *ngIf="activeId == resource.id" (click)="activeId = null"
-                                class="btn primary">Tühista
-                        </button>
-                        <button  *ngIf="(auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
-                                 [ngClass]="{'primary': activeId !== resource.id, 'btn-outline-primary': activeId === resource.id}"
-                                 (click)="deleteResource(resource.id)"
-                                 class="btn">Kustuta
-                        </button>
+<div class="row">
+    <section class="col-lg-5 col-md-12 order-1 order-lg-0">
+        <div class="mx-0 row justify-content-between">
+            <h1>Ressursid</h1>
+            <div class="btn primary mb-3"
+                 *ngIf="!newItemFormActive && (auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
+                 (click)="toggleNewLinkForm()">Lisa uus link
+            </div>
+        </div>
+        <ng-container *ngIf="newItemFormActive || activeId">
+            <ng-container *ngTemplateOutlet="form"></ng-container>
+        </ng-container>
+        <div class="mt-4 mb-5">
+            <div *ngFor="let resource of resources | async; trackBy: trackByFn">
+                <h3>{{resource.name}}</h3>
+                <div class="form-group mb-0">
+                    <div class="input-group">
+                        <input [(ngModel)]="resource.url" name="url"
+                               readonly class="form-control" #input>
+                        <div class="btn-group input-group-btn">
+                            <button (click)="copyInputMessage(input)"
+                                    class="btn"
+                                    [ngClass]="{'primary': activeId !== resource.id, 'btn-outline-primary': activeId === resource.id}"
+                            >Kopeeri
+                            </button>
+                            <button [ngClass]="{'primary': activeId === resource.id, 'btn-outline-primary': activeId !== resource.id}"
+                                    *ngIf="activeId != resource.id && (auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
+                                    (click)="setEditActive(resource)"
+                                    class="btn btn-outline-primary">Muuda
+                            </button>
+                            <button *ngIf="activeId == resource.id" (click)="activeId = null"
+                                    class="btn primary">Tühista
+                            </button>
+                            <button *ngIf="(auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
+                                    [ngClass]="{'primary': activeId !== resource.id, 'btn-outline-primary': activeId === resource.id}"
+                                    (click)="deleteResource(resource.id)"
+                                    class="btn">Kustuta
+                            </button>
+                        </div>
                     </div>
                 </div>
+                <p>
+                    <small>{{resource.comment}}</small>
+                </p>
             </div>
-            <p>
-                <small>{{resource.comment}}</small>
-            </p>
+        </div>
+    </section>
+    <div class="col-1"></div>
+    <div class="col-lg-5 col-md-12 order-0 order-lg-1">
+        <div class="card">
+            <h2 class="text-center content-row-title">Tulevased üritused</h2>
+            <div class="card-body">
+                <ng-container *ngIf="events | async as eventsResult">
+                    <div class="event" *ngFor="let event of eventsResult.items; let i = index;">
+                        <div class="event-inner">
+                            <div class="event-date">
+                                <p class="event-day">{{ event.start.dateTime | date:'dd'}}
+                                </p>
+                                <p class="event-month">{{ event.start.dateTime | date:'MMM'}}</p></div>
+                            <div class="event-content">
+                                <p class="event-time">
+                                    {{ event.start.dateTime | eventDuration: event.end.dateTime }}
+                                </p>
+                                <p class="event-title">{{ event.summary }}</p>
+                                <p class="event-location">{{ event.location }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="card" *ngIf="birthdays">
+            <h2 class="text-center content-row-title">Tänased sünnipäevad</h2>
+            <div class="card-body">
+                <ng-container *ngIf="birthdays | async as birthdaysResult">
+                    <div class="birthday" *ngFor="let birthday of birthdaysResult; let i = index;">
+                        <p class="birthday-name">{{ birthday }}</p>
+                    </div>
+                </ng-container>
+            </div>
         </div>
     </div>
-</section>
+</div>
+
 
 <ng-template #form>
     <div class="card card-body fade-in">

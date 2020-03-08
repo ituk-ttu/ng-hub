@@ -7,7 +7,8 @@ export class ApplicationModel {
   email: string;
   id: number;
   mentor: User;
-  name: string;
+  firstName: string;
+  lastName: string;
   personalCode: string;
   processedById: number;
   status: ApplicationStatus;

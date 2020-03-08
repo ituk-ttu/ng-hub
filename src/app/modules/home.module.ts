@@ -29,7 +29,10 @@ import { SharedModule } from '../shared/shared.module';
 import { DoorBulkAddComponent } from './pages/door-bulk-add/door-bulk-add.component';
 import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 import { UserDoorPermissionsBlockComponent } from './components/user-door-permissions-block/user-door-permissions-block.component';
-import {UserPasswordChangeBlockComponent} from './components/user-password-change-block/user-password-change-block.component';
+import { UserPasswordChangeBlockComponent } from './components/user-password-change-block/user-password-change-block.component';
+import {EventDurationPipe} from "../core/pipes/event-duration.pipe";
+import {DatePipe} from "@angular/common";
+import {GeneralMeetingParticipationComponent} from "./pages/general-meetings/participation-bulk-add/general-meeting-participation.component";
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { UserSelectComponent } from './components/user-select/user-select.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
@@ -57,10 +60,12 @@ import {MatMomentDateModule} from '@angular/material-moment-adapter';
   ],
   declarations: [
     GeneralMeetingsComponent,
+    GeneralMeetingParticipationComponent,
     CheckEmailComponent,
     AppComponent,
     ContainerComponent,
     ProfilePicSelectComponent,
+    EventDurationPipe,
     LandingPageComponent,
     MentorsComponent,
     SpinnerComponent,
@@ -84,6 +89,7 @@ import {MatMomentDateModule} from '@angular/material-moment-adapter';
     UserPasswordChangeBlockComponent,
   ],
   providers: [
+    DatePipe,
     {provide: MAT_DATE_LOCALE, useValue: 'et-EE'}
   ]
 })

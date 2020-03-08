@@ -5,14 +5,12 @@ import { AuthContext } from '../services/authContext';
 @Injectable({
   providedIn: 'root'
 })
-export class CanAccessMentorGuard implements CanActivate {
+export class IsBoardOrAdminMemberGuard implements CanActivate {
 
   constructor(private router: Router, private authContext: AuthContext) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.authContext.user.role === 'BOARD'
-        || this.authContext.user.role === 'ADMIN'
-        || !!this.authContext.user.mentor;
+    return this.authContext.user.role === 'BOARD' || this.authContext.user.role === 'ADMIN';
   }
 }
