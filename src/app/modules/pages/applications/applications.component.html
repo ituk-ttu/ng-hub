@@ -24,7 +24,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr *ngFor="let application of applicationsResult; let i = index;" (click)="navigateToApplication(application)">
+                <tr *ngFor="let application of applicationsResult; let i = index;" (click)="navigateToApplication(application)" class="clickable" >
                     <td>{{application.firstName}} {{application.lastName}}</td>
                     <td>{{application.personalCode}}</td>
                     <td>{{application.email}}</td>

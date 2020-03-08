@@ -12,6 +12,7 @@ export class CanAccessMentorGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.authContext.user.role === 'BOARD'
-        || !!this.authContext.user.isMentor;
+        || this.authContext.user.role === 'ADMIN'
+        || !!this.authContext.user.mentor;
   }
 }

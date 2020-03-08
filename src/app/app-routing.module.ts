@@ -17,8 +17,8 @@ import { CheckEmailComponent } from './modules/pages/check-email/check-email.com
 import { DoorBulkAddComponent } from './modules/pages/door-bulk-add/door-bulk-add.component';
 import { ApplicationDetailComponent } from './modules/pages/application-detail/application-detail.component';
 import { CanAccessMentorGuard } from './core/guards/can-access-mentor.guard';
-import { IsBoardMemberGuard } from './core/guards/is-board-member.guard';
 import {GeneralMeetingParticipationComponent} from "./modules/pages/general-meetings/participation-bulk-add/general-meeting-participation.component";
+import { IsBoardOrAdminMemberGuard } from './core/guards/is-board-or-admin-member-guard.service';
 
 const routes: Routes = [
   {
@@ -26,6 +26,7 @@ const routes: Routes = [
     component: ContainerComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'hub', pathMatch: 'full'},
       { path: 'hub', component: LandingPageComponent },
       { path: 'hub/users', component: UsersComponent },
       { path: 'hub/users/:id', component: UserDetailViewComponent },
@@ -35,7 +36,7 @@ const routes: Routes = [
       { path: 'hub/settings/mentor', component: MentorProfileComponent },
       { path: 'hub/applications', component: ApplicationsComponent},
       { path: 'hub/applications/:id', component: ApplicationDetailComponent},
-      { path: 'hub/door-permissions', component: DoorPermissionsComponent, canActivate: [IsBoardMemberGuard]},
+      { path: 'hub/door-permissions', component: DoorPermissionsComponent, canActivate: [IsBoardOrAdminMemberGuard]},
       { path: 'hub/door-bulk-add', component: DoorBulkAddComponent},
       { path: 'hub/general-meetings', component: GeneralMeetingsComponent},
       { path: 'hub/general-meetings/:id/participation', component: GeneralMeetingParticipationComponent},

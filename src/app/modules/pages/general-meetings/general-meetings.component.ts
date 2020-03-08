@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { GeneralMeeting } from '../../../shared/models/general-meeting.model';
 import { AuthContext } from '../../../core/services/authContext';
-import { GeneralMeetingsHttpService } from "../../../core/http-services/general-meetings.http-service";
+import { GeneralMeetingsHttpService } from '../../../core/http-services/general-meetings.http-service';
 import {DoorPermissionModel} from "../../../shared/models/door-permission.model";
 import {Router} from "@angular/router";
 
@@ -20,10 +20,21 @@ export class GeneralMeetingsComponent implements OnInit {
   constructor(public generalMeetingHttpService: GeneralMeetingsHttpService,
               private router: Router,
               public auth: AuthContext) {
+
   }
 
+    private static createFormGroup(meeting?: GeneralMeeting) {
+        return new FormGroup({
+            date: new FormControl(meeting ? meeting.date : null),
+            election: new FormControl(meeting ? meeting.election : null),
+            name: new FormControl(meeting ? meeting.name : null),
+            protocolUrl: new FormControl(meeting ? meeting.protocolUrl : null),
+            urgent: new FormControl(meeting ? meeting.urgent : null)
+        });
+    }
+
   ngOnInit(): void {
-    this.newMeetingForm = this.createFormGroup();
+    this.newMeetingForm = GeneralMeetingsComponent.createFormGroup();
   }
 
   public onSubmit() {
@@ -36,15 +47,6 @@ export class GeneralMeetingsComponent implements OnInit {
         .subscribe(() => {
           this.resetFrom();
         });
-  }
-
-  private createFormGroup(meeting?: GeneralMeeting) {
-    return new FormGroup({
-      date: new FormControl(meeting ? meeting.date : null),
-      election: new FormControl(meeting ? meeting.election : null),
-      name: new FormControl(meeting ? meeting.name : null),
-      protocolUrl: new FormControl(meeting ? meeting.protocolUrl : null)
-    });
   }
 
   private resetFrom() {
@@ -73,7 +75,7 @@ export class GeneralMeetingsComponent implements OnInit {
     window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
     this.isNewMeetingFormActive = false;
     this.selectedGeneralMeeting = meeting.id;
-    this.newMeetingForm = this.createFormGroup(meeting);
+    this.newMeetingForm = GeneralMeetingsComponent.createFormGroup(meeting);
     this.newMeetingForm.addControl('id', new FormControl(meeting.id));
   }
 
@@ -89,4 +91,10 @@ export class GeneralMeetingsComponent implements OnInit {
     document.body.removeChild(selBox);
   }
 
+    getName(meeting: GeneralMeeting): string {
+        if (meeting.urgent) {
+            return 'Erakorraline üldkoosolek';
+        }
+        return 'Üldkoosolek';
+    }
 }

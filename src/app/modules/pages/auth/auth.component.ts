@@ -22,7 +22,7 @@ export class AuthComponent {
       .subscribe((token) => {
           localStorage.setItem('token', token.token);
           this.authContext.refreshSession();
-          this.router.navigate(['hub']);
+          this.router.navigate(['/hub']);
         },
         () => alert('Wrong password'));
   }

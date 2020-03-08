@@ -4,6 +4,7 @@ export class GeneralMeeting {
   election: string;
   id: string;
   name: string;
+  urgent: boolean;
   protocolUrl: string;
   updatedAt: string;
 }

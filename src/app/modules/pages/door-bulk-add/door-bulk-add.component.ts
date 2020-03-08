@@ -77,6 +77,7 @@ export class DoorBulkAddComponent implements OnInit {
     });
     this.selectedUsers.forEach(user => {
       users.push(user.id);
+      console.log(users)
     });
     this.doorHttpsService.addBulkUserDoorServices({doors: doorList, userIds: users})
         .subscribe(() => {

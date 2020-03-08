@@ -3,7 +3,7 @@ export class User {
 
   firstName: string;
   lastName: string;
-  idCode: string;
+  personalCode: string;
   email: string;
 
   curriculum: string;
@@ -14,7 +14,7 @@ export class User {
 
   role: string;
   archived: boolean;
-  isMentor: boolean;
+  mentor: boolean;
 
   status: Status;
   updatedAt: Date;
