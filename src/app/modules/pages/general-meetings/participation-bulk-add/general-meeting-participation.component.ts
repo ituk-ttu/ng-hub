@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {User} from "../../../../shared/models/user.model";
-import {UserHttpService} from "../../../../core/http-services/user.http-service";
-import {DoorHttpService} from "../../../../core/http-services/door.http-service";
-import {GeneralMeetingsHttpService} from "../../../../core/http-services/general-meetings.http-service";
-import {GeneralMeetingParticipation} from "../../../../shared/models/general-meeting-participation.model";
-import {GeneralMeeting} from "../../../../shared/models/general-meeting.model";
+import {User} from '../../../../shared/models/user.model';
+import {UserHttpService} from '../../../../core/http-services/user.http-service';
+import {DoorHttpService} from '../../../../core/http-services/door.http-service';
+import {GeneralMeetingsHttpService} from '../../../../core/http-services/general-meetings.http-service';
+import {GeneralMeetingParticipation} from '../../../../shared/models/general-meeting-participation.model';
+import {GeneralMeeting} from '../../../../shared/models/general-meeting.model';
 
 @Component({
   selector: 'general-meeting-participation',
@@ -13,9 +13,9 @@ import {GeneralMeeting} from "../../../../shared/models/general-meeting.model";
   styleUrls: ['./general-meeting-participation.component.sass']
 })
 export class GeneralMeetingParticipationComponent implements OnInit {
-  private participations: GeneralMeetingParticipation[];
-  private meetingId: string;
-  private meeting: GeneralMeeting;
+  participations: GeneralMeetingParticipation[];
+  meetingId: string;
+  meeting: GeneralMeeting;
 
   constructor(private generalMeetingsService: GeneralMeetingsHttpService,
               private route: ActivatedRoute,
