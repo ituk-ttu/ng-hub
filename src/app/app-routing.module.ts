@@ -25,6 +25,7 @@ const routes: Routes = [
     component: ContainerComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'hub', pathMatch: 'full'},
       { path: 'hub', component: LandingPageComponent },
       { path: 'hub/users', component: UsersComponent },
       { path: 'hub/users/:id', component: UserDetailViewComponent },
