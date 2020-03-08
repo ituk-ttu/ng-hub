@@ -82,4 +82,10 @@ export class GeneralMeetingsComponent implements OnInit {
     document.body.removeChild(selBox);
   }
 
+    getName(meeting: GeneralMeeting): string {
+        if (meeting.urgent) {
+            return 'Erakorraline üldkoosolek';
+        }
+        return 'Üldkoosolek';
+    }
 }
