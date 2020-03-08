@@ -56,65 +56,20 @@
             </app-user-select>
         </div>
 
-        <mat-slide-toggle formControlName="multiDayEvent" class="bottom-margin-small">Mitme-päevane projekt</mat-slide-toggle>
+        <mat-slide-toggle (toggleChange)="isMultiDayEvent = !isMultiDayEvent" class="bottom-margin-small">Mitme-päevane projekt</mat-slide-toggle>
         <div class="flex-row">
             <mat-form-field class="flex-item" appearance="outline">
-                <mat-label>{{!editProjectForm.controls['multiDayEvent'].value ? 'Kuupäev' : 'Alguskuupäev'}}</mat-label>
+                <mat-label>{{!isMultiDayEvent ? 'Kuupäev' : 'Alguskuupäev'}}</mat-label>
                 <input matInput [matDatepicker]="startDatePicker" formControlName="dateStart" required>
                 <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #startDatePicker></mat-datepicker>
             </mat-form-field>
-            <mat-form-field *ngIf="editProjectForm.controls['multiDayEvent'].value" class="flex-item" appearance="outline">
+            <mat-form-field *ngIf="isMultiDayEvent" class="flex-item" appearance="outline">
                 <mat-label>Lõppkuupäev</mat-label>
                 <input matInput [matDatepicker]="endDatePicker" [min]="editProjectForm.controls['dateStart'].value" formControlName="dateEnd">
                 <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #endDatePicker></mat-datepicker>
             </mat-form-field>
-        </div>
-
-        <h3>Meeskond</h3>
-
-        <h3>Kokkuvõte</h3>
-        <mat-form-field appearance="outline">
-            <mat-label>Projekti kirjeldus</mat-label>
-            <textarea matInput formControlName="description" required></textarea>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Mis läks hästi?</mat-label>
-            <textarea matInput #positiveSummary maxlength="300"
-                      formControlName="positiveSummary"></textarea>
-            <mat-hint align="end">{{positiveSummary.value.length}} / 300</mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Mis oleks võinud paremini olla?</mat-label>
-            <textarea matInput #negativeSummary maxlength="300"
-                      formControlName="negativeSummary"></textarea>
-            <mat-hint align="end">{{negativeSummary.value.length}} / 300</mat-hint>
-        </mat-form-field>
-
-        <h3>Eelarve</h3>
-
-        <div class="budget">
-            <div formArrayName="budgetRows" *ngFor="let budgetRow of budgetRows.controls; let i = index;">
-                <div [formGroupName]="i" class="flex-row">
-                    <mat-form-field class="flex-item">
-                        <span matPrefix>{{i + 1}}&nbsp;</span>
-                        <mat-label>Kirjeldus</mat-label>
-                        <input matInput formControlName="description" required>
-                    </mat-form-field>
-                    <mat-form-field class="flex-item">
-                        <span matPrefix>€&nbsp;</span>
-                        <mat-label>Teaduskonna kulu</mat-label>
-                        <input matInput formControlName="facultyCost">
-                    </mat-form-field>
-                    <mat-form-field class="flex-item">
-                        <span matPrefix>€&nbsp;</span>
-                        <mat-label>ITÜKi kulu</mat-label>
-                        <input matInput formControlName="itukCost">
-                    </mat-form-field>
-                </div>
-            </div>
-            <input type="button" (click)="addBudgetRow()" class="btn btn-outline-success" value="Uus rida">
         </div>
 
         <div class="btn-group float-right top-margin-medium" role="group" aria-label="Basic example">
