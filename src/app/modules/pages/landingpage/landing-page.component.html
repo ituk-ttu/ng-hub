@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="card" *ngIf="birthdays">
-            <h2 class="text-center content-row-title">Tänased sünnipäevad</h2>
+            <h2 class="text-center content-row-title">Tulevased sünnipäevad</h2>
             <div class="card-body">
                 <ng-container *ngIf="birthdays | async as birthdaysResult">
                     <div class="birthday" *ngFor="let birthday of birthdaysResult; let i = index;">
