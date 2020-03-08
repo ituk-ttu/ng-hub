@@ -62,4 +62,9 @@ export class UserSettingsBlockComponent implements OnInit {
       this.user.mentor = status;
     }
   }
+  public setIsArchived(status: boolean) {
+    if (this.user) {
+      this.user.archived = status;
+    }
+  }
 }

@@ -76,6 +76,14 @@
                             <option value="5">Juhatus</option>
                         </select>
                     </label>
+
+                    <label class="mt-2 font-weight-bold parent-width">
+                        <app-boolean-selector label="Arhiveeritud"
+                                              [isTrue]="user.archived"
+                                              (setValue)="setIsArchived($event)"
+                                              [disabled]="!canChangeStatus()">
+                        </app-boolean-selector>
+                    </label>
                 </div>
             </div>
 
