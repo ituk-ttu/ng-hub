@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
+import { UserBirthdays } from '../../shared/models/user-birthdays.model';
 
 @Injectable()
 export class BirthdaysHttpService {
@@ -10,8 +11,8 @@ export class BirthdaysHttpService {
     }
 
 
-    public getBirthdays(): Observable<string[]> {
+    public getBirthdays(): Observable<UserBirthdays[]> {
         const url = environment.API_URL + '/user/birthdays';
-        return this.http.get<string[]>(url);
+        return this.http.get<UserBirthdays[]>(url);
     }
 }

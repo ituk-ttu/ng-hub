@@ -74,7 +74,7 @@
             <div class="card-body">
                 <ng-container *ngIf="birthdays | async as birthdaysResult">
                     <div class="birthday" *ngFor="let birthday of birthdaysResult; let i = index;">
-                        <p class="birthday-name">{{ birthday }}</p>
+                        <p class="birthday-name">{{ birthday.birthday | date:'dd.MM'}} - {{ birthday.fullName }}</p>
                     </div>
                 </ng-container>
             </div>
