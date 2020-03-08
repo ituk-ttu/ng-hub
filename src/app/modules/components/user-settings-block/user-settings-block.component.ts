@@ -31,7 +31,11 @@ export class UserSettingsBlockComponent implements OnInit {
   }
 
   updateUser() {
-    this.userService.putUser(this.user).subscribe(() => this.navigateBack());
+    if (!this.selfEditing) {
+      this.userService.putUser(this.user).subscribe(() => this.navigateBack());
+    } else {
+      this.userService.putUser(this.user).subscribe(() => this.router.navigate(['/hub']));
+    }
     if (this.roleChanged) {
       this.userService.changeRole(this.user.role, this.user.id).subscribe();
     }
