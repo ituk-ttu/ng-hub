@@ -14,6 +14,7 @@ import {GeneralMeeting} from '../../../../shared/models/general-meeting.model';
 })
 export class GeneralMeetingParticipationComponent implements OnInit {
   participations: GeneralMeetingParticipation[];
+  changedParticipations: GeneralMeetingParticipation[] = [];
   meetingId: string;
   meeting: GeneralMeeting;
 
@@ -30,11 +31,18 @@ export class GeneralMeetingParticipationComponent implements OnInit {
   }
 
   public updateParticipants() {
-      this.generalMeetingsService.updateParticipations(this.participations).subscribe(e => this.participations = e);
+      this.generalMeetingsService.updateParticipations(this.changedParticipations).subscribe((e: GeneralMeetingParticipation[]) => {
+        e.forEach(persistedMeeting => {
+          const updatedParticipant: GeneralMeetingParticipation = this.participations.find(part => part.user.id === persistedMeeting.user.id);
+          const existingParticipantId = this.participations.indexOf(updatedParticipant);
+          this.participations[existingParticipantId] = persistedMeeting;
+        });
+      });
   }
 
     toggleParticipation(participation: GeneralMeetingParticipation) {
         participation.participated = !participation.participated;
+        this.changedParticipations.push(participation);
     }
 
   goBack() {
