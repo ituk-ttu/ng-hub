@@ -59,10 +59,6 @@ export class GeneralMeetingParticipationComponent implements OnInit {
         this.changedParticipations.push(participation);
     }
 
-  goBack() {
-    this.router.navigate([`hub/general-meetings`]);
-  }
-
   private buildForm() {
     this.form = new FormGroup({
       search: new FormControl()
