@@ -1,6 +1,6 @@
 <ng-container *ngIf="applications">
     <section class="container content">
-        <div class="table-responsive">
+        <div class="table-responsive" [formGroup]="searchForm">
             <table class="table table-striped table-hover table-list">
                 <thead>
                 <tr>
@@ -15,11 +15,11 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td><input type="text" placeholder="Otsi" (change)="filterApplications('name', $event.target['value'])" class="input-sm form-control"></td>
-                    <td><input type="text" placeholder="Otsi" (change)="filterApplications('personalCode', $event.target['value'])" class="input-sm form-control"></td>
-                    <td><input type="text" placeholder="Otsi" (change)="filterApplications('email', $event.target['value']) "class="input-sm form-control"></td>
-                    <td><input type="text" placeholder="Otsi" (change)="filterApplications('studentCode', $event.target['value'])" class="input-sm form-control"></td>
-                    <td><input type="text" placeholder="Otsi" (change)="filterApplications('mentor', $event.target['value'])" class="input-sm form-control"></td>
+                    <td><input class="input-sm form-control" formControlName="name" type="text" placeholder="Otsi"></td>
+                    <td><input class="input-sm form-control" formControlName="personalCode" type="text" placeholder="Otsi"></td>
+                    <td><input class="input-sm form-control" formControlName="email" type="text" placeholder="Otsi"></td>
+                    <td><input class="input-sm form-control" formControlName="studentCode" type="text" placeholder="Otsi"></td>
+                    <td><input class="input-sm form-control" formControlName="mentor" type="text" placeholder="Otsi"></td>
                     <td></td>
                     <td></td>
                 </tr>
