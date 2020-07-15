@@ -31,9 +31,9 @@ export class GeneralMeetingsHttpService {
     return this.http.put<GeneralMeeting>(url, generalMeeting);
   }
 
-  public updateParticipations(participations: GeneralMeetingParticipation[]): Observable<GeneralMeetingParticipation[]> {
-    const url = `${environment.API_URL}/meeting/participation`;
-    return this.http.put<GeneralMeetingParticipation[]>(url, participations);
+  public updateParticipations(participations: GeneralMeetingParticipation): Observable<GeneralMeetingParticipation> {
+    const url = `${environment.API_URL}/meeting/participation/single`;
+    return this.http.put<GeneralMeetingParticipation>(url, participations);
   }
 
   public getParticipations(meetingId: string): Observable<GeneralMeetingParticipation[]> {
