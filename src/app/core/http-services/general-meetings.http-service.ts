@@ -41,4 +41,8 @@ export class GeneralMeetingsHttpService {
     return this.http.get<GeneralMeetingParticipation[]>(url);
   }
 
+  public delete(id: string) {
+    const url = `${environment.API_URL}/meeting/${id}`;
+    return this.http.delete(url);
+  }
 }

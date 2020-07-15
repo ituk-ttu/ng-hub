@@ -27,7 +27,6 @@ export class GeneralMeetingsComponent implements OnInit {
         return new FormGroup({
             date: new FormControl(meeting ? meeting.date : null),
             election: new FormControl(meeting ? meeting.election : null),
-            name: new FormControl(meeting ? meeting.name : null),
             protocolUrl: new FormControl(meeting ? meeting.protocolUrl : null),
             urgent: new FormControl(meeting ? meeting.urgent : null)
         });
@@ -96,5 +95,10 @@ export class GeneralMeetingsComponent implements OnInit {
             return 'Erakorraline üldkoosolek';
         }
         return 'Üldkoosolek';
+    }
+
+    deleteGeneralMeeting(meeting: GeneralMeeting) {
+        this.generalMeetingHttpService.delete(meeting.id)
+            .subscribe(value => this.generalMeetings = this.generalMeetingHttpService.getAllMeetings());
     }
 }
