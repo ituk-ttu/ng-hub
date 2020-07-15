@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {GeneralMeetingsHttpService} from '../../../../core/http-services/general-meetings.http-service';
-import {GeneralMeetingParticipation} from '../../../../shared/models/general-meeting-participation.model';
-import {GeneralMeeting} from '../../../../shared/models/general-meeting.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GeneralMeetingsHttpService } from '../../../../core/http-services/general-meetings.http-service';
+import { GeneralMeetingParticipation } from '../../../../shared/models/general-meeting-participation.model';
+import { GeneralMeeting } from '../../../../shared/models/general-meeting.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -41,13 +41,13 @@ export class GeneralMeetingParticipationComponent implements OnInit {
   }
 
   public updateParticipants(participant) {
-      this.generalMeetingsService.updateParticipations(participant).subscribe((e: GeneralMeetingParticipation) => console.log('uuhh'));
+    this.generalMeetingsService.updateParticipations(participant).subscribe((e: GeneralMeetingParticipation) => console.log('uuhh'));
   }
 
-    toggleParticipation(participation: GeneralMeetingParticipation) {
-        participation.participated = !participation.participated;
-        this.updateParticipants(participation);
-    }
+  toggleParticipation(participation: GeneralMeetingParticipation) {
+    participation.participated = !participation.participated;
+    this.updateParticipants(participation);
+  }
 
   private buildForm() {
     this.form = new FormGroup({
@@ -56,9 +56,9 @@ export class GeneralMeetingParticipationComponent implements OnInit {
   }
 
   private searchUser() {
-      const message = this.form.value.search.toLowerCase();
-      this.participationsSearchResult = this.participations.filter(e => {
-        return e.user.firstName.toLowerCase().includes(message) || e.user.lastName.toLowerCase().includes(message);
+    const message = this.form.value.search.toLowerCase();
+    this.participationsSearchResult = this.participations.filter(e => {
+      return e.user.firstName.toLowerCase().includes(message) || e.user.lastName.toLowerCase().includes(message);
     });
   }
 }
