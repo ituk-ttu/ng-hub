@@ -6,7 +6,7 @@
       <span class="btn primary btn-file">
           Sirvi <input type="file" (change)="fileChangeEvent($event)">
         </span>
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">&times;</button>
     </div>
     <!-- Modal body -->
     <div class="modal-body">

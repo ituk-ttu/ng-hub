@@ -18,16 +18,18 @@
                         <th>Toimumise kuupäev</th>
                         <th>Loodud</th>
                         <th>Valimised</th>
+                        <th>Protokoll</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <ng-container *ngFor="let meeting of generalMeetingsResult; let i = index;">
+                    <ng-container *ngFor="let meeting of generalMeetingsResult">
                         <tr>
                             <td>{{getName(meeting)}}</td>
                             <td class="no-br">{{meeting.date | date:'dd.MM.yyyy'}}</td>
                             <td class="no-br">{{meeting.createdAt | date:'dd.MM.yyyy'}}</td>
                             <td>{{meeting.election ? 'Jah' : ''}}</td>
+                            <td><a href="{{meeting.protocolUrl}}" target="_blank">{{meeting.protocolUrl}}</a></td>
                             <td>
                                 <div class="btn-group float-right" role="group">
                                     <button class="btn primary"
@@ -41,6 +43,10 @@
                                     <button *ngIf="auth.user.role === 'ADMIN' || auth.user.role === 'BOARD'"
                                             class="btn btn-outline-primary" (click)="chooseGeneralMeetingToEdit(meeting)">
                                         Muuda
+                                    </button>
+                                    <button *ngIf="auth.user.role === 'ADMIN' || auth.user.role === 'BOARD'"
+                                            class="btn btn-outline-primary" (click)="deleteGeneralMeeting(meeting)">
+                                        X
                                     </button>
                                 </div>
                             </td>
@@ -71,12 +77,6 @@
             <label class="control-label parent-width">
                 Erakorraline
                 <input class="checkbox" type="checkbox" formControlName="urgent">
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="control-label parent-width">
-                Koosoleku nimi
-                <input class="form-control" formControlName="name">
             </label>
         </div>
         <div class="form-group">

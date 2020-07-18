@@ -97,6 +97,7 @@
                 <button
                         class="btn primary"
                         (click)="router.navigate(['/hub/mentors/profile/' + user.id])"
+                        *ngIf="user.mentor"
                 >Mentorluse profiil
                 </button>
                 <!--                  TODO add ngIf mentor-->
