@@ -23,7 +23,7 @@ export class DoorBulkAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userHttpService.getAllUsers().subscribe(e => {
+    this.userHttpService.getAllUsers(false).subscribe(e => {
       this.users = e;
       this.usersSearchResult = e;
     });

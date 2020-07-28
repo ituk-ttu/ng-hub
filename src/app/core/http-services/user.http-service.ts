@@ -21,8 +21,8 @@ export class UserHttpService {
     return throwError('Something bad happened; please try again later.');
   }
 
-  public getAllUsers(): Observable<User[]> {
-    const url = environment.API_URL + '/user';
+  public getAllUsers(showArchived: boolean): Observable<User[]> {
+    const url = `${environment.API_URL}/user?showArchived=${showArchived}`;
     return this.http.get<User[]>(url);
   }
 

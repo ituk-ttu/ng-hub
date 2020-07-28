@@ -4,6 +4,8 @@
         <h1>Kasutajad</h1>
         <button (click)="generateExcel()" class="btn btn-outline-primary ml-2">Generate Excel</button>
         <input type="search" placeholder="Otsi nime, meili või õppekava järgi" (change)="updateUserList($event.target['value'])" class="input-sm form-control">
+        <input type="checkbox" id="archived" (change)="triggerArchived($event)" />
+        <label style="margin-top: 0.5em;" for="archived">Näita arhiveerituid</label>
       </div>
         <div class="table-responsive">
             <table class="table table-striped table-hover table-list">

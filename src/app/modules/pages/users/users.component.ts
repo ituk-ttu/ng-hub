@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.userService.getAllUsers().subscribe(
+        this.userService.getAllUsers(false).subscribe(
             (response) => {
                 this.users = response;
                 this.usersToDisplay = response;
@@ -92,5 +92,15 @@ export class UsersComponent implements OnInit {
         document.body.appendChild(dwldLink);
         dwldLink.click();
         document.body.removeChild(dwldLink);
+    }
+
+    triggerArchived($event) {
+        this.userService.getAllUsers($event.target.checked).subscribe(
+            (response) => {
+                this.users = response;
+                this.usersToDisplay = response;
+            },
+            () => console.log('i dont know how to handle this error :) We will have some monkeys fix this error soon.'));
+
     }
 }
