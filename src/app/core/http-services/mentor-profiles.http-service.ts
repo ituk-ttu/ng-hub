@@ -21,7 +21,7 @@ export class MentorProfilesHttpService {
   }
 
   public findMentorByUserId(id: number): Observable<MentorProfileModel> {
-    const url = `${environment.API_URL}/mentor/${id}`;
+    const url = `${environment.API_URL}/mentor/user/${id}`;
     return this.http.get<MentorProfileModel>(url);
   }
 
