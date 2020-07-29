@@ -27,7 +27,9 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr *ngFor="let application of applicationsToDisplay; let i = index;" (click)="navigateToApplication(application)" class="clickable">
+                <tr *ngFor="let application of applicationsToDisplay; let i = index;"
+                    [ngClass]="application.status ? '' : 'table-warning'"
+                    (click)="navigateToApplication(application)" class="clickable">
                     <td>{{application.firstName}} {{application.lastName}}</td>
                     <td>{{application.personalCode}}</td>
                     <td>{{application.email}}</td>
