@@ -20,5 +20,9 @@ export class ApplicationHttpService {
     return this.http.get<ApplicationModel>(url);
   }
 
+  public deleteApplication(id: number) {
+    const url = `${environment.API_URL}/application/${id}`;
+    return this.http.delete(url);
+  }
 
 }

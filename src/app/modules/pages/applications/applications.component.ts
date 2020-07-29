@@ -58,6 +58,11 @@ export class ApplicationsComponent implements OnInit {
     });
   }
 
+  deleteApplication(application: ApplicationModel) {
+    this.applicationHttpService.deleteApplication(application.id).subscribe(val => console.log('deletion success'));
+    this.applicationsToDisplay.splice(this.applicationsToDisplay.indexOf(application), 1);
+  }
+
   navigateToApplication(application: any) {
     this.router.navigate([`hub/applications/${application.id}`]);
   }

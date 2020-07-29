@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApplicationHttpService } from "../../../core/http-services/application.http-service";
-import { ApplicationModel } from "../../../shared/models/application.model";
+import { ApplicationHttpService } from '../../../core/http-services/application.http-service';
+import { ApplicationModel } from '../../../shared/models/application.model';
 
 @Component({
   selector: 'app-application-detail',
