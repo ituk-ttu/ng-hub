@@ -11,8 +11,6 @@
                     <th>Mentor</th>
                     <th>Saadetud</th>
                     <th>Staatus</th>
-                    <th></th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,10 +26,8 @@
                     </td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
                 </tr>
-                <tr *ngFor="let application of applicationsToDisplay" [ngClass]="application.status ? '' : 'table-warning'">
+                <tr *ngFor="let application of applicationsToDisplay; let i = index;" (click)="navigateToApplication(application)" class="clickable">
                     <td>{{application.firstName}} {{application.lastName}}</td>
                     <td>{{application.personalCode}}</td>
                     <td>{{application.email}}</td>
@@ -44,8 +40,6 @@
                     <td><span class="badge"
                               [ngClass]="application.status === 'ACCEPTED' ? 'badge-success' : 'badge-danger'">{{application.status}}</span>
                     </td>
-                    <td><button (click)="navigateToApplication(application)" class="clickable">Ava</button></td>
-                    <td><button (click)="deleteApplication(application)">X</button></td>
                 </tr>
                 </tbody>
             </table>

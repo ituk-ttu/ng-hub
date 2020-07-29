@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationHttpService } from '../../../core/http-services/application.http-service';
 import { ApplicationModel } from '../../../shared/models/application.model';
 
@@ -11,7 +11,7 @@ import { ApplicationModel } from '../../../shared/models/application.model';
 export class ApplicationDetailComponent implements OnInit {
   application: ApplicationModel;
 
-  constructor(private route: ActivatedRoute, public applicationHttpService: ApplicationHttpService) {
+  constructor(private route: ActivatedRoute, public applicationHttpService: ApplicationHttpService, private router: Router) {
   }
 
   ngOnInit() {
@@ -19,6 +19,11 @@ export class ApplicationDetailComponent implements OnInit {
     this.applicationHttpService.getApplicationById(id).subscribe(e => {
       this.application = e;
     });
+  }
+
+  deleteApplication(application: ApplicationModel) {
+    this.applicationHttpService.deleteApplication(application.id)
+        .subscribe(val => this.router.navigate([`hub/applications`]));
   }
 
   acceptApplication(id: number) {
