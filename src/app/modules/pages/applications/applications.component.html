@@ -16,23 +16,31 @@
                 <tbody>
                 <tr>
                     <td><input class="input-sm form-control" formControlName="name" type="text" placeholder="Otsi"></td>
-                    <td><input class="input-sm form-control" formControlName="personalCode" type="text" placeholder="Otsi"></td>
-                    <td><input class="input-sm form-control" formControlName="email" type="text" placeholder="Otsi"></td>
-                    <td><input class="input-sm form-control" formControlName="studentCode" type="text" placeholder="Otsi"></td>
-                    <td><input class="input-sm form-control" formControlName="mentor" type="text" placeholder="Otsi"></td>
+                    <td><input class="input-sm form-control" formControlName="personalCode" type="text"
+                               placeholder="Otsi"></td>
+                    <td><input class="input-sm form-control" formControlName="email" type="text" placeholder="Otsi">
+                    </td>
+                    <td><input class="input-sm form-control" formControlName="studentCode" type="text"
+                               placeholder="Otsi"></td>
+                    <td><input class="input-sm form-control" formControlName="mentor" type="text" placeholder="Otsi">
+                    </td>
                     <td></td>
                     <td></td>
                 </tr>
-                <tr *ngFor="let application of applicationsToDisplay; let i = index;" (click)="navigateToApplication(application)" class="clickable">
+                <tr *ngFor="let application of applicationsToDisplay; let i = index;"
+                    (click)="navigateToApplication(application)" class="clickable" [ngClass]="application.status ? '' : 'table-warning'">
                     <td>{{application.firstName}} {{application.lastName}}</td>
                     <td>{{application.personalCode}}</td>
                     <td>{{application.email}}</td>
                     <td>{{application.studentCode}}</td>
                     <td>
-                        <ng-container *ngIf="application.mentor">{{application.mentor.firstName}} {{application.mentor.lastName}}</ng-container>
+                        <ng-container
+                                *ngIf="application.mentor">{{application.mentor.firstName}} {{application.mentor.lastName}}</ng-container>
                     </td>
                     <td class="no-br">{{application.createdAt | date:'dd-MM-yyyy'}}</td>
-                    <td><span class="badge badge-dark">{{application.status}}</span></td>
+                    <td><span class="badge"
+                              [ngClass]="application.status === 'ACCEPTED' ? 'badge-success' : 'badge-danger'">{{application.status}}</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
