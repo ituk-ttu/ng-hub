@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationHttpService } from '../../../core/http-services/application.http-service';
 import { ApplicationModel } from '../../../shared/models/application.model';
+import {AuthContext} from "../../../core/services/authContext";
 
 @Component({
   selector: 'app-application-detail',
@@ -11,7 +12,7 @@ import { ApplicationModel } from '../../../shared/models/application.model';
 export class ApplicationDetailComponent implements OnInit {
   application: ApplicationModel;
 
-  constructor(private route: ActivatedRoute, public applicationHttpService: ApplicationHttpService, private router: Router) {
+  constructor(public authContext: AuthContext, private route: ActivatedRoute, public applicationHttpService: ApplicationHttpService, private router: Router) {
   }
 
   ngOnInit() {
