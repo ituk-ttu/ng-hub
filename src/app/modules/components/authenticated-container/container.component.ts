@@ -10,7 +10,7 @@ import { RequestInFlightService } from '../../../core/services/request-in-flight
   styleUrls: ['./container.component.sass']
 })
 export class ContainerComponent implements OnInit, OnDestroy {
-  public navbarOpen = false;
+  public navbarOpen = undefined;
   public showSpinner;
   private showSpinnerSubject: Subscription;
 
@@ -30,7 +30,13 @@ export class ContainerComponent implements OnInit, OnDestroy {
   }
 
   public toggleNavbar() {
-    this.navbarOpen = !this.navbarOpen;
+    const isMobile = navigator.userAgent.match(
+        /(iPhone|iPod|iPad|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i);
+    if (isMobile) {
+      this.navbarOpen = !this.navbarOpen;
+    } else {
+      this.router.navigate([`hub/`])
+    }
   }
 
   ngOnDestroy(): void {
