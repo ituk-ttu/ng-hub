@@ -13,11 +13,6 @@
                             *ngIf="application.mentor"> {{application.mentor.firstName}} {{application.mentor.lastName}}</ng-container>
                     <ng-container *ngIf="!application.mentor"> Mentor valimata</ng-container>
                 </p>
-                <div class="btn-group">
-                    <button class="btn primary" (click)="acceptApplication(application.id)">Võta vastu</button>
-                    <button class="btn btn-outline-primary" (click)="refuseApplication(application.id)">Lükka tagasi
-                    </button>
-                </div>
             </div>
             <div class="panel"></div>
             <div class="col-sm">
@@ -31,7 +26,11 @@
                 </span>
 
             </div>
-
+        </div>
+        <div class="btn-group">
+            <button class="btn primary" (click)="acceptApplication(application.id)">Võta vastu</button>
+            <button class="btn btn-outline-primary" (click)="refuseApplication(application.id)">Lükka tagasi
+            </button>
         </div>
     </div>
 </section>
