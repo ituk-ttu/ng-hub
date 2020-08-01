@@ -27,7 +27,7 @@
 
             </div>
         </div>
-        <div class="btn-group">
+        <div class="btn-group" *ngIf="!application.status || application.status.toString() === 'WAITING'">
             <button class="btn primary" (click)="acceptApplication(application.id)">Võta vastu</button>
             <button class="btn btn-outline-primary" (click)="refuseApplication(application.id)">Lükka tagasi
             </button>
