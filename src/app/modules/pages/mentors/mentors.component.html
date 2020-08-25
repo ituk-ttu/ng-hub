@@ -1,4 +1,7 @@
 <ng-container *ngIf="mentorProfiles">
+    <input type="checkbox" id="active" (change)="triggerActive($event)" />
+    <label style="margin-top: 0.5em; margin-left: 0.5em" for="active">Näita mitte avalikustatud</label>
+
     <div class="grid">
         <app-mentor-card class="mentor" *ngFor="let mentor of mentorProfiles"
                          [mentor]="mentor">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { MentorProfileModel } from '../../../shared/models/mentor-profile.model';
 import { MentorProfilesHttpService } from "../../../core/http-services/mentor-profiles.http-service";
 
@@ -9,15 +9,30 @@ import { MentorProfilesHttpService } from "../../../core/http-services/mentor-pr
 })
 
 export class MentorsComponent implements OnInit {
+  allProfiles: MentorProfileModel[];
   public mentorProfiles: MentorProfileModel[];
+  public showActive: true;
 
   constructor(private httpService: MentorProfilesHttpService) {
   }
 
   ngOnInit(): void {
     this.httpService.getAllMentorProfiles().subscribe(
-      (response) => this.mentorProfiles = response,
+      (response) => {
+        this.allProfiles = response;
+        this.mentorProfiles = this.allProfiles.filter(item => item.enabled);
+      },
       () => console.log('Error getting mentor profiles')
     );
+  }
+
+  triggerActive($event): void {
+    console.log($event.target.checked)
+    if ($event.target.checked) {
+      this.mentorProfiles = [...this.allProfiles];
+    } else {
+      let filtered = this.allProfiles.filter(item => item.enabled);
+      this.mentorProfiles = [...filtered]
+    }
   }
 }
