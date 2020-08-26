@@ -6,7 +6,7 @@
                 <p class="ng-binding"><strong>E-mail:</strong> {{application.email}}</p>
                 <p class="ng-binding"><strong>Tudengikood:</strong> {{application.studentCode}}</p>
                 <p><strong>Staatus:</strong>
-                    <span class="label ng-binding label-primary"> Waiting</span>
+                    <span class="label ng-binding label-primary"> {{application.status}}</span>
                 </p>
                 <p><strong>Mentor:</strong>
                     <ng-container
@@ -27,7 +27,7 @@
 
             </div>
         </div>
-        <div class="btn-group">
+        <div class="btn-group" *ngIf="!application.status || application.status.toString() === 'WAITING'">
             <button class="btn primary" (click)="acceptApplication(application.id)">Võta vastu</button>
             <button class="btn btn-outline-primary" (click)="refuseApplication(application.id)">Lükka tagasi
             </button>

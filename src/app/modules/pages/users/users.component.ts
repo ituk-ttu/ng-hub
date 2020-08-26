@@ -40,6 +40,7 @@ export class UsersComponent implements OnInit {
             return name.toLowerCase().includes(lowerCaseSearchString)
                 || user.email.toLowerCase().includes(lowerCaseSearchString)
                 || (user.studentCode ? user.studentCode.toLowerCase().includes(lowerCaseSearchString) : false)
+                || (user.curriculum ? user.curriculum.toLowerCase().includes(lowerCaseSearchString) : false)
                 || user.status.statusName.toLowerCase().includes(lowerCaseSearchString)
                 || user.role.toLowerCase().includes(lowerCaseSearchString)
                 || searchString === '';

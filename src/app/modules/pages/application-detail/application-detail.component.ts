@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationHttpService } from '../../../core/http-services/application.http-service';
 import { ApplicationModel } from '../../../shared/models/application.model';
-import {AuthContext} from "../../../core/services/authContext";
+import { AuthContext } from '../../../core/services/authContext';
+import { ApplicationStatus } from '../../../shared/models/application-status.enum';
 
 @Component({
   selector: 'app-application-detail',
@@ -12,7 +13,10 @@ import {AuthContext} from "../../../core/services/authContext";
 export class ApplicationDetailComponent implements OnInit {
   application: ApplicationModel;
 
-  constructor(public authContext: AuthContext, private route: ActivatedRoute, public applicationHttpService: ApplicationHttpService, private router: Router) {
+  constructor(public authContext: AuthContext,
+              private route: ActivatedRoute,
+              public applicationHttpService: ApplicationHttpService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -28,10 +32,12 @@ export class ApplicationDetailComponent implements OnInit {
   }
 
   acceptApplication(id: number) {
-    alert('Not implemented');
+    this.applicationHttpService.changeApplicationStatus(id, ApplicationStatus.ACCEPTED)
+        .subscribe(val => this.router.navigate([`hub/applications`]));
   }
 
   refuseApplication(id: number) {
-    alert('Not implemented');
+    this.applicationHttpService.changeApplicationStatus(id, ApplicationStatus.REJECTED)
+        .subscribe(val => this.router.navigate([`hub/applications`]));
   }
 }
