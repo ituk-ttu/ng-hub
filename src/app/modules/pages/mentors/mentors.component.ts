@@ -11,7 +11,6 @@ import { MentorProfilesHttpService } from "../../../core/http-services/mentor-pr
 export class MentorsComponent implements OnInit {
   allProfiles: MentorProfileModel[];
   public mentorProfiles: MentorProfileModel[];
-  public showActive: true;
 
   constructor(private httpService: MentorProfilesHttpService) {
   }
@@ -27,12 +26,11 @@ export class MentorsComponent implements OnInit {
   }
 
   triggerActive($event): void {
-    console.log($event.target.checked)
     if ($event.target.checked) {
       this.mentorProfiles = [...this.allProfiles];
     } else {
-      let filtered = this.allProfiles.filter(item => item.enabled);
-      this.mentorProfiles = [...filtered]
+      const filtered = this.allProfiles.filter(item => item.enabled);
+      this.mentorProfiles = [...filtered];
     }
   }
 }

@@ -20,6 +20,11 @@ export class MentorProfilesHttpService {
     return this.http.put<MentorProfileModel>(url, {...mentorProfile, user: {id: mentorProfile.user.id}});
   }
 
+  public getMentorProfilePic(mentorId): Observable<any> {
+    const url = `${environment.API_URL}/mentor/${mentorId}/picture`;
+    return this.http.get<any>(url, { responseType: 'text' });
+  }
+
   public findMentorByUserId(id: number): Observable<MentorProfileModel> {
     const url = `${environment.API_URL}/mentor/user/${id}`;
     return this.http.get<MentorProfileModel>(url);

@@ -46,7 +46,7 @@
                         <button (click)="save()" class="btn primary">Salvesta</button>
                         <button (click)="getProfile()" class="btn btn-outline-primary">Taasta</button>
                         <app-profile-pic-select
-                                [userId]="mentorProfile.user.id"
+                                [mentorId]="mentorProfile.id"
                                 [imageChangedEvent]="mentorProfile.picture"
                                 (imageSaved)="savePicture($event)">
                         </app-profile-pic-select>
@@ -55,7 +55,7 @@
             </form>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-6">
-            <app-mentor-card [mentor]="mentorProfile">
+            <app-mentor-card *ngIf="!hasProfileBeenUpdated" [mentor]="mentorProfile">
             </app-mentor-card>
         </div>
     </div>
