@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {MentorProfileModel} from '../../shared/models/mentor-profile.model';
 import {environment} from '../../../environments/environment';
