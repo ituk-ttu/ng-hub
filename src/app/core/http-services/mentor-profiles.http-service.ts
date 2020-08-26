@@ -30,11 +30,6 @@ export class MentorProfilesHttpService {
     return this.http.get<MentorProfileModel>(url);
   }
 
-  public getMentorProfilePictureByUserId(id: number): Observable<any> {
-    const url = `${environment.API_URL}/mentor/${id}/picture`;
-    return this.http.get<MentorProfileModel>(url);
-  }
-
   public saveProfilePic(mentorId: number, formDataContainingImage: FormData): Observable<any> {
     // TODO make this work
     const requestHeaders = new HttpHeaders({'Content-Type': 'multipart/form-data'});
