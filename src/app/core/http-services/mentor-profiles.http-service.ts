@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {MentorProfileModel} from '../../shared/models/mentor-profile.model';
 import {environment} from '../../../environments/environment';
@@ -22,7 +22,7 @@ export class MentorProfilesHttpService {
 
   public getMentorProfilePic(mentorId): Observable<any> {
     const url = `${environment.API_URL}/mentor/${mentorId}/picture`;
-    return this.http.get<any>(url, { responseType: 'text' });
+    return this.http.get(url, {responseType: 'text'});
   }
 
   public findMentorByUserId(id: number): Observable<MentorProfileModel> {
