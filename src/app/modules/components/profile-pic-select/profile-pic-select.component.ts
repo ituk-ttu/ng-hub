@@ -9,13 +9,15 @@ import {MentorProfilesHttpService} from '../../../core/http-services/mentor-prof
   styleUrls: ['./profile-pic-select.component.sass']
 })
 export class ProfilePicSelectComponent {
+  readonly PROFILE_PICTURE_SIZE: number = 350;
+  readonly ASPECT_RATIO: number = 1;
   @ViewChild('template', { static: true })
   picSelectTemplate: TemplateRef<any>;
   public modalRef: BsModalRef;
   @Input()
   public imageChangedEvent: any = '';
   @Input()
-  public userId: number;
+  public mentorId: number;
   public croppedImage: string;
   public showCropper;
   public showRestore = false;
@@ -28,6 +30,10 @@ export class ProfilePicSelectComponent {
 
 
   public openModal() {
+    this.mentorHttpService.getMentorProfilePic(this.mentorId)
+      .subscribe((response) => {
+        this.imageChangedEvent = response;
+      });
     this.modalRef = this.modalService.show(this.picSelectTemplate, {
       class: 'modal-md',
       ignoreBackdropClick: true,
@@ -68,8 +74,10 @@ export class ProfilePicSelectComponent {
 
   public restore(): void {
     this.showRestore = false;
-    this.mentorHttpService.findMentorByUserId(this.userId)
-      .subscribe((response) => this.imageChangedEvent = response.picture);
+    this.mentorHttpService.getMentorProfilePic(this.mentorId)
+      .subscribe((response) => {
+        this.imageChangedEvent = response;
+      });
   }
 
   public imageLoaded(): void {

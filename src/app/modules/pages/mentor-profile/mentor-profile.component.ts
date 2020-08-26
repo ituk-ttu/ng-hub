@@ -11,6 +11,7 @@ import {MentorProfilesHttpService} from '../../../core/http-services/mentor-prof
 })
 export class MentorProfileComponent implements OnInit {
 
+  public hasProfileBeenUpdated = false;
   public mentorProfile: MentorProfileModel;
 
   constructor(private mentorHttpService: MentorProfilesHttpService,
@@ -46,7 +47,12 @@ export class MentorProfileComponent implements OnInit {
   savePicture(base64img: string) {
     this.mentorProfile.picture = base64img;
     this.mentorHttpService.saveProfilePicBase64(this.mentorProfile.user.id, base64img).subscribe(
-      () => console.log('nice'),
+      () => {
+        this.hasProfileBeenUpdated = true;
+        // as app-mentor-card component is not a presentational component but loads profile pic
+        // from BE then i reset the component so i'l load again ...
+        setTimeout(() => this.hasProfileBeenUpdated = false, 0);
+      },
       () => console.log('not nice'));
   }
 }
