@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { MentorProfileModel } from '../../../shared/models/mentor-profile.model';
-import {MentorProfilesHttpService} from '../../../core/http-services/mentor-profiles.http-service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-mentor-card',
@@ -15,14 +15,11 @@ export class MentorCardComponent implements OnInit {
   public profilePic: string;
   public readonly PLACEHOLDER = 'https://www.productionhouse.ee/wp-content/uploads/2017/10/placeholder.jpg';
 
-  constructor(private mentorProfilesHttpService: MentorProfilesHttpService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.mentorProfilesHttpService.getMentorProfilePic(this.mentor.id).subscribe(img => {
-        this.profilePic = img;
-      }
-    );
+    this.profilePic = `${environment.API_URL}/mentor/${this.mentor.id}/picture`;
   }
 
   public setPlaceholderPicture() {
