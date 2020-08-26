@@ -21,7 +21,7 @@ export class MentorProfilesHttpService {
   }
 
   public getMentorProfilePic(mentorId): Observable<any> {
-    const url = `${environment.API_URL}/mentor/${mentorId}/picture`;
+    const url = `${environment.API_URL}/mentor/${mentorId}/base64`;
     return this.http.get(url, {responseType: 'text'});
   }
 
