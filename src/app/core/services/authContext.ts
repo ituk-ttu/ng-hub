@@ -26,9 +26,9 @@ export class AuthContext {
 
   public refreshSession() {
     this.getSessionUser().subscribe((response) => {
-        this.isLoggedInSubject.next(true);
-        this.isLoggedIn = true;
-        this.user = response;
+      this.user = response;
+      this.isLoggedInSubject.next(true);
+      this.isLoggedIn = true;
       }, () => {
         this.isLoggedInSubject.next(false);
       }

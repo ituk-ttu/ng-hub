@@ -31,7 +31,7 @@ const routes: Routes = [
       { path: 'hub/users', component: UsersComponent },
       { path: 'hub/users/:id', component: UserDetailViewComponent },
       { path: 'hub/mentors', component: MentorsComponent, canActivate: [CanAccessMentorGuard] },
-      { path: 'hub/mentors/profile/:id', component: MentorProfileComponent },
+      { path: 'hub/mentors/profile/:id', component: MentorProfileComponent, canActivate: [IsBoardOrAdminMemberGuard] },
       { path: 'hub/settings', component: SettingsComponent },
       { path: 'hub/settings/mentor', component: MentorProfileComponent },
       { path: 'hub/applications', component: ApplicationsComponent},
