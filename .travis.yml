@@ -1,20 +1,27 @@
 language: node_js
 addons:
+  ssh_known_hosts:
+    - ituk.ee
   apt:
     packages:
-      - rsync
-      - sshpass
+    - rsync
+    - sshpass
 sudo: true
 dist: trusty
 node_js:
-  - "stable"
+- stable
+before_install:
+  - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
+    -in deploy_rsa.enc -out deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 deploy_rsa
+  - ssh-add deploy_rsa
 branches:
   only:
-    - master
-before_script: # commands to run before the build step
-  - npm install -g --silent @angular/cli
-
-script: # the build step
-  - ng build --prod
+  - master
+before_script:
+- npm install -g --silent @angular/cli
+script:
+- ng build --prod
 after_success:
-  - rsync -chavzP --rsh="sshpass -p $FTP_PASSWORD ssh -o StrictHostKeyChecking=no -l $FTP_USER" dist/* $FTP_USER@ituk.ee:/var/newHub/dev/front
+- rsync -chavzP --rsh="ssh -o -l $SSH_USERNAME" dist/* $SSH_USERNAME@ituk.ee:/var/newHub/dev/front
