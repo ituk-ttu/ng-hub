@@ -24,4 +24,4 @@ before_script:
 script:
 - ng build --prod
 after_success:
-- rsync -chavzP --rsh="ssh -o -l $SSH_USERNAME" dist/* $SSH_USERNAME@ituk.ee:/var/newHub/dev/front
+- rsync -chavzP --rsh="ssh -l $SSH_USERNAME" dist/* $SSH_USERNAME@ituk.ee:/var/newHub/dev/front
