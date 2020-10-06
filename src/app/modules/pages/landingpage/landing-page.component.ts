@@ -16,8 +16,10 @@ export class LandingPageComponent {
   public resourceFrom: FormGroup;
   public newItemFormActive = false;
   private CALENDAR_ID = 'g86lrthmecu19gh7arvcj76f08@group.calendar.google.com/';
+  private INNER_CALENDAR_ID = '1ofsrfgn87na3udab2frm5l374@group.calendar.google.com/';
   private GOOGLE_CALENDAR_API_KEY = 'AIzaSyATtCseJ8dZJaJ7XsLTIXfCbfpYOseGgHM';
   public events = this.eventsHttpService.getAllEvents(this.CALENDAR_ID, this.GOOGLE_CALENDAR_API_KEY);
+  public innerEvents = this.eventsHttpService.getAllEvents(this.INNER_CALENDAR_ID, this.GOOGLE_CALENDAR_API_KEY)
   public birthdays = this.birthdaysHttpService.getBirthdays();
 
   constructor(private resourcesService: ResourcesHttpService,

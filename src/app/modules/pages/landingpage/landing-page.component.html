@@ -67,6 +67,25 @@
                         </div>
                     </div>
                 </ng-container>
+                <hr>
+                <ng-container *ngIf="innerEvents | async as eventsResult">
+                    <div class="event" *ngFor="let event of eventsResult.items; let i = index;">
+                        <div class="event-inner">
+                            <div class="event-date">
+                                <p class="event-day">{{ event.start.dateTime | date:'dd'}}
+                                </p>
+                                <p class="event-month">{{ event.start.dateTime | date:'MMM'}}</p></div>
+                            <div class="event-content">
+                                <p class="event-time">
+                                    {{ event.start.dateTime | eventDuration: event.end.dateTime }}
+                                </p>
+                                <p class="event-title">{{ event.summary }}</p>
+                                <p class="event-location">Siseüritus</p>
+                                <p class="event-location">{{ event.location }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
         </div>
         <div class="card" *ngIf="birthdays">
