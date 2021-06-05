@@ -1,5 +1,4 @@
 import {User} from './user.model';
-import {ProjectBudget} from './project-budget.model';
 import {ProjectSummary} from './project-summary.model';
 
 export class Project {
@@ -9,7 +8,5 @@ export class Project {
     dateEnd: string; // Date
     description: string;
     projectLead: User;
-    members: User[];
-    budget: ProjectBudget;
     summary: ProjectSummary;
 }

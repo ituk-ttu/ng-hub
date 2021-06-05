@@ -1,0 +1,13 @@
+<mat-form-field [formGroup]="form" [appearance]="appearance" style="width: 100%">
+    <mat-label>{{label}}</mat-label>
+    <input matInput
+           [required]="required"
+           [matAutocomplete]="autoSelectUser"
+           [formControlName]="controlName">
+</mat-form-field>
+
+<mat-autocomplete #autoSelectUser="matAutocomplete"
+                  [displayWith]="displayUser()"
+                  [formGroup]="form">
+    <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{ user | fullname }}</mat-option>
+</mat-autocomplete>

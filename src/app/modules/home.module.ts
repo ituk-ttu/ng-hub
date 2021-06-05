@@ -21,7 +21,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { BooleanSelectorComponent } from './components/boolean-selector/boolean-selector.component';
 import { GeneralMeetingsComponent } from './pages/general-meetings/general-meetings.component';
-import { ProjectSummaryComponent } from './pages/project-summary/project-summary.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
 import { UserSettingsBlockComponent } from './components/user-settings-block/user-settings-block.component';
 import { CheckEmailComponent } from './pages/check-email/check-email.component';
 import { MentorCardComponent } from './components/mentor-card/mentor-card.component';
@@ -33,6 +33,13 @@ import { UserPasswordChangeBlockComponent } from './components/user-password-cha
 import {EventDurationPipe} from "../core/pipes/event-duration.pipe";
 import {DatePipe} from "@angular/common";
 import {GeneralMeetingParticipationComponent} from "./pages/general-meetings/participation-bulk-add/general-meeting-participation.component";
+import { ProjectCardComponent } from './components/project-card/project-card.component';
+import { UserSelectComponent } from './components/user-select/user-select.component';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from '@angular/material/input';
+import {MAT_DATE_LOCALE, MatDatepickerModule, MatSlideToggleModule} from '@angular/material';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
 
 @NgModule({
   imports: [
@@ -43,7 +50,13 @@ import {GeneralMeetingParticipationComponent} from "./pages/general-meetings/par
     NgxSpinnerModule,
     ImageCropperModule,
     SharedModule,
-    BsDropdownModule
+    BsDropdownModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatSlideToggleModule
   ],
   declarations: [
     GeneralMeetingsComponent,
@@ -66,14 +79,19 @@ import {GeneralMeetingParticipationComponent} from "./pages/general-meetings/par
     DoorPermissionsComponent,
     UserDetailViewComponent,
     BooleanSelectorComponent,
-    ProjectSummaryComponent,
+    ProjectsComponent,
     MentorCardComponent,
     DoorBulkAddComponent,
     ApplicationDetailComponent,
+    ProjectCardComponent,
+    UserSelectComponent,
     UserDoorPermissionsBlockComponent,
     UserPasswordChangeBlockComponent,
   ],
-  providers: [DatePipe]
+  providers: [
+    DatePipe,
+    {provide: MAT_DATE_LOCALE, useValue: 'et-EE'}
+  ]
 })
 export class HomeModule {
 }

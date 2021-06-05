@@ -1,0 +1,80 @@
+<!--suppress HtmlFormInputWithoutLabel -->
+<ng-container>
+    <div>
+        <div *ngIf="isEditFormViewActive || selectedProject" class="card card-body top-margin-medium">
+            <ng-container *ngTemplateOutlet="form"></ng-container>
+        </div>
+        <div class="project-list" *ngIf="!isEditFormViewActive">
+            <div class="bottom-margin-medium top-margin-medium">
+                <div class="mx-0 row justify-content-between">
+                    <h2 class="bottom-margin-small">Viimane nädal</h2>
+                    <button
+                            class="btn primary"
+                            *ngIf="!isEditFormViewActive && !selectedProject && (auth.user.role === 'ADMIN' || auth.user.role === 'BOARD')"
+                            (click)="toggleEditProjectForm()"
+                    >
+                        Uus projekt
+                    </button>
+                </div>
+                <div class="flex-row">
+                    <app-project-card *ngFor="let project of projectDateMap.thisWeek" [project]="project"></app-project-card>
+                </div>
+            </div>
+
+            <div class="bottom-margin-medium">
+                <h2 class="bottom-margin-small">Käesolev kuu</h2>
+                <div class="flex-row">
+                    <app-project-card *ngFor="let project of projectDateMap.thisMonth" [project]="project"></app-project-card>
+                </div>
+            </div>
+
+            <div class="bottom-margin-medium">
+                <h2 class="bottom-margin-small">Vanemad projektid</h2>
+                <div class="flex-row">
+                    <app-project-card *ngFor="let project of projectDateMap.other" [project]="project"></app-project-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #form>
+    <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()" class="material-form">
+        <h3>Üldine</h3>
+        <div class="flex-row">
+            <mat-form-field appearance="outline" class="flex-item">
+                <mat-label>Projekti nimi</mat-label>
+                <input matInput formControlName="title" required>
+            </mat-form-field>
+            <app-user-select
+                    class="flex-item"
+                    [form]="editProjectForm"
+                    controlName="projectLead"
+                    label="Projektijuht"
+                    required=true
+                    appearance="outline">
+            </app-user-select>
+        </div>
+
+        <mat-slide-toggle (toggleChange)="isMultiDayEvent = !isMultiDayEvent" class="bottom-margin-small">Mitme-päevane projekt</mat-slide-toggle>
+        <div class="flex-row">
+            <mat-form-field class="flex-item" appearance="outline">
+                <mat-label>{{!isMultiDayEvent ? 'Kuupäev' : 'Alguskuupäev'}}</mat-label>
+                <input matInput [matDatepicker]="startDatePicker" formControlName="dateStart" required>
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field *ngIf="isMultiDayEvent" class="flex-item" appearance="outline">
+                <mat-label>Lõppkuupäev</mat-label>
+                <input matInput [matDatepicker]="endDatePicker" [min]="editProjectForm.controls['dateStart'].value" formControlName="dateEnd">
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="btn-group float-right top-margin-medium" role="group" aria-label="Basic example">
+            <button type="submit" class="btn primary">Salvesta</button>
+            <button type="button" class="btn btn-outline-primary" (click)="hideFrom()">Tühista</button>
+        </div>
+    </form>
+</ng-template>

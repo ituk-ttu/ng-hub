@@ -19,6 +19,7 @@ import { ApplicationDetailComponent } from './modules/pages/application-detail/a
 import { CanAccessMentorGuard } from './core/guards/can-access-mentor.guard';
 import {GeneralMeetingParticipationComponent} from "./modules/pages/general-meetings/participation-bulk-add/general-meeting-participation.component";
 import { IsBoardOrAdminMemberGuard } from './core/guards/is-board-or-admin-member-guard.service';
+import { ProjectsComponent } from "./modules/pages/projects/projects.component";
 
 const routes: Routes = [
   {
@@ -40,6 +41,7 @@ const routes: Routes = [
       { path: 'hub/door-bulk-add', component: DoorBulkAddComponent},
       { path: 'hub/general-meetings', component: GeneralMeetingsComponent},
       { path: 'hub/general-meetings/:id/participation', component: GeneralMeetingParticipationComponent},
+      { path: 'hub/projects', component: ProjectsComponent},
       { path: 'hub/**', redirectTo: 'hub', pathMatch: 'full' }
     ]
   },
