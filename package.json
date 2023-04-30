@@ -24,7 +24,7 @@
     "bootstrap": "^4.3.1",
     "bootstrap-icons": "^1.0.0-alpha5",
     "core-js": "^2.6.10",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-bootstrap": "^4.3.0",
     "ngx-image-cropper": "^1.5.1",
     "ngx-modal-dialog": "^3.0.0",
